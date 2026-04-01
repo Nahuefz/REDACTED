@@ -1,0 +1,92 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+[RequireComponent(typeof(CharacterController))]
+public class PlayerController : MonoBehaviour
+{
+    [Header("Ajustes de Movimiento")]
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float gravity = -9.81f;
+    [SerializeField] private float jumpHeight = 1.5f;
+
+    [Header("Ajustes de Cámara")]
+    [SerializeField] private Transform cameraTransform; // Arrastrá la Main Camera acá
+    [SerializeField] private float mouseSensitivity = 25f;
+    [SerializeField] private float upperLookLimit = 80f;
+    [SerializeField] private float lowerLookLimit = -80f;
+
+    private CharacterController controller;
+    private PlayerInputs inputActions;
+    private Vector2 moveInput;
+    private Vector2 lookInput;
+    private Vector3 velocity;
+    private float xRotation = 0f;
+    private bool isGrounded;
+
+    private void Awake()
+    {
+        controller = GetComponent<CharacterController>();
+        inputActions = new PlayerInputs();
+    }
+
+    private void OnEnable() => inputActions.Player.Enable();
+    private void OnDisable() => inputActions.Player.Disable();
+
+    private void Start()
+    {
+        // Oculta el cursor y lo bloquea en el centro
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void Update()
+    {
+        HandleLook();
+        HandleMovement();
+        HandleGravity();
+    }
+
+    private void HandleMovement()
+    {
+        moveInput = inputActions.Player.Move.ReadValue<Vector2>();
+
+        // Calculamos la dirección relativa a hacia donde mira el cuerpo
+        Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
+
+        controller.Move(move * moveSpeed * Time.deltaTime);
+    }
+
+    private void HandleLook()
+    {
+        lookInput = inputActions.Player.Look.ReadValue<Vector2>();
+
+        float mouseX = lookInput.x * mouseSensitivity * Time.deltaTime;
+        float mouseY = lookInput.y * mouseSensitivity * Time.deltaTime;
+
+        // Rotación Vertical (Cámara)
+        xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, lowerLookLimit, upperLookLimit);
+        cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+
+        // Rotación Horizontal (Cuerpo del jugador)
+        transform.Rotate(Vector3.up * mouseX);
+    }
+
+    private void HandleGravity()
+    {
+        isGrounded = controller.isGrounded;
+
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+
+        // Salto
+        if (inputActions.Player.Jump.triggered && isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+    }
+}
