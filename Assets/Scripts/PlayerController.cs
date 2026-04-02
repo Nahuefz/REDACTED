@@ -4,6 +4,12 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
+    [Header("Físicas de Salto")]
+    [SerializeField] private Transform groundCheck; 
+    [SerializeField] private float groundDistance = 0.4f; 
+    [SerializeField] private LayerMask groundMask; 
+    [SerializeField] private float fallMultiplier = 2.5f;
+
     [Header("Ajustes de Movimiento")]
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float gravity = -9.81f;
@@ -73,20 +79,24 @@ public class PlayerController : MonoBehaviour
 
     private void HandleGravity()
     {
-        isGrounded = controller.isGrounded;
+        // 1. Detección de suelo mejorada (Esfera en los pies)
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }
 
-        // Salto
+        // 2. Lógica de Salto
         if (inputActions.Player.Jump.triggered && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
-        velocity.y += gravity * Time.deltaTime;
+        // 3. Efecto Caida
+        float currentGravity = (velocity.y < 0) ? gravity * fallMultiplier : gravity;
+
+        velocity.y += currentGravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
 }
