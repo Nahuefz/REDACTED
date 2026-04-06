@@ -4,11 +4,14 @@ public class PauseManager : MonoBehaviour
 {
     private bool isPaused = false;
     private PlayerInputs _pauseInputs;
+    [SerializeField] private GameObject _pauseCanvas;
 
     private void Awake()
     {
         _pauseInputs = new PlayerInputs();
         _pauseInputs.Enable();
+        _pauseCanvas =  GameObject.Find("PauseCanvas");
+        _pauseCanvas.SetActive(false);
     }
 
     private void Update()
@@ -16,6 +19,7 @@ public class PauseManager : MonoBehaviour
         if (_pauseInputs.Player.Pause.WasPressedThisFrame())
         {
             TogglePause();
+            
         }
     }
 
@@ -29,7 +33,31 @@ public class PauseManager : MonoBehaviour
         isPaused = !isPaused;
         Time.timeScale = isPaused ? 0 : 1;
         Debug.Log($"PAUSA = <color=yellow>{isPaused}</color>");
-        _pauseInputs.Player.Enable();
+
+        switch (isPaused)
+        {
+            case  true: 
+                _pauseCanvas.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                break;
+            case  false: 
+                _pauseCanvas.SetActive(false);
+                Cursor.lockState = CursorLockMode.Locked;
+                break;
+        }
+    }
+    /// <summary>
+    /// Metodo de "despausa" para el menu de pausa
+    /// </summary>
+    public void Resume()
+    {
+        TogglePause();
+        //_pauseCanvas.SetActive(false);
     }
     #endregion
+
+    public void Quit()
+    {
+        Debug.Log("<color=yellow>IMPLEMENTAR</color>");
+    }
 }
