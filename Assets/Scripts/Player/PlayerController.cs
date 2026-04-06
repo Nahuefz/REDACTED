@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
-    [Header("Físicas de Salto")]
+    [Header("Fï¿½sicas de Salto")]
     [SerializeField] private Transform groundCheck; 
     [SerializeField] private float groundDistance = 0.4f; 
     [SerializeField] private LayerMask groundMask; 
@@ -15,8 +15,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float jumpHeight = 1.5f;
 
-    [Header("Ajustes de Cámara")]
-    [SerializeField] private Transform cameraTransform; // Arrastrá la Main Camera acá
+    [Header("Ajustes de Cï¿½mara")]
+    [SerializeField] private Transform cameraTransform; // Arrastrï¿½ la Main Camera acï¿½
     [SerializeField] private float mouseSensitivity = 25f;
     [SerializeField] private float upperLookLimit = 80f;
     [SerializeField] private float lowerLookLimit = -80f;
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
     {
         moveInput = inputActions.Player.Move.ReadValue<Vector2>();
 
-        // Calculamos la dirección relativa a hacia donde mira el cuerpo
+        // Calculamos la direcciï¿½n relativa a hacia donde mira el cuerpo
         Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
 
         controller.Move(move * moveSpeed * Time.deltaTime);
@@ -68,18 +68,18 @@ public class PlayerController : MonoBehaviour
         float mouseX = lookInput.x * mouseSensitivity * Time.deltaTime;
         float mouseY = lookInput.y * mouseSensitivity * Time.deltaTime;
 
-        // Rotación Vertical (Cámara)
+        // Rotaciï¿½n Vertical (Cï¿½mara)
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, lowerLookLimit, upperLookLimit);
         cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
-        // Rotación Horizontal (Cuerpo del jugador)
+        // Rotaciï¿½n Horizontal (Cuerpo del jugador)
         transform.Rotate(Vector3.up * mouseX);
     }
 
     private void HandleGravity()
     {
-        // 1. Detección de suelo mejorada (Esfera en los pies)
+        // 1. Detecciï¿½n de suelo mejorada (Esfera en los pies)
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isGrounded && velocity.y < 0)
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
             velocity.y = -2f;
         }
 
-        // 2. Lógica de Salto
+        // 2. Lï¿½gica de Salto
         if (inputActions.Player.Jump.triggered && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
