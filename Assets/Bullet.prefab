@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3828eea07992ef84790ddaec1c71667b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 25000
+  speed: 20000
   lifeTime: 3
 --- !u!54 &7655815097461056452
 Rigidbody:
@@ -150,4 +150,4 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2

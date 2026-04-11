@@ -8,9 +8,10 @@ public class WeaponController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButton("Fire1") && Time.time >= nextFireTime)
+        if (Input.GetButtonDown("Fire1") && Time.time >= nextFireTime)
         {
             Shoot();
+            Debug.Log("Disparo BANG BANG");
             nextFireTime = Time.time + fireRate;
         }
     }
