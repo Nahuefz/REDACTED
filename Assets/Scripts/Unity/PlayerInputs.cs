@@ -127,6 +127,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""2bd3ee33-efd5-4085-8971-4d9325383841"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -239,6 +248,28 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8fa179a6-c557-4e4e-acf8-6c63f1ef20fa"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aa07b24a-1b5c-4faf-97df-7ffc1ff39def"",
+                    ""path"": ""<Keyboard>/numpad8"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -251,6 +282,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
     }
 
     ~@PlayerInputs()
@@ -335,6 +367,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_Shoot;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -362,6 +395,10 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Pause".
         /// </summary>
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Shoot".
+        /// </summary>
+        public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -400,6 +437,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @Shoot.started += instance.OnShoot;
+            @Shoot.performed += instance.OnShoot;
+            @Shoot.canceled += instance.OnShoot;
         }
 
         /// <summary>
@@ -423,6 +463,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @Shoot.started -= instance.OnShoot;
+            @Shoot.performed -= instance.OnShoot;
+            @Shoot.canceled -= instance.OnShoot;
         }
 
         /// <summary>
@@ -491,5 +534,12 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPause(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Shoot" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnShoot(InputAction.CallbackContext context);
     }
 }
