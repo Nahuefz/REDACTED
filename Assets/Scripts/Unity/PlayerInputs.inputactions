@@ -34,9 +34,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Shoot",
+                    "name": "Pause",
                     "type": "Button",
-                    "id": "9f581f81-2e57-4501-bbd2-70cc2c866f21",
+                    "id": "1fa05d8b-6baf-4d29-a27b-ae45f0808b96",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -134,23 +134,23 @@
                 },
                 {
                     "name": "",
-                    "id": "3d41f5d1-aa63-4a13-a165-5062c3920dd7",
-                    "path": "<Mouse>/leftButton",
+                    "id": "a77d3b52-82ea-4ccb-a544-0cd84e88dfdd",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Shoot",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "15031627-636d-40fd-91a8-85f3bca44e3f",
-                    "path": "<Keyboard>/numpad8",
+                    "id": "9b0f42f7-c13d-4a1b-a180-a79a66249a7c",
+                    "path": "<Keyboard>/p",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Shoot",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
