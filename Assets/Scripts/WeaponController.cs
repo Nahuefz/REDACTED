@@ -1,22 +1,27 @@
 using System;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class WeaponController : MonoBehaviour
 {
-    private PlayerInputs shootInput;
+    [CanBeNull] private PlayerInputs _shootInput;
     [SerializeField] private Transform firePoint;
     [SerializeField] private float fireRate = 0.2f;
-    private float nextFireTime;
+    private float _nextFireTime;
 
     private void Awake()
     {
-        shootInput = new PlayerInputs();
+        _shootInput = new PlayerInputs();
     }
 
     private void Start()
     {
-        shootInput.Enable();
+        if (_shootInput != null)
+        {
+            _shootInput.Enable();
+        }
+        else Debug.Log("<color=red>shootInput NULL</color>");
     }
 
     void Update()
@@ -28,12 +33,12 @@ public class WeaponController : MonoBehaviour
             nextFireTime = Time.time + fireRate;
         }*/
 
-        if (shootInput.Player.Shoot.WasPerformedThisFrame())
+        if (_shootInput.Player.Shoot.WasPerformedThisFrame() && Time.time > _nextFireTime && Time.timeScale != 0)
         {
             //Debug.Log("<color=white>boton presionado</color>");
             Shoot();
             Debug.Log("Disparo <color=red>BANG BANG</color>");
-            nextFireTime = Time.time + fireRate;
+            _nextFireTime = Time.time + fireRate;
         }
     }
 
