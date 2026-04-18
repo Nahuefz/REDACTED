@@ -1,17 +1,38 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WeaponController : MonoBehaviour
 {
+    private PlayerInputs shootInput;
     [SerializeField] private Transform firePoint;
     [SerializeField] private float fireRate = 0.2f;
     private float nextFireTime;
 
+    private void Awake()
+    {
+        shootInput = new PlayerInputs();
+    }
+
+    private void Start()
+    {
+        shootInput.Enable();
+    }
+
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && Time.time >= nextFireTime)
+        /*if (Input.GetButtonDown("Fire1") && Time.time >= nextFireTime)
         {
             Shoot();
             Debug.Log("Disparo BANG BANG");
+            nextFireTime = Time.time + fireRate;
+        }*/
+
+        if (shootInput.Player.Shoot.WasPerformedThisFrame())
+        {
+            //Debug.Log("<color=white>boton presionado</color>");
+            Shoot();
+            Debug.Log("Disparo <color=red>BANG BANG</color>");
             nextFireTime = Time.time + fireRate;
         }
     }
@@ -22,10 +43,10 @@ public class WeaponController : MonoBehaviour
 
         if (bullet != null)
         {
-            // 1. Posicionamos la bala en la punta del cañón
+            // 1. Posicionamos la bala en la punta del caï¿½ï¿½n
             bullet.transform.position = firePoint.position;
 
-            // 2. IMPORTANTE: Usamos la rotación de la CÁMARA, no del firePoint.
+            // 2. IMPORTANTE: Usamos la rotaciï¿½n de la Cï¿½MARA, no del firePoint.
             // Esto asegura que la bala vaya exactamente hacia el centro de la pantalla.
             bullet.transform.rotation = Camera.main.transform.rotation;
 
