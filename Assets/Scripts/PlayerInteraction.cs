@@ -3,19 +3,28 @@ using UnityEngine.InputSystem;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    [Header("Inputs")]
-    public InputActionReference accionInteractuar;
-    
+    private PlayerInputs inputActions;
+
     private IInteractable interactuableCercano;
+
+
+    private void Awake()
+    {
+        inputActions = new PlayerInputs();
+    }
 
     private void OnEnable()
     {
-        accionInteractuar.action.performed += EjecutarInteraccion;
+        Debug.Log("Enable");
+        inputActions.Enable();
+        inputActions.Player.Interact.performed += EjecutarInteraccion;
     }
 
     private void OnDisable()
     {
-        accionInteractuar.action.performed -= EjecutarInteraccion;
+        inputActions.Player.Interact.performed -= EjecutarInteraccion;
+        inputActions.Disable();
+        Debug.Log("Disable");
     }
 
 
