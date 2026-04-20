@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _puzzleSolution: 000000000000000000000000000000000000000000000000
+  _pantallaColor: {fileID: 0}
 --- !u!1 &2897634726875556977
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,6 +534,15 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 830a341f126015545845e6be356237f1, type: 2}
   - {fileID: 2100000, guid: 320b24a4ce998b44ea2042c08546cb81, type: 2}
   - {fileID: 2100000, guid: 2f9467bda3980d64e8857606da70082c, type: 2}
+  _pantallas:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _pantallasRenderers: []
+  _puzzleLogic: {fileID: 0}
 --- !u!1 &8189614865465602841
 GameObject:
   m_ObjectHideFlags: 0
