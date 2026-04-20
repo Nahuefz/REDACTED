@@ -12,12 +12,22 @@ public class Bomb1Puzzle : MonoBehaviour
         4 = violeta
     */
         [Header("SOLUCION")] 
-        [SerializeField] private int[] _puzzleSolution = new int[6]; 
+        [SerializeField] public int[] _puzzleSolution = new int[6]; 
         private string stringSolucion;
         
+        //[SerializeField] private GameObject[] _pantallas = new GameObject[6];
+        //private MeshRenderer _meshRenderer;
+        [SerializeField] private PantallaColor _pantallaColor;
+
+        private void Awake()
+        {
+            _pantallaColor = GetComponentInChildren<PantallaColor>();
+        }
+
         private void Start()
         {
             GenerateSolution();
+            _pantallaColor.SetPantallaColor();
         }
   
         /// <summary>
