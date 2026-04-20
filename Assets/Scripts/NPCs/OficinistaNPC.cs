@@ -8,7 +8,10 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
 
     [Header("Componentes")]
     public GameObject iconoInteraccion; //La "E"
-    private AudioSource audioSource;
+
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip[] sonidosInteraccion;
 
     void Start()
     {
@@ -24,8 +27,19 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
         }
         else
         {
-            if(audioSource != null) audioSource.Play();
+            ReproducirSonidoRandom();
             DialogueManager.Instance.EmpezarDialogo(datosDialogo);
+        }
+    }
+
+    private void ReproducirSonidoRandom()
+    {
+        if (audioSource != null && sonidosInteraccion.Length > 0)
+        {
+            int indice = Random.Range(0, sonidosInteraccion.Length);
+
+            audioSource.clip = sonidosInteraccion[indice];
+            audioSource.Play();
         }
     }
 

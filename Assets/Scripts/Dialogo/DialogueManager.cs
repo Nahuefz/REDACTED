@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject panelDialogo;
     public TextMeshProUGUI textoNombre;
     public TextMeshProUGUI textoDialogo;
+    public GameObject iconoContinuar;
 
     private Queue<string> oraciones;
     private bool talking = false;
@@ -21,6 +23,14 @@ public class DialogueManager : MonoBehaviour
 
         oraciones = new Queue<string>();
         panelDialogo.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (talking && Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            MostrarSiguienteOracion();
+        }
     }
 
     public void EmpezarDialogo(DialogoData dialogo)
@@ -49,6 +59,8 @@ public class DialogueManager : MonoBehaviour
 
         string oracionActual = oraciones.Dequeue();
         textoDialogo.text = oracionActual;
+
+        iconoContinuar.SetActive(oraciones.Count > 0);
     }
 
     public void TerminarDialogo()

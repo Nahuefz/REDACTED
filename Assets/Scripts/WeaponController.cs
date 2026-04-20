@@ -33,6 +33,8 @@ public class WeaponController : MonoBehaviour
             nextFireTime = Time.time + fireRate;
         }*/
 
+        if (DialogueManager.Instance != null && DialogueManager.Instance.EstaHablando()) return;
+
         if (_shootInput.Player.Shoot.WasPerformedThisFrame() && Time.time > _nextFireTime && Time.timeScale != 0)
         {
             //Debug.Log("<color=white>boton presionado</color>");
