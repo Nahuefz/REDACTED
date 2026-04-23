@@ -7,7 +7,8 @@ public class InteractRay : MonoBehaviour
     [Space(2)]
     [SerializeField][Range(0f, 100f)] private float rayMaxDistance = 25f;
     [SerializeField] private LayerMask interactMask;
-    [SerializeField] private IOutlined lastTarget;
+    private IOutlined lastTarget;
+    [SerializeField] private GameObject lastTargetObj;
     [Space(5)]
     [Header("Camera")]
     [SerializeField] private Transform _camera;
@@ -32,19 +33,29 @@ public class InteractRay : MonoBehaviour
             //COMENTADO PORQUE ANDA!
             
             IOutlined currentTarget = raycastHit.collider.GetComponentInParent<IOutlined>();
-            if (currentTarget != lastTarget)
+            GameObject currentHitObject = raycastHit.collider.gameObject;
+            if (currentHitObject != lastTargetObj)
             {
-                if(lastTarget != null) lastTarget.EraseOutline(raycastHit.collider.gameObject);
+                if (lastTarget != null && lastTargetObj != null)
+                {
+                    lastTarget.EraseOutline(lastTargetObj);
+                }
                 lastTarget = currentTarget;
-                if(lastTarget != null) lastTarget.DrawOutline(raycastHit.collider.gameObject);
+                lastTargetObj = currentHitObject;
+                if (lastTarget != null)
+                {
+                    lastTarget.DrawOutline(lastTargetObj);
+                }
             }
         }
         else
         {
             if (lastTarget != null)
             {
-                lastTarget.EraseOutline();
+                if (lastTargetObj != null) lastTarget.EraseOutline(lastTargetObj);
+                
                 lastTarget = null;
+                lastTargetObj = null;
             }
         }
     }
