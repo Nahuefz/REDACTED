@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7165701565711593265}
   - component: {fileID: 3853389088513432123}
   - component: {fileID: 6077316951670227085}
+  - component: {fileID: 1311310807769846423}
   m_Layer: 10
   m_Name: pantalla1
   m_TagString: Untagged
@@ -108,6 +109,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1311310807769846423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540649314754134975}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 6.8
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &647331528629793721
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,6 +186,7 @@ GameObject:
   - component: {fileID: 6209071175780749446}
   - component: {fileID: 6414420020212569587}
   - component: {fileID: 8512777484864002855}
+  - component: {fileID: 8064280779212845173}
   m_Layer: 10
   m_Name: pantalla5
   m_TagString: Untagged
@@ -263,6 +283,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8064280779212845173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2897634726875556977}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 6.8
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &3966410005296144951
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,6 +313,7 @@ GameObject:
   - component: {fileID: 3747351369715528282}
   - component: {fileID: 832803495477076922}
   - component: {fileID: 6738408696607621002}
+  - component: {fileID: 8810339555865754832}
   m_Layer: 10
   m_Name: pantalla3
   m_TagString: Untagged
@@ -371,6 +410,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8810339555865754832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3966410005296144951}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 6.8
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &7562216932970932187
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,6 +440,7 @@ GameObject:
   - component: {fileID: 8028830946014970621}
   - component: {fileID: 8401310590233239127}
   - component: {fileID: 5543826355516241656}
+  - component: {fileID: 7977966810731845752}
   m_Layer: 10
   m_Name: pantalla6
   m_TagString: Untagged
@@ -479,6 +537,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7977966810731845752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7562216932970932187}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 6.8
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &8003761650456431290
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,6 +565,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8417296072739839219}
   - component: {fileID: 3389819233019589336}
+  - component: {fileID: 9113821298671613588}
   m_Layer: 10
   m_Name: Pantallas
   m_TagString: Untagged
@@ -543,6 +620,21 @@ MonoBehaviour:
   - {fileID: 0}
   _pantallasRenderers: []
   _puzzleLogic: {fileID: 0}
+--- !u!114 &9113821298671613588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8003761650456431290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bef1fca2cc17d6f40ad393038e4ace81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pantallas: []
+  _colors: []
+  _colorReference: {fileID: 0}
 --- !u!1 &8189614865465602841
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,6 +647,7 @@ GameObject:
   - component: {fileID: 6393652681210018824}
   - component: {fileID: 8634579711999529156}
   - component: {fileID: 629336338978437235}
+  - component: {fileID: 5724974410897584072}
   m_Layer: 10
   m_Name: pantalla2
   m_TagString: Untagged
@@ -651,6 +744,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5724974410897584072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8189614865465602841}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 6.8
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &8570733405954203976
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,6 +774,7 @@ GameObject:
   - component: {fileID: 5986908791412854232}
   - component: {fileID: 5362772040792457297}
   - component: {fileID: 8904361955848182242}
+  - component: {fileID: 5753773054397848071}
   m_Layer: 10
   m_Name: pantalla4
   m_TagString: Untagged
@@ -759,3 +871,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5753773054397848071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8570733405954203976}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 6.8
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
