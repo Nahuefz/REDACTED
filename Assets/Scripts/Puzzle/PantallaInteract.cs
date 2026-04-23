@@ -15,12 +15,14 @@ public class PantallaInteract : MonoBehaviour
     [SerializeField] private Material[] _colors;
     [SerializeField] private PlayerInputs _changeColorAction;
     
-    [FormerlySerializedAs("_pantallaColor")] [SerializeField] private PantallaColor _colorReference; 
+    [SerializeField] private PantallaColor _colorReference; 
     private void Awake()
     {
         _colorReference = GetComponentInChildren<PantallaColor>();
         _pantallas = _colorReference._pantallas;
-    }
+        Debug.Log("BRODER TENES QUE USAR RAYCAST!");
+    } 
+    
 
     private void Start()
     {
