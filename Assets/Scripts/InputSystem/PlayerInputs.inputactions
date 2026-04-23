@@ -54,7 +54,7 @@
                 {
                     "name": "Interact",
                     "type": "Button",
-                    "id": "0a2d3a98-7066-442d-8a8e-989b33df2259",
+                    "id": "f6ead0db-3199-4dc6-af43-df6282a5086a",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -196,7 +196,18 @@
                 },
                 {
                     "name": "",
-                    "id": "55433cda-fa70-4107-8907-47461ef027b5",
+                    "id": "03909b36-43e2-4e07-a7e3-d0c79acda286",
+                    "path": "<Keyboard>/#(E)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f85d9e9c-d831-4cce-8cbc-616fd1dc09a0",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
