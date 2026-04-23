@@ -46,6 +46,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (DialogueManager.Instance != null && DialogueManager.Instance.EstaHablando()) return;
+
         HandleLook();
         HandleMovement();
         HandleGravity();

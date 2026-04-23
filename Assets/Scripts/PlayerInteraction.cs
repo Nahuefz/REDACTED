@@ -1,0 +1,59 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class PlayerInteraction : MonoBehaviour
+{
+    private PlayerInputs inputActions;
+
+    private IInteractable interactuableCercano;
+
+
+    private void Awake()
+    {
+        inputActions = new PlayerInputs();
+    }
+
+    private void OnEnable()
+    {
+        Debug.Log("Enable");
+        inputActions.Enable();
+        inputActions.Player.Interact.performed += EjecutarInteraccion;
+    }
+
+    private void OnDisable()
+    {
+        inputActions.Player.Interact.performed -= EjecutarInteraccion;
+        inputActions.Disable();
+        Debug.Log("Disable");
+    }
+
+
+    private void EjecutarInteraccion(InputAction.CallbackContext context)
+    {
+        if (interactuableCercano != null)
+        {
+            Debug.Log("Interactua");
+            interactuableCercano.Interact();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        IInteractable interactuable = other.GetComponent<IInteractable>();
+        if (interactuable != null)
+        {
+            interactuableCercano = interactuable;
+            Debug.Log("Jugador detectó a un NPC: " + other.gameObject.name);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<IInteractable>() != null)
+        {
+            interactuableCercano = null;
+            Debug.Log("Jugador se alejó del NPC");
+        }
+    }
+
+}
