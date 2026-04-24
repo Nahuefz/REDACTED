@@ -17,7 +17,7 @@ public class InteractRay : MonoBehaviour
        if(_camera == null) _camera = Camera.main.transform;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         CastInteractiveRay();
     }
@@ -29,7 +29,7 @@ public class InteractRay : MonoBehaviour
         if (Physics.Raycast(interactRay, out raycastHit, rayMaxDistance, interactMask))
         {
             //Debug.DrawRay(interactRay.origin, interactRay.direction, Color.red);
-            Debug.Log($"<b>Raycast:</b> <color=yellow>{raycastHit.transform.name}</color>");
+            //Debug.Log($"<b>Raycast:</b> <color=yellow>{raycastHit.transform.name}</color>");
             //COMENTADO PORQUE ANDA!
             
             IOutlined currentTarget = raycastHit.collider.GetComponentInParent<IOutlined>();

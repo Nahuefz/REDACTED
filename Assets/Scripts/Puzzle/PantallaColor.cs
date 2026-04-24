@@ -5,9 +5,9 @@ public class PantallaColor : MonoBehaviour
 {
     [Header("Materiales")]
     [SerializeField] public Material[] _pantallaColor =  new Material[4];
-    [Space(2)]
-    [Header("Pantallas")]
-    [SerializeField] public GameObject[] _pantallas = new GameObject[6];
+
+    [Space(2)] [Header("Pantallas")] [SerializeField]
+    public GameObject[] _pantallas;
     [SerializeField] private MeshRenderer[] _pantallasRenderers;
     [Space(2)] 
     [SerializeField] private Bomb1Puzzle _puzzleLogic;
@@ -16,10 +16,10 @@ public class PantallaColor : MonoBehaviour
     {
         _puzzleLogic = GetComponentInParent<Bomb1Puzzle>();
 
-        for (int i = 0; i < _pantallas.Length; i++)
+        /*for (int i = 0; i < _pantallas.Length; i++)
         {
             _pantallas[i] = GameObject.Find("pantalla" + (i + 1));
-        }
+        }*/ //causante de bugs!
         
         _pantallasRenderers = new MeshRenderer[_pantallas.Length];
         for (int i = 0; i < _pantallas.Length; i++)
@@ -27,7 +27,6 @@ public class PantallaColor : MonoBehaviour
             _pantallasRenderers[i] = _pantallas[i].GetComponent<MeshRenderer>();
         }
     }
-    
 
     public void SetPantallaColor()
     {

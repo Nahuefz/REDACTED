@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class Bomb1Puzzle : MonoBehaviour
 { 
@@ -38,7 +37,7 @@ public class Bomb1Puzzle : MonoBehaviour
         {
             for (int i = 0; i < _puzzleSolution.Length; i++)
             {
-                int randomValue = Random.Range(1, 5);
+                int randomValue = UnityEngine.Random.Range(1, 5);
                 _puzzleSolution[i] = randomValue;
           
                 string colorHex = DebugHexColors(randomValue);
