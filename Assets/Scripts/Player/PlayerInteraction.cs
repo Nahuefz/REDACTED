@@ -7,10 +7,13 @@ public class PlayerInteraction : MonoBehaviour
 
     private IInteractable interactuableCercano;
 
+    private InteractRay _interactRay;
+
 
     private void Awake()
     {
         inputActions = new PlayerInputs();
+        _interactRay = GetComponent<InteractRay>();
     }
 
     private void OnEnable()
@@ -35,6 +38,8 @@ public class PlayerInteraction : MonoBehaviour
             Debug.Log("Interactua");
             interactuableCercano.Interact();
         }
+        //Debug.Log("FUNCIONA EL INPUT");
+        _interactRay.CurrentInteractable?.Interact();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -43,7 +48,7 @@ public class PlayerInteraction : MonoBehaviour
         if (interactuable != null)
         {
             interactuableCercano = interactuable;
-            Debug.Log("Jugador detectó a un NPC: " + other.gameObject.name);
+            Debug.Log("Jugador detectï¿½ a un NPC: " + other.gameObject.name);
         }
     }
 
@@ -52,7 +57,7 @@ public class PlayerInteraction : MonoBehaviour
         if (other.GetComponent<IInteractable>() != null)
         {
             interactuableCercano = null;
-            Debug.Log("Jugador se alejó del NPC");
+            Debug.Log("Jugador se alejï¿½ del NPC");
         }
     }
 
