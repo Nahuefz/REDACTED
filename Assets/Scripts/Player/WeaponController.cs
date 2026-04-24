@@ -26,12 +26,7 @@ public class WeaponController : MonoBehaviour
 
     void Update()
     {
-        /*if (Input.GetButtonDown("Fire1") && Time.time >= nextFireTime)
-        {
-            Shoot();
-            Debug.Log("Disparo BANG BANG");
-            nextFireTime = Time.time + fireRate;
-        }*/
+ 
 
         if (DialogueManager.Instance != null && DialogueManager.Instance.EstaHablando()) return;
 
@@ -50,10 +45,10 @@ public class WeaponController : MonoBehaviour
 
         if (bullet != null)
         {
-            // 1. Posicionamos la bala en la punta del ca��n
+            // 1. Posicionamos la bala en la punta del canion
             bullet.transform.position = firePoint.position;
 
-            // 2. IMPORTANTE: Usamos la rotaci�n de la C�MARA, no del firePoint.
+            // 2. IMPORTANTE: Usamos la rotacion de la camara, no del firePoint.
             // Esto asegura que la bala vaya exactamente hacia el centro de la pantalla.
             bullet.transform.rotation = Camera.main.transform.rotation;
 
