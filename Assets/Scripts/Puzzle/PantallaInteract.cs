@@ -11,7 +11,7 @@ public class PantallaInteract : MonoBehaviour, IOutlined, IInteractable
 
     private MeshRenderer[] _renderers;
     private int[] _currentColorIndex;
-    private int _focusedIndex = -1;
+    [SerializeField]private int _focusedIndex = -1;
     private void Awake()
     {
         colorReference = this.transform.parent.Find("Pantallas").GetComponent<PantallaColor>();
@@ -36,6 +36,7 @@ public class PantallaInteract : MonoBehaviour, IOutlined, IInteractable
     }
     public void Interact()
     {
+        Debug.Log($"Interact called, focused index = {_focusedIndex}");
         CyclicColorChange();
     }
     private void CyclicColorChange()
@@ -75,7 +76,7 @@ public class PantallaInteract : MonoBehaviour, IOutlined, IInteractable
     {
         if (outlineIndex < 0 || outlineIndex >= outline.Length) return;
 
-        outline[outlineIndex].enabled = true;
+        outline[outlineIndex].OutlineWidth = 6.8f;
         _focusedIndex = outlineIndex;
     }
 
@@ -84,7 +85,7 @@ public class PantallaInteract : MonoBehaviour, IOutlined, IInteractable
     {
         if (outlineIndex < 0 || outlineIndex >= outline.Length) return;
 
-        outline[outlineIndex].enabled = false;
+        outline[outlineIndex].OutlineWidth = 0f;
 
         if (_focusedIndex == outlineIndex)
         {

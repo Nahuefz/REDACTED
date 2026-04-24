@@ -12,6 +12,9 @@ public class InteractRay : MonoBehaviour
     [Space(5)]
     [Header("Camera")]
     [SerializeField] private Transform _camera;
+
+    public IInteractable CurrentInteractable { get; private set; }
+
     private void Awake()
     {
        if(_camera == null) _camera = Camera.main.transform;
@@ -31,7 +34,7 @@ public class InteractRay : MonoBehaviour
             //Debug.DrawRay(interactRay.origin, interactRay.direction, Color.red);
             //Debug.Log($"<b>Raycast:</b> <color=yellow>{raycastHit.transform.name}</color>");
             //COMENTADO PORQUE ANDA!
-            
+            CurrentInteractable = raycastHit.collider.GetComponentInParent<IInteractable>();
             IOutlined currentTarget = raycastHit.collider.GetComponentInParent<IOutlined>();
             GameObject currentHitObject = raycastHit.collider.gameObject;
             if (currentHitObject != lastTargetObj)
@@ -50,6 +53,8 @@ public class InteractRay : MonoBehaviour
         }
         else
         {
+            CurrentInteractable = null;
+            
             if (lastTarget != null)
             {
                 if (lastTargetObj != null) lastTarget.EraseOutline(lastTargetObj);
