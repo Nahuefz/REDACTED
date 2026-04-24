@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/Pause.meta
+guid: 5609d0cb982ff7b4cafc6d357260f978
+========
+guid: d38a23849b857e94d839fc2ad05eee8c
+>>>>>>>> feature/Interact:Assets/Audio.meta
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
