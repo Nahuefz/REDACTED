@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement; // Necesario para gestionar escenas
 
 public class SceneChanger : MonoBehaviour
 {
-    [SerializeField] private string Escena;
+    [SerializeField] private string EscenaDestino;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -11,7 +11,7 @@ public class SceneChanger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // Cargamos la siguiente escena
-            SceneManager.LoadScene(Escena);
+            SceneManager.LoadScene(EscenaDestino);
         }
     }
 }
