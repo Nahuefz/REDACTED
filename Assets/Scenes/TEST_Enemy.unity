@@ -3851,11 +3851,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!4 &852984857 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7023140022069214216, guid: 215d0ac3ed73efd4d88558254d371179, type: 3}
-  m_PrefabInstance: {fileID: 1772140625}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &898089747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14308,7 +14303,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7023140022069214216, guid: 215d0ac3ed73efd4d88558254d371179, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -29
+      value: -17.73
       objectReference: {fileID: 0}
     - target: {fileID: 7023140022069214216, guid: 215d0ac3ed73efd4d88558254d371179, type: 3}
       propertyPath: m_LocalRotation.w
@@ -15358,18 +15353,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 2685118211012600404, guid: 19f063206973b8a4eb32c9d6a9fd37eb, type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
+    - target: {fileID: 4236696086728458917, guid: 19f063206973b8a4eb32c9d6a9fd37eb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.906
       objectReference: {fileID: 0}
-    - target: {fileID: 5046511851285843680, guid: 19f063206973b8a4eb32c9d6a9fd37eb, type: 3}
-      propertyPath: enemySpeed
-      value: 6.27
+    - target: {fileID: 4333150791813982005, guid: 19f063206973b8a4eb32c9d6a9fd37eb, type: 3}
+      propertyPath: m_Size.x
+      value: 10.349119
       objectReference: {fileID: 0}
-    - target: {fileID: 5046511851285843680, guid: 19f063206973b8a4eb32c9d6a9fd37eb, type: 3}
-      propertyPath: currentTarget
-      value: 
-      objectReference: {fileID: 852984857}
+    - target: {fileID: 4333150791813982005, guid: 19f063206973b8a4eb32c9d6a9fd37eb, type: 3}
+      propertyPath: m_Size.y
+      value: 1.3522406
+      objectReference: {fileID: 0}
+    - target: {fileID: 4333150791813982005, guid: 19f063206973b8a4eb32c9d6a9fd37eb, type: 3}
+      propertyPath: m_Size.z
+      value: 12.343564
+      objectReference: {fileID: 0}
     - target: {fileID: 5858818338464074939, guid: 19f063206973b8a4eb32c9d6a9fd37eb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -15410,25 +15409,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9031515604820068008, guid: 19f063206973b8a4eb32c9d6a9fd37eb, type: 3}
-      propertyPath: m_Acceleration
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 9031515604820068008, guid: 19f063206973b8a4eb32c9d6a9fd37eb, type: 3}
-      propertyPath: m_AngularSpeed
-      value: 240
-      objectReference: {fileID: 0}
-    - target: {fileID: 9031515604820068008, guid: 19f063206973b8a4eb32c9d6a9fd37eb, type: 3}
-      propertyPath: m_StoppingDistance
-      value: 1.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 9031515604820068008, guid: 19f063206973b8a4eb32c9d6a9fd37eb, type: 3}
-      propertyPath: m_ObstacleAvoidanceType
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 9116056484946121526, guid: 19f063206973b8a4eb32c9d6a9fd37eb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

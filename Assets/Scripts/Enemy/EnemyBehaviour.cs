@@ -1,7 +1,7 @@
 using System;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class EnemyBehaviour : MonoBehaviour
 {
@@ -20,36 +20,71 @@ public class EnemyBehaviour : MonoBehaviour
     
     private void FixedUpdate()
     {
-        if (currentTarget != null) ChaseState();
-        else PatrolState();
+        // Si no hay objetivo o no es el jugador, patrullar
+        if (currentTarget == null || !currentTarget.CompareTag("Player"))
+        {
+            PatrolState();
+        }
+        else
+        {
+            ChaseState();
+        }
     }
 
     void ChaseState()
     {
-        int speed = 3;
-        if (_navMeshAgent.velocity.magnitude != 0)
+        _navMeshAgent.speed = enemySpeed;
+
+        //animator logic
+        float animLerpSpeed = 3f;
+        if (_navMeshAgent.velocity.magnitude > 0.1f)
         {
-            _animator.SetFloat("xAxis", Mathf.Lerp(_animator.GetFloat("xAxis"), -1, Time.deltaTime * speed));
+            _animator.SetFloat("xAxis", Mathf.Lerp(_animator.GetFloat("xAxis"), -1f, Time.fixedDeltaTime * animLerpSpeed));
         }
         else
         {
-            _animator.SetFloat("xAxis", Mathf.Lerp(_animator.GetFloat("xAxis"), -1, Time.deltaTime * speed));
-            if(_animator.GetFloat("xAxis") < 0.1f) _animator.SetFloat("xAxis", 0);
+            _animator.SetFloat("xAxis", Mathf.Lerp(_animator.GetFloat("xAxis"), 0f, Time.fixedDeltaTime * animLerpSpeed));
         }
+        
         _navMeshAgent.destination = currentTarget.position;
     }
 
     void PatrolState()
     {
-        int speed = 3;
-        if (_navMeshAgent.velocity.magnitude != 0)
+        _navMeshAgent.speed = enemySpeed * 0.3f;
+        float animLerpSpeed = 5f; 
+        
+        if (_navMeshAgent.velocity.sqrMagnitude > 0.1f) 
         {
-            _animator.SetFloat("xAxis", Mathf.Lerp(_animator.GetFloat("xAxis"), -1, Time.deltaTime * speed));
+            float currentX = _animator.GetFloat("xAxis");
+            _animator.SetFloat("xAxis", Mathf.Lerp(currentX, -0.5f, Time.fixedDeltaTime * animLerpSpeed));
         }
         else
         {
-            _animator.SetFloat("xAxis", Mathf.Lerp(_animator.GetFloat("xAxis"), -1, Time.deltaTime * speed));
-            if(_animator.GetFloat("xAxis") < 0.1f) _animator.SetFloat("xAxis", 0);
-        }    
+            float currentX = _animator.GetFloat("xAxis");
+            _animator.SetFloat("xAxis", Mathf.Lerp(currentX, 0f, Time.fixedDeltaTime * animLerpSpeed));
+        } 
+
+        // Buscar nuevo destino si ha llegado al actual
+        if (!_navMeshAgent.pathPending && _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance + 0.1f)
+        {
+            _navMeshAgent.destination = GetRoamingDir();
+        }
+    }
+
+    Vector3 GetRoamingDir()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            Vector2 randomCircle = Random.insideUnitCircle * Random.Range(5f, 15f);
+            Vector3 targetPos = transform.position + new Vector3(randomCircle.x, 0, randomCircle.y);
+
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(targetPos, out hit, 5f, NavMesh.AllAreas))
+            {
+                return hit.position;
+            }
+        }
+        return transform.position;
     }
 }
