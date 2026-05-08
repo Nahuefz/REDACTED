@@ -108,8 +108,12 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void DealDamage()
     {
-        // Se llama desde el evento de animacion
         _isAttacking = false; 
+        //_navMeshAgent.isStopped = false;
+    }
+
+    public void StopAttack()
+    {
         _navMeshAgent.isStopped = false;
     }
 }

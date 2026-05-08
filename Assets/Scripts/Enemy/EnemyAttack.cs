@@ -17,4 +17,9 @@ public class EnemyAttack : MonoBehaviour
             _enemyBehaviour.DealDamage();
         }
     }
+
+    public void StopAttacking()
+    {
+        _enemyBehaviour.StopAttack();
+    }
 }
