@@ -31,6 +31,11 @@ public class EnemyBehaviour : MonoBehaviour
         {
             _animator.SetFloat("xAxis", Mathf.Lerp(_animator.GetFloat("xAxis"), -1, Time.deltaTime * speed));
         }
+        else
+        {
+            _animator.SetFloat("xAxis", Mathf.Lerp(_animator.GetFloat("xAxis"), -1, Time.deltaTime * speed));
+            if(_animator.GetFloat("xAxis") < 0.1f) _animator.SetFloat("xAxis", 0);
+        }
         _navMeshAgent.destination = currentTarget.position;
     }
 
