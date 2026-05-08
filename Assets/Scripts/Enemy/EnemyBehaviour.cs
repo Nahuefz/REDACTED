@@ -41,6 +41,15 @@ public class EnemyBehaviour : MonoBehaviour
 
     void PatrolState()
     {
-        // que patrulle por la zona
+        int speed = 3;
+        if (_navMeshAgent.velocity.magnitude != 0)
+        {
+            _animator.SetFloat("xAxis", Mathf.Lerp(_animator.GetFloat("xAxis"), -1, Time.deltaTime * speed));
+        }
+        else
+        {
+            _animator.SetFloat("xAxis", Mathf.Lerp(_animator.GetFloat("xAxis"), -1, Time.deltaTime * speed));
+            if(_animator.GetFloat("xAxis") < 0.1f) _animator.SetFloat("xAxis", 0);
+        }    
     }
 }

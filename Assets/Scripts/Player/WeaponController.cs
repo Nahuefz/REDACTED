@@ -34,7 +34,7 @@ public class WeaponController : MonoBehaviour
         {
             //Debug.Log("<color=white>boton presionado</color>");
             Shoot();
-            Debug.Log("Disparo <color=red>BANG BANG</color>");
+            //Debug.Log("Disparo <color=red>BANG BANG</color>");
             _nextFireTime = Time.time + fireRate;
         }
     }
