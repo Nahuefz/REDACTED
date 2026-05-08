@@ -378,8 +378,8 @@ MonoBehaviour:
   walkSpeed: 8
   mouseSensitivity: 0.3
   cameraTransform: {fileID: 677510666922832266}
-  jumpHeight: 20
-  groundCheckDistance: 1.5
+  jumpHeight: 13
+  groundCheckDistance: 0.9
   groundMask:
     serializedVersion: 2
     m_Bits: 512
