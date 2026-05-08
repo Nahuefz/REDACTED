@@ -52,6 +52,7 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   enemySpeed: 6.27
   attackRange: 1.5
+  enemyLife: 1
 --- !u!195 &9031515604820068008
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -135,7 +136,7 @@ GameObject:
   - component: {fileID: 4236696086728458917}
   - component: {fileID: 4333150791813982005}
   - component: {fileID: 4431135902282502716}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ProximityCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
