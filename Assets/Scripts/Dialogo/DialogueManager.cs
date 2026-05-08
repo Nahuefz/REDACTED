@@ -47,7 +47,7 @@ public class DialogueManager : MonoBehaviour
             {
                 lineaProcesada.nombrePersonaje = dialogo.nombrePorDefecto;
             }
-            oraciones.Enqueue(linea);
+            oraciones.Enqueue(lineaProcesada);
         }
 
         MostrarSiguienteOracion();

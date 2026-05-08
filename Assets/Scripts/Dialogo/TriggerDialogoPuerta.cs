@@ -7,9 +7,14 @@ public class TriggerDialogoPuerta : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && npcInterceptora != null)
         {
-            npcInterceptora.InterceptarJugador(other.transform);
+            IInterceptor interceptor = npcInterceptora.GetComponent<IInterceptor>();
+
+            if(interceptor != null)
+            {
+                interceptor.InterceptPlayer(other.transform);
+            }
         }
     }
 }

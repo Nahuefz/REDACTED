@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DialogosCindy : MonoBehaviour, IInteractable
+public class DialogosCindy : MonoBehaviour, IInteractable, IInterceptor
 {
 
     [Header("Interaccion Directa")]
@@ -10,19 +10,23 @@ public class DialogosCindy : MonoBehaviour, IInteractable
     [Header("Interaccion Indirecta")]
     public DialogoData[] dialogosIndirectos;
     private int indiceIndirecto = 0;
+    public Transform puntoDeAparicion;
 
     [Header("Componentes y audio")]
     public GameObject iconoInteraccion;
     public AudioSource audioSource;
     public AudioClip[] sonidosInteraccion;
 
-    [Header("Configuracion de teletransporte")]
-    public Transform puntoDeAparicion;
+    private RegresoSigiloso comportamientoRegreso;
+
+  
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
         iconoInteraccion.SetActive(false);
+
+        comportamientoRegreso = GetComponent<RegresoSigiloso>();
     }
 
     public void Interact()
@@ -48,7 +52,7 @@ public class DialogosCindy : MonoBehaviour, IInteractable
 
     }
 
-    public void InterceptarJugador(Transform jugador)
+    public void InterceptPlayer (Transform player)
     {
         if (DialogueManager.Instance.EstaHablando()) return;
 
@@ -57,8 +61,13 @@ public class DialogosCindy : MonoBehaviour, IInteractable
             transform.position = puntoDeAparicion.position;
         }
 
-        Vector3 puntoAMirar = new Vector3(transform.position.x, jugador.position.y, transform.position.z);
-        jugador.LookAt(puntoAMirar);
+        Vector3 puntoAMirar = new Vector3(transform.position.x, player.position.y, transform.position.z);
+        player.LookAt(puntoAMirar);
+
+        if (Camera.main != null)
+        {
+            Camera.main.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        }
 
         ReproducirSonidoRandom();
 
@@ -71,11 +80,14 @@ public class DialogosCindy : MonoBehaviour, IInteractable
                 indiceIndirecto++;
                 indiceDirecto++;
             }
+
+            if (comportamientoRegreso != null)
+            {
+                comportamientoRegreso.IniciarRegreso();
+            }
         }
 
     }
-
-
 
     private void ReproducirSonidoRandom()
     {
@@ -87,4 +99,13 @@ public class DialogosCindy : MonoBehaviour, IInteractable
         } 
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player")) iconoInteraccion.SetActive(true);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player")) iconoInteraccion.SetActive(false);
+    }
 }
