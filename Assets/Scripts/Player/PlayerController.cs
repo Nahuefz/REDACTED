@@ -101,4 +101,15 @@ public class PlayerController : MonoBehaviour
         velocity.y += currentGravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
+
+    public void LookAtFront()
+    {
+        xRotation = 0f;
+
+        if (cameraTransform != null)
+        {
+            cameraTransform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        }
+
+    }
 }
