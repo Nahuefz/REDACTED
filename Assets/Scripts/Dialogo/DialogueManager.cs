@@ -14,14 +14,14 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI textoDialogo;
     public GameObject iconoContinuar;
 
-    private Queue<string> oraciones;
+    private Queue<LineaDeDialogo> oraciones;
     private bool talking = false;
     void Awake()
     {
         if (Instance == null) { Instance = this; }
         else { Destroy(gameObject); }
 
-        oraciones = new Queue<string>();
+        oraciones = new Queue<LineaDeDialogo>();
         panelDialogo.SetActive(false);
     }
 
@@ -37,13 +37,17 @@ public class DialogueManager : MonoBehaviour
     {
         talking = true;
         panelDialogo.SetActive(true);
-        textoNombre.text = dialogo.nombrePersonaje;
-
         oraciones.Clear();
 
-        foreach (string oracion in dialogo.lineasDeDialogo)
+        foreach (LineaDeDialogo linea in dialogo.dialogos)
         {
-            oraciones.Enqueue(oracion);
+            LineaDeDialogo lineaProcesada = linea;
+
+            if (string.IsNullOrWhiteSpace(lineaProcesada.nombrePersonaje))
+            {
+                lineaProcesada.nombrePersonaje = dialogo.nombrePorDefecto;
+            }
+            oraciones.Enqueue(linea);
         }
 
         MostrarSiguienteOracion();
@@ -51,14 +55,16 @@ public class DialogueManager : MonoBehaviour
 
     public void MostrarSiguienteOracion()
     {
-        if (oraciones.Count == 0 )
+        if (oraciones.Count == 0)
         {
             TerminarDialogo();
             return;
         }
 
-        string oracionActual = oraciones.Dequeue();
-        textoDialogo.text = oracionActual;
+        LineaDeDialogo oracionActual = oraciones.Dequeue();
+
+        textoNombre.text = oracionActual.nombrePersonaje;
+        textoDialogo.text = oracionActual.texto;
 
         iconoContinuar.SetActive(oraciones.Count > 0);
     }
