@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -9,6 +8,9 @@ public class EnemyBehaviour : MonoBehaviour
     private NavMeshAgent _navMeshAgent;
     private Animator _animator;
     [SerializeField, Range(1f, 10f)] private float enemySpeed = 1f;
+    [SerializeField] private float attackRange = 1.5f;
+
+    private bool _isAttacking = false;
 
     private void Start()
     {
@@ -34,36 +36,52 @@ public class EnemyBehaviour : MonoBehaviour
     void ChaseState()
     {
         _navMeshAgent.speed = enemySpeed;
+        _navMeshAgent.angularSpeed = 240f;
 
-        //animator logic
+        // Logica de animacion de movimiento
         float animLerpSpeed = 3f;
-        if (_navMeshAgent.velocity.magnitude > 0.1f)
+        float targetAnimValue = (_navMeshAgent.velocity.magnitude > 0.1f) ? -1f : 0f;
+        _animator.SetFloat("xAxis", Mathf.Lerp(_animator.GetFloat("xAxis"), targetAnimValue, Time.fixedDeltaTime * animLerpSpeed));
+
+        float distanceToTarget = Vector3.Distance(transform.position, currentTarget.position);
+
+        if (distanceToTarget < attackRange)
         {
-            _animator.SetFloat("xAxis", Mathf.Lerp(_animator.GetFloat("xAxis"), -1f, Time.fixedDeltaTime * animLerpSpeed));
+            _navMeshAgent.isStopped = true;
+
+            // Rotar hacia el jugador
+            Vector3 direction = (currentTarget.position - transform.position).normalized;
+            direction.y = 0; 
+            if (direction != Vector3.zero)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.fixedDeltaTime * 10f);
+            }
+
+            // Atacar solo una vez hasta que termine
+            if (!_isAttacking)
+            {
+                _isAttacking = true;
+                _animator.SetTrigger("IsAttacking");
+            }
         }
         else
         {
-            _animator.SetFloat("xAxis", Mathf.Lerp(_animator.GetFloat("xAxis"), 0f, Time.fixedDeltaTime * animLerpSpeed));
+            _isAttacking = false;
+            _navMeshAgent.isStopped = false;
+            _navMeshAgent.destination = currentTarget.position;
         }
-        
-        _navMeshAgent.destination = currentTarget.position;
     }
 
     void PatrolState()
     {
+        _isAttacking = false;
+        _navMeshAgent.isStopped = false; 
         _navMeshAgent.speed = enemySpeed * 0.3f;
+        _navMeshAgent.angularSpeed = 120f;
         float animLerpSpeed = 5f; 
         
-        if (_navMeshAgent.velocity.sqrMagnitude > 0.1f) 
-        {
-            float currentX = _animator.GetFloat("xAxis");
-            _animator.SetFloat("xAxis", Mathf.Lerp(currentX, -0.5f, Time.fixedDeltaTime * animLerpSpeed));
-        }
-        else
-        {
-            float currentX = _animator.GetFloat("xAxis");
-            _animator.SetFloat("xAxis", Mathf.Lerp(currentX, 0f, Time.fixedDeltaTime * animLerpSpeed));
-        } 
+        float targetAnimValue = (_navMeshAgent.velocity.sqrMagnitude > 0.1f) ? -0.5f : 0f;
+        _animator.SetFloat("xAxis", Mathf.Lerp(_animator.GetFloat("xAxis"), targetAnimValue, Time.fixedDeltaTime * animLerpSpeed));
 
         // Buscar nuevo destino si ha llegado al actual
         if (!_navMeshAgent.pathPending && _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance + 0.1f)
@@ -86,5 +104,12 @@ public class EnemyBehaviour : MonoBehaviour
             }
         }
         return transform.position;
+    }
+
+    public void DealDamage()
+    {
+        // Se llama desde el evento de animacion
+        _isAttacking = false; 
+        _navMeshAgent.isStopped = false;
     }
 }
