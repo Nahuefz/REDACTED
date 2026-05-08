@@ -78,4 +78,15 @@ public class PlayerMovement : MonoBehaviour
     {
         return Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundMask);
     }
+    
+    public void LookAtFront()
+    {
+        _xRotation = 0f;
+
+        if (cameraTransform != null)
+        {
+            cameraTransform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        }
+
+    }
 }
