@@ -40,8 +40,10 @@ public class PlayerMovement : MonoBehaviour
     {
         _moveInputs = _controls.Player.Move.ReadValue<Vector2>();
         _lookInputs = _controls.Player.Look.ReadValue<Vector2>();
-        
-        if(Time.timeScale != 0f) HandleRotation();
+
+        if (DialogueManager.Instance != null && DialogueManager.Instance.EstaHablando()) return;
+
+        if (Time.timeScale != 0f) HandleRotation();
         
         if (_controls.Player.Jump.WasPerformedThisFrame() &&  IsGrounded())
         {
@@ -63,6 +65,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (DialogueManager.Instance != null && DialogueManager.Instance.EstaHablando()) return;
+
         Vector3 moveDir = transform.forward * _moveInputs.y + transform.right * _moveInputs.x;
         Vector3 targetVelocity = moveDir * walkSpeed;
 
