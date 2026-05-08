@@ -4,7 +4,7 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
 {
 
     [Header("Datos")]
-    public DialogoData datosDialogo;
+    public DialogoData[] listaDialogos;
 
     [Header("Componentes")]
     public GameObject iconoInteraccion; //La "E"
@@ -28,7 +28,15 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
         else
         {
             ReproducirSonidoRandom();
-            DialogueManager.Instance.EmpezarDialogo(datosDialogo);
+            if(listaDialogos != null && listaDialogos.Length > 0)
+            {
+                int indiceDialogo = Random.Range(0, listaDialogos.Length);
+                DialogueManager.Instance.EmpezarDialogo(listaDialogos[indiceDialogo]);
+            }
+            else
+            {
+                Debug.LogWarning("¡El NPC " + gameObject.name + " no tiene diálogos asignados!");
+            }
         }
     }
 
