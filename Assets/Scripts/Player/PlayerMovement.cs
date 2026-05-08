@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float mouseSensitivity = 0.1f;
     public Transform cameraTransform;
     public float jumpHeight = 3f;
+    public float airControl = 0.2f;
     [Space(3)]
     [Header("ground raycast")]
     public float groundCheckDistance = 0.5f;
@@ -63,13 +64,31 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 moveDir = transform.forward * _moveInputs.y + transform.right * _moveInputs.x;
-        _rb.MovePosition(_rb.position + moveDir * (walkSpeed * Time.fixedDeltaTime));
-        
+        Vector3 targetVelocity = moveDir * walkSpeed;
+
+        Vector3 currentVelocity = _rb.linearVelocity;
+        Vector3 velocityChange = new Vector3(targetVelocity.x - currentVelocity.x, 0, targetVelocity.z - currentVelocity.z);
+
+        if (!IsGrounded())
+        {
+            if (_moveInputs.magnitude < 0.1f)
+            {
+                velocityChange = Vector3.zero;
+            }
+            else
+            {
+                velocityChange *= airControl;
+            }
+        }
+
+        _rb.AddForce(velocityChange, ForceMode.VelocityChange);
+
         if (shouldJump) Jump();
     }
 
     void Jump()
     {
+        _rb.linearVelocity = new Vector3(_rb.linearVelocity.x, 0, _rb.linearVelocity.z);
         _rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
         shouldJump = false;
     }
