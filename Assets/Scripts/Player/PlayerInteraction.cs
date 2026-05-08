@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    private PlayerMovement _playerMovement;
     private PlayerInputs inputActions;
 
     private IInteractable interactuableCercano;
@@ -14,6 +15,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         inputActions = new PlayerInputs();
         _interactRay = GetComponent<InteractRay>();
+        _playerMovement = GetComponent<PlayerMovement>();
     }
 
     private void OnEnable()

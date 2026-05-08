@@ -63,11 +63,11 @@ public class DialogosCindy : MonoBehaviour, IInteractable, IInterceptor
 
         Vector3 puntoAMirar = new Vector3(transform.position.x, player.position.y, transform.position.z);
         player.LookAt(puntoAMirar);
-        PlayerController playercontroller = player.GetComponent<PlayerController>();
+        PlayerMovement playermovement = player.GetComponent<PlayerMovement>();
 
-        if (playercontroller != null)
+        if (playermovement != null)
         {
-            playercontroller.LookAtFront();
+            playermovement.LookAtFront();
         }
 
         ReproducirSonidoRandom();
