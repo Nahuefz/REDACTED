@@ -124,6 +124,7 @@ public class EnemyBehaviour : MonoBehaviour
         if (other.gameObject.CompareTag("Bullet") && enemyLife > 1)
         {
             enemyLife -= 1;
+            Debug.Log("BALA COLISION");
         }
         else
         {
