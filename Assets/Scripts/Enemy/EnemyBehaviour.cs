@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -9,6 +10,7 @@ public class EnemyBehaviour : MonoBehaviour
     private Animator _animator;
     [SerializeField, Range(1f, 10f)] private float enemySpeed = 1f;
     [SerializeField] private float attackRange = 1.5f;
+    [SerializeField, Range(1, 10), Min(1)] private int enemyLife;
 
     private bool _isAttacking = false;
 
@@ -115,5 +117,17 @@ public class EnemyBehaviour : MonoBehaviour
     public void StopAttack()
     {
         _navMeshAgent.isStopped = false;
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Bullet") && enemyLife > 1)
+        {
+            enemyLife -= 1;
+        }
+        else
+        {
+             Destroy(gameObject);
+        }
     }
 }
