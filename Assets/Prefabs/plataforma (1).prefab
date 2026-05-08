@@ -22,15 +22,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d0474a0c78efb4545ab121f428dea689, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5
+      value: 0.66
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d0474a0c78efb4545ab121f428dea689, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.808
+      value: 4.809
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d0474a0c78efb4545ab121f428dea689, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14.995
+      value: -15.33
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d0474a0c78efb4545ab121f428dea689, type: 3}
       propertyPath: m_LocalRotation.w
@@ -67,7 +67,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: d0474a0c78efb4545ab121f428dea689, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a6ad372498b51574391854a68763dbee, type: 2}
+      objectReference: {fileID: 2100000, guid: be645b2b68bd0d84988750060c8ea3ae, type: 2}
     - target: {fileID: 919132149155446097, guid: d0474a0c78efb4545ab121f428dea689, type: 3}
       propertyPath: m_Name
       value: plataforma (1)
@@ -83,6 +83,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d0474a0c78efb4545ab121f428dea689, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3928993851571385244}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d0474a0c78efb4545ab121f428dea689, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6002093014139648078}
   m_SourcePrefab: {fileID: 100100000, guid: d0474a0c78efb4545ab121f428dea689, type: 3}
 --- !u!1 &9195392323602000354 stripped
 GameObject:
@@ -110,3 +113,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.05052255, y: 0.0039398535, z: 0.05052255}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6002093014139648078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9195392323602000354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a3a6282de871444599ca2f41258a8f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transparentSpeed: 1
+  reappearDelay: 1.59
