@@ -112,6 +112,11 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Jugador eliminado por pinchos. Reapareciendo...");
             Respawn();
         }
+
+        if (other.CompareTag("Placa"))
+        {
+            Respawn();
+        }
     }
 
 
