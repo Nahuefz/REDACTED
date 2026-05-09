@@ -15,6 +15,11 @@ public class PlayerMovement : MonoBehaviour
     [Header("ground raycast")]
     public float groundCheckDistance = 0.5f;
     public  LayerMask groundMask;
+    [Header("Juice")]
+    public float coyoteTime = 0.15f;
+    private float _coyoteTimeCounter;
+    [Header("Respawn Settings")]
+    public Transform spawnPoint;
     
     private Rigidbody _rb;
     private PlayerInputs _controls;
@@ -43,12 +48,22 @@ public class PlayerMovement : MonoBehaviour
 
         if (DialogueManager.Instance != null && DialogueManager.Instance.EstaHablando()) return;
 
+        if (IsGrounded())
+        {
+            _coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            _coyoteTimeCounter -= Time.deltaTime;
+        }
+
         if (Time.timeScale != 0f) HandleRotation();
-        
-        if (_controls.Player.Jump.WasPerformedThisFrame() &&  IsGrounded())
+
+        if (_controls.Player.Jump.WasPerformedThisFrame() && _coyoteTimeCounter > 0f)
         {
             //Debug.Log("Grounded");
             shouldJump = true;
+            _coyoteTimeCounter = 0f;
         }
     }
 
@@ -90,6 +105,16 @@ public class PlayerMovement : MonoBehaviour
         if (shouldJump) Jump();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Pincho"))
+        {
+            Debug.Log("Jugador eliminado por pinchos. Reapareciendo...");
+            Respawn();
+        }
+    }
+
+
     void Jump()
     {
         _rb.linearVelocity = new Vector3(_rb.linearVelocity.x, 0, _rb.linearVelocity.z);
@@ -111,5 +136,16 @@ public class PlayerMovement : MonoBehaviour
             cameraTransform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         }
 
+    }
+
+    public void Respawn()
+    {
+        transform.position = spawnPoint.position;
+
+        _rb.position = spawnPoint.position;
+        _rb.linearVelocity = Vector3.zero;
+        _rb.angularVelocity = Vector3.zero;
+
+        
     }
 }
