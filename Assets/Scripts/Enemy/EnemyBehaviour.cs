@@ -93,7 +93,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     Vector3 GetRoamingDir()
     {
-        /*for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 5; i++)
         {
             Vector2 randomCircle = Random.insideUnitCircle * Random.Range(5f, 15f);
             Vector3 targetPos = transform.position + new Vector3(randomCircle.x, 0, randomCircle.y);
@@ -104,9 +104,9 @@ public class EnemyBehaviour : MonoBehaviour
                 return hit.position;
             }
         }
-        return transform.position;*/
+        return transform.position;
 
-        return new Vector3(this.transform.position.x + Random.Range(10f, 50f), 0, this.transform.position.z + Random.Range(10f, 50f));
+        //return new Vector3(this.transform.position.x + Random.Range(10f, 50f), 0, this.transform.position.z + Random.Range(10f, 50f));
     }
 
     public void DealDamage()
