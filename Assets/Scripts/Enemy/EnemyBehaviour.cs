@@ -1,4 +1,5 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -40,7 +41,6 @@ public class EnemyBehaviour : MonoBehaviour
         _navMeshAgent.speed = enemySpeed;
         _navMeshAgent.angularSpeed = 240f;
 
-        // Logica de animacion de movimiento
         float animLerpSpeed = 3f;
         float targetAnimValue = (_navMeshAgent.velocity.magnitude > 0.1f) ? -1f : 0f;
         _animator.SetFloat("xAxis", Mathf.Lerp(_animator.GetFloat("xAxis"), targetAnimValue, Time.fixedDeltaTime * animLerpSpeed));
@@ -85,7 +85,6 @@ public class EnemyBehaviour : MonoBehaviour
         float targetAnimValue = (_navMeshAgent.velocity.sqrMagnitude > 0.1f) ? -0.5f : 0f;
         _animator.SetFloat("xAxis", Mathf.Lerp(_animator.GetFloat("xAxis"), targetAnimValue, Time.fixedDeltaTime * animLerpSpeed));
 
-        // Buscar nuevo destino si ha llegado al actual
         if (!_navMeshAgent.pathPending && _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance + 0.1f)
         {
             _navMeshAgent.destination = GetRoamingDir();
@@ -106,6 +105,8 @@ public class EnemyBehaviour : MonoBehaviour
             }
         }
         return transform.position;
+
+        //return new Vector3(this.transform.position.x + Random.Range(10f, 50f), 0, this.transform.position.z + Random.Range(10f, 50f));
     }
 
     public void DealDamage()

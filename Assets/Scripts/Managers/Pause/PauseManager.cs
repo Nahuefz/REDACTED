@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PauseManager : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 1f;
         _pauseInputs = new PlayerInputs();
         _pauseInputs.Enable();
         _pauseCanvas =  GameObject.Find("PauseCanvas");
@@ -59,5 +61,6 @@ public class PauseManager : MonoBehaviour
     public void Quit()
     {
         Debug.Log("<color=yellow>IMPLEMENTAR</color>");
+        SceneManager.LoadScene("SCN_MainMenu");
     }
 }
