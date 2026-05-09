@@ -15,12 +15,15 @@ public class EnemyBehaviour : MonoBehaviour
 
     private bool _isAttacking = false;
 
+    [SerializeField]PlayerMovement player;
+
     private void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _animator = GetComponentInChildren<Animator>();
         
         _navMeshAgent.speed = enemySpeed;
+        //player = GetComponent<PlayerMovement>();
     }
     
     private void FixedUpdate()
@@ -111,8 +114,9 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void DealDamage()
     {
-        _isAttacking = false; 
+        _isAttacking = false;
         //_navMeshAgent.isStopped = false;
+        player.Respawn();
     }
 
     public void StopAttack()
