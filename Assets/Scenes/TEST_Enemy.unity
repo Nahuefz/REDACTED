@@ -515,6 +515,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3928993851571385244, guid: 62c2b23ae655d2b4699de8f927a30b30, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: a6c8ccb824ae5f04c859846ee3d6750e, type: 2}
     - target: {fileID: 6002093014139648078, guid: 62c2b23ae655d2b4699de8f927a30b30, type: 3}
       propertyPath: reappearDelay
       value: 0.83
@@ -4554,7 +4558,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
+  m_AnimatePhysics: 1
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -5238,6 +5242,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3928993851571385244, guid: 62c2b23ae655d2b4699de8f927a30b30, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: a6c8ccb824ae5f04c859846ee3d6750e, type: 2}
     - target: {fileID: 6002093014139648078, guid: 62c2b23ae655d2b4699de8f927a30b30, type: 3}
       propertyPath: reappearDelay
       value: 0.83
@@ -17508,7 +17516,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
+  m_AnimatePhysics: 1
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
