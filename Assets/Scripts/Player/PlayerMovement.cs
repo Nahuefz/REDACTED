@@ -46,7 +46,8 @@ public class PlayerMovement : MonoBehaviour
         _moveInputs = _controls.Player.Move.ReadValue<Vector2>();
         _lookInputs = _controls.Player.Look.ReadValue<Vector2>();
 
-        if (DialogueManager.Instance != null && DialogueManager.Instance.EstaHablando()) return;
+        //No Borrar esta linea, es importante para que no se mueva el Player mientras le hablan
+        if (DialogueManager.Instance != null && DialogueManager.Instance.EstaHablando()) return; 
 
         if (IsGrounded())
         {
@@ -80,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //No Borrar esta linea tampoco, es importante para que no se mueva el Player mientras le hablan
         if (DialogueManager.Instance != null && DialogueManager.Instance.EstaHablando()) return;
 
         Vector3 moveDir = transform.forward * _moveInputs.y + transform.right * _moveInputs.x;
