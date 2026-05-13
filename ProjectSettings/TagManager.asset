@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bullet
   - Pincho
+  - Placa
   layers:
   - Default
   - TransparentFX

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
@@ -19,10 +20,9 @@ public class DialogueManager : MonoBehaviour
     private Queue<LineaDeDialogo> oraciones;
     private bool talking = false;
     
+    [FormerlySerializedAs("InteractButton")]
     [Space(3)]
-    [SerializeField] Image InteractButton;
-
-    //Action onInteract(); meter delegate
+    [SerializeField] Image interactButtonImage;
     
     void Awake()
     {
@@ -31,7 +31,7 @@ public class DialogueManager : MonoBehaviour
 
         oraciones = new Queue<LineaDeDialogo>();
         panelDialogo.SetActive(false);
-        
+        InteractRay.OnInteractSeen += InteractableSeen;
     }
 
     private void Update()
@@ -40,6 +40,7 @@ public class DialogueManager : MonoBehaviour
         {
             MostrarSiguienteOracion();
         }
+        
     }
 
     public void EmpezarDialogo(DialogoData dialogo)
@@ -88,5 +89,18 @@ public class DialogueManager : MonoBehaviour
     {
         return talking;
     }
+    
+    void InteractableSeen(bool isSeen)
+    {
+        Debug.Log($"<color=red>INTERACTABLES IS SEEN {isSeen}</color>");
+        if (interactButtonImage != null)
+        {
+            interactButtonImage.enabled = isSeen;
+        }
+    }
 
+    private void OnDestroy()
+    {
+        InteractRay.OnInteractSeen -= InteractableSeen;
+    }
 }

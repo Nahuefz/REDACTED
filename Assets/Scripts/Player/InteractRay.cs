@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class InteractRay : MonoBehaviour
 { 
@@ -9,34 +10,43 @@ public class InteractRay : MonoBehaviour
     [SerializeField] private LayerMask interactMask;
     private IOutlined lastTarget;
     [SerializeField] private GameObject lastTargetObj;
+    [FormerlySerializedAs("Camera")]
+    [FormerlySerializedAs("_camera")]
     [Space(5)]
     [Header("Camera")]
-    [SerializeField] private Transform _camera;
+    [SerializeField] private Transform playerCamera;
 
-    public IInteractable CurrentInteractable { get; private set; }
+    public IInteractable CurrentInteractable { get; private set; } //PARA EL CONTORNO
+    public static event Action<bool> OnInteractSeen;
 
     private void Awake()
     {
-       if(_camera == null) _camera = Camera.main.transform;
+       if(playerCamera == null) playerCamera = Camera.main.transform;
     }
 
     private void Update()
     {
         CastInteractiveRay();
+        //OnInteractSeen?.Invoke(CurrentInteractable != null); ponerlo en algun
     }
     void CastInteractiveRay()
     {
-        Ray interactRay = new Ray(_camera.position, _camera.forward);
+        Ray interactRay = new Ray(playerCamera.position, playerCamera.forward);
         RaycastHit raycastHit;
 
         if (Physics.Raycast(interactRay, out raycastHit, rayMaxDistance, interactMask))
         {
-            //Debug.DrawRay(interactRay.origin, interactRay.direction, Color.red);
-            //Debug.Log($"<b>Raycast:</b> <color=yellow>{raycastHit.transform.name}</color>");
-            //COMENTADO PORQUE ANDA!
+            //IInteractable foundInteractable = raycastHit.collider.GetComponent<IInteractable>(); //var local para el delegate del ui
+            
             CurrentInteractable = raycastHit.collider.GetComponentInParent<IInteractable>();
             IOutlined currentTarget = raycastHit.collider.GetComponentInParent<IOutlined>();
             GameObject currentHitObject = raycastHit.collider.gameObject;
+
+            if (CurrentInteractable != null)
+            {
+                OnInteractSeen(true);
+            }
+            
             if (currentHitObject != lastTargetObj)
             {
                 if (lastTarget != null && lastTargetObj != null)
@@ -53,8 +63,11 @@ public class InteractRay : MonoBehaviour
         }
         else
         {
-            CurrentInteractable = null;
-            
+            if (CurrentInteractable != null)
+            {
+                CurrentInteractable = null;
+                OnInteractSeen(false);
+            }
             if (lastTarget != null)
             {
                 if (lastTargetObj != null) lastTarget.EraseOutline(lastTargetObj);
@@ -64,4 +77,6 @@ public class InteractRay : MonoBehaviour
             }
         }
     }
+    
+    
 }
