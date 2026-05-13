@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -16,6 +18,12 @@ public class DialogueManager : MonoBehaviour
 
     private Queue<LineaDeDialogo> oraciones;
     private bool talking = false;
+    
+    [Space(3)]
+    [SerializeField] Image InteractButton;
+
+    //Action onInteract(); meter delegate
+    
     void Awake()
     {
         if (Instance == null) { Instance = this; }
@@ -23,6 +31,7 @@ public class DialogueManager : MonoBehaviour
 
         oraciones = new Queue<LineaDeDialogo>();
         panelDialogo.SetActive(false);
+        
     }
 
     private void Update()
