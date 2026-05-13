@@ -1,10 +1,8 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
@@ -17,13 +15,12 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI textoDialogo;
     public GameObject iconoContinuar;
 
+    [Header("Nota")]
+    public GameObject notaEnCamara;
+
     private Queue<LineaDeDialogo> oraciones;
     private bool talking = false;
-    
-    [FormerlySerializedAs("InteractButton")]
-    [Space(3)]
-    [SerializeField] Image interactButtonImage;
-    
+
     void Awake()
     {
         if (Instance == null) { Instance = this; }
@@ -31,7 +28,8 @@ public class DialogueManager : MonoBehaviour
 
         oraciones = new Queue<LineaDeDialogo>();
         panelDialogo.SetActive(false);
-        InteractRay.OnInteractSeen += InteractableSeen;
+
+        if (notaEnCamara != null) notaEnCamara.SetActive(false);
     }
 
     private void Update()
@@ -40,7 +38,6 @@ public class DialogueManager : MonoBehaviour
         {
             MostrarSiguienteOracion();
         }
-        
     }
 
     public void EmpezarDialogo(DialogoData dialogo)
@@ -76,31 +73,51 @@ public class DialogueManager : MonoBehaviour
         textoNombre.text = oracionActual.nombrePersonaje;
         textoDialogo.text = oracionActual.texto;
 
-        iconoContinuar.SetActive(oraciones.Count > 0);
+        if (oracionActual.imagen != null)
+        {
+            if (notaEnCamara != null)
+            {
+                //  ¡Para cuando sea en 3D la imagen!
+                //
+                //SpriteRenderer rederizador = notaEnCamara.GetComponent<SpriteRenderer>();
+                //
+                //if (rederizador != null)
+                //{
+                //    rederizador.sprite = oracionActual.imagen;
+                //}
+                //
+                //notaEnCamara.SetActive(true);
+
+
+                Image image = notaEnCamara.GetComponent<Image>();
+
+                if (image != null)
+                {
+                    image.sprite = oracionActual.imagen;
+                }
+
+                notaEnCamara.SetActive(true);
+            }
+        }
+        else
+        {
+            if (notaEnCamara != null) notaEnCamara.SetActive(false);
+        }
+
+            iconoContinuar.SetActive(oraciones.Count > 0);
     }
 
     public void TerminarDialogo()
     {
         talking = false;
-        panelDialogo.SetActive(false); 
+        panelDialogo.SetActive(false);
+
+        if (notaEnCamara != null) notaEnCamara.SetActive(false);
     }
 
     public bool EstaHablando()
     {
         return talking;
     }
-    
-    void InteractableSeen(bool isSeen)
-    {
-        Debug.Log($"<color=red>INTERACTABLES IS SEEN {isSeen}</color>");
-        if (interactButtonImage != null)
-        {
-            interactButtonImage.enabled = isSeen;
-        }
-    }
 
-    private void OnDestroy()
-    {
-        InteractRay.OnInteractSeen -= InteractableSeen;
-    }
 }

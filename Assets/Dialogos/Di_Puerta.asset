@@ -10,16 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 327e632dd02f549409f2e17898f48f14, type: 3}
-  m_Name: Di_CindyEnLaPuerta
+  m_Name: Di_Puerta
   m_EditorClassIdentifier: 
-  nombrePorDefecto: Cindy
+  nombrePorDefecto: 
   dialogos:
-  - nombrePersonaje: 
-    texto: "\xBFA donde vas?"
+  - nombrePersonaje: ???
+    texto: "\xA1Eyy!"
     imagen: {fileID: 0}
-  - nombrePersonaje: 
-    texto: "\xBFMe ayudas con unos expedientes que tengo que buscar?"
-    imagen: {fileID: 0}
-  - nombrePersonaje: 
-    texto: Toma, estan en el archivo. Busca bien, que es IMPORTANTE.
-    imagen: {fileID: 21300000, guid: 70c53de3f6bfa044a8b58c4e1d3dd0d7, type: 3}

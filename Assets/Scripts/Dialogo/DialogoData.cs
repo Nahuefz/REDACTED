@@ -6,6 +6,9 @@ public struct LineaDeDialogo
     public string nombrePersonaje;
     [TextArea(3, 5)]
     public string texto;
+
+    [Header("Opcional")]
+    public Sprite imagen;
 }
 
 [CreateAssetMenu(fileName = "NuevoDialogo", menuName = "Sistema de Dialogo/Dialogo")]
