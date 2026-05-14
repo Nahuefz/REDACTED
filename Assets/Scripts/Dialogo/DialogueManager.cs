@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -9,22 +8,28 @@ public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance { get; private set; }
 
-    [Header("Componentes UI")]
-    public GameObject panelDialogo;
+    [Header("Componentes UI")] public GameObject panelDialogo;
     public TextMeshProUGUI textoNombre;
     public TextMeshProUGUI textoDialogo;
     public GameObject iconoContinuar;
 
-    [Header("Nota")]
-    public GameObject notaEnCamara;
+    [Header("Nota")] public GameObject notaEnCamara;
 
     private Queue<LineaDeDialogo> oraciones;
     private bool talking = false;
 
+    [SerializeField] Image interactButtonImage;
+
     void Awake()
     {
-        if (Instance == null) { Instance = this; }
-        else { Destroy(gameObject); }
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 
         oraciones = new Queue<LineaDeDialogo>();
         panelDialogo.SetActive(false);
@@ -54,6 +59,7 @@ public class DialogueManager : MonoBehaviour
             {
                 lineaProcesada.nombrePersonaje = dialogo.nombrePorDefecto;
             }
+
             oraciones.Enqueue(lineaProcesada);
         }
 
@@ -77,7 +83,7 @@ public class DialogueManager : MonoBehaviour
         {
             if (notaEnCamara != null)
             {
-                //  ¡Para cuando sea en 3D la imagen!
+                //  ï¿½Para cuando sea en 3D la imagen!
                 //
                 //SpriteRenderer rederizador = notaEnCamara.GetComponent<SpriteRenderer>();
                 //
@@ -104,7 +110,7 @@ public class DialogueManager : MonoBehaviour
             if (notaEnCamara != null) notaEnCamara.SetActive(false);
         }
 
-            iconoContinuar.SetActive(oraciones.Count > 0);
+        iconoContinuar.SetActive(oraciones.Count > 0);
     }
 
     public void TerminarDialogo()
@@ -120,4 +126,28 @@ public class DialogueManager : MonoBehaviour
         return talking;
     }
 
+    void InteractableSeen(bool isSeen)
+    {
+        //Debug.Log($"<color=red>INTERACTABLES IS SEEN {isSeen}</color>");
+        if (interactButtonImage != null)
+        {
+            interactButtonImage.enabled = isSeen;
+        }
+    }
+
+    private void OnEnable()
+    {
+        InteractRay.OnInteractSeen += InteractableSeen;
+    }
+
+    private void OnDisable()
+    {
+        InteractRay.OnInteractSeen -= InteractableSeen;
+    }
+
+    private void OnDestroy()
+    {
+        // Ya se desuscribe en OnDisable, pero lo dejamos por si acaso o lo removemos si OnDisable es suficiente.
+        // En Unity, OnDisable se llama antes que OnDestroy.
+    }
 }
