@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -20,6 +19,8 @@ public class DialogueManager : MonoBehaviour
 
     private Queue<LineaDeDialogo> oraciones;
     private bool talking = false;
+    
+    [SerializeField] Image interactButtonImage;
 
     void Awake()
     {
@@ -30,6 +31,8 @@ public class DialogueManager : MonoBehaviour
         panelDialogo.SetActive(false);
 
         if (notaEnCamara != null) notaEnCamara.SetActive(false);
+        
+        
     }
 
     private void Update()
@@ -77,7 +80,7 @@ public class DialogueManager : MonoBehaviour
         {
             if (notaEnCamara != null)
             {
-                //  ¡Para cuando sea en 3D la imagen!
+                //  ï¿½Para cuando sea en 3D la imagen!
                 //
                 //SpriteRenderer rederizador = notaEnCamara.GetComponent<SpriteRenderer>();
                 //
@@ -118,6 +121,31 @@ public class DialogueManager : MonoBehaviour
     public bool EstaHablando()
     {
         return talking;
+    }
+    
+    void InteractableSeen(bool isSeen)
+    {
+        Debug.Log($"<color=red>INTERACTABLES IS SEEN {isSeen}</color>");
+        if (interactButtonImage != null)
+        {
+            interactButtonImage.enabled = isSeen;
+        }
+    }
+
+    private void OnEnable()
+    {
+        InteractRay.OnInteractSeen += InteractableSeen;
+    }
+
+    private void OnDisable()
+    {
+        InteractRay.OnInteractSeen -= InteractableSeen;
+    }
+
+    private void OnDestroy()
+    {
+        // Ya se desuscribe en OnDisable, pero lo dejamos por si acaso o lo removemos si OnDisable es suficiente.
+        // En Unity, OnDisable se llama antes que OnDestroy.
     }
 
 }

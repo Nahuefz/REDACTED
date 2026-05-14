@@ -99,8 +99,8 @@ GameObject:
   - component: {fileID: 7417536826049618189}
   - component: {fileID: 5467089636996059049}
   - component: {fileID: 9068144331513010950}
-  - component: {fileID: 4623713617679046498}
   - component: {fileID: 1562184514807578898}
+  - component: {fileID: 3368416165883846920}
   m_Layer: 0
   m_Name: Oficinista prototipo
   m_TagString: Untagged
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a027fd9014a3fe4da8dd4b2123546d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  datosDialogo: {fileID: 11400000, guid: b678f58b2d5cd8b4baf0ba294314ef0e, type: 2}
+  listaDialogos: []
   iconoInteraccion: {fileID: 243126482980297585}
   audioSource: {fileID: 1562184514807578898}
   sonidosInteraccion:
@@ -209,27 +209,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!135 &4623713617679046498
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2211117944586010802}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 9.700025
-  m_Center: {x: 0, y: 0, z: 1.4310818}
 --- !u!82 &1562184514807578898
 AudioSource:
   m_ObjectHideFlags: 0
@@ -327,3 +306,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!136 &3368416165883846920
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2211117944586010802}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3.1499999
+  m_Height: 10.899999
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0.0000076293945}

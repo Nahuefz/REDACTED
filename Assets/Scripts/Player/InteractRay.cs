@@ -28,6 +28,7 @@ public class InteractRay : MonoBehaviour
     {
         CastInteractiveRay();
         //OnInteractSeen?.Invoke(CurrentInteractable != null); ponerlo en algun
+        Debug.DrawRay(playerCamera.position, playerCamera.forward * rayMaxDistance, Color.red);
     }
     void CastInteractiveRay()
     {
@@ -36,16 +37,16 @@ public class InteractRay : MonoBehaviour
 
         if (Physics.Raycast(interactRay, out raycastHit, rayMaxDistance, interactMask))
         {
-            //IInteractable foundInteractable = raycastHit.collider.GetComponent<IInteractable>(); //var local para el delegate del ui
+            IInteractable foundInteractable = raycastHit.collider.GetComponent<IInteractable>(); //var local para el delegate del ui
+            //CurrentInteractable = raycastHit.collider.GetComponentInParent<IInteractable>();
+            if (CurrentInteractable != foundInteractable )
+            {
+                CurrentInteractable = foundInteractable;
+                OnInteractSeen?.Invoke(CurrentInteractable != null);
+            }
             
-            CurrentInteractable = raycastHit.collider.GetComponentInParent<IInteractable>();
             IOutlined currentTarget = raycastHit.collider.GetComponentInParent<IOutlined>();
             GameObject currentHitObject = raycastHit.collider.gameObject;
-
-            if (CurrentInteractable != null)
-            {
-                OnInteractSeen(true);
-            }
             
             if (currentHitObject != lastTargetObj)
             {
@@ -66,7 +67,7 @@ public class InteractRay : MonoBehaviour
             if (CurrentInteractable != null)
             {
                 CurrentInteractable = null;
-                OnInteractSeen(false);
+                OnInteractSeen?.Invoke(false);
             }
             if (lastTarget != null)
             {
