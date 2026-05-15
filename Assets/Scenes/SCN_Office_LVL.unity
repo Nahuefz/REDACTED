@@ -48998,6 +48998,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7022896480434711262, guid: 8accabcad7da06e4b9d587a9378d4c3c, type: 3}
   m_PrefabInstance: {fileID: 854039933}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &854039935 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8050908831349882716, guid: 8accabcad7da06e4b9d587a9378d4c3c, type: 3}
+  m_PrefabInstance: {fileID: 854039933}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a600b455a4254147adfefa474245ed6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &854651879
 Mesh:
   m_ObjectHideFlags: 0
@@ -52826,6 +52837,22 @@ PrefabInstance:
     - target: {fileID: 2529651726417280892, guid: 03d7cb8e87ff95b44a6cd6d9bd21be4a, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837599593728572546, guid: 03d7cb8e87ff95b44a6cd6d9bd21be4a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 854039935}
+    - target: {fileID: 2837599593728572546, guid: 03d7cb8e87ff95b44a6cd6d9bd21be4a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Resume
+      objectReference: {fileID: 0}
+    - target: {fileID: 3465718550755959921, guid: 03d7cb8e87ff95b44a6cd6d9bd21be4a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 854039935}
+    - target: {fileID: 3465718550755959921, guid: 03d7cb8e87ff95b44a6cd6d9bd21be4a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Quit
       objectReference: {fileID: 0}
     - target: {fileID: 7844709872724254621, guid: 03d7cb8e87ff95b44a6cd6d9bd21be4a, type: 3}
       propertyPath: m_AnchorMax.y
@@ -71001,6 +71028,10 @@ PrefabInstance:
     - target: {fileID: 650945341120098896, guid: f84e3f9131d705d478358a2da1ee585e, type: 3}
       propertyPath: m_Name
       value: MaquinaCafe
+      objectReference: {fileID: 0}
+    - target: {fileID: 5428393559380496142, guid: f84e3f9131d705d478358a2da1ee585e, type: 3}
+      propertyPath: outlineWidth
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
