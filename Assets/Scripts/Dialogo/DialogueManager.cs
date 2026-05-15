@@ -49,6 +49,12 @@ public class DialogueManager : MonoBehaviour
     {
         talking = true;
         panelDialogo.SetActive(true);
+
+        if (interactButtonImage != null)
+        {
+            interactButtonImage.enabled = false;
+        }
+
         oraciones.Clear();
 
         foreach (LineaDeDialogo linea in dialogo.dialogos)
@@ -131,6 +137,10 @@ public class DialogueManager : MonoBehaviour
         //Debug.Log($"<color=red>INTERACTABLES IS SEEN {isSeen}</color>");
         if (interactButtonImage != null)
         {
+            if (talking)
+            {
+                interactButtonImage.enabled = false;
+            }
             interactButtonImage.enabled = isSeen;
         }
     }
