@@ -71030,8 +71030,12 @@ PrefabInstance:
       value: MaquinaCafe
       objectReference: {fileID: 0}
     - target: {fileID: 5428393559380496142, guid: f84e3f9131d705d478358a2da1ee585e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5428393559380496142, guid: f84e3f9131d705d478358a2da1ee585e, type: 3}
       propertyPath: outlineWidth
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
