@@ -11,9 +11,9 @@ public partial class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         // Carga la siguiente escena en la lista de Build Settings
-        //SceneManager.LoadScene("SCN_Office_LVL");
+        SceneManager.LoadScene("SCN_Office_LVL");
 
-        SceneManager.LoadScene("TEST_Enemy");
+        //SceneManager.LoadScene("TEST_Enemy");
     }
 
     public void OpenControls()
