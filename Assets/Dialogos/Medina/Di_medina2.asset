@@ -15,8 +15,8 @@ MonoBehaviour:
   nombrePorDefecto: Medina
   dialogos:
   - nombrePersonaje: 
-    texto: ...
+    texto: Me hacen subir la presion...
+    imagen: {fileID: 0}
   - nombrePersonaje: 
-    texto: "Uff, \xBFQue quieren ahora?"
-  - nombrePersonaje: 
-    texto: ...
+    texto: "\xA1No entiendo ni como hablan!"
+    imagen: {fileID: 0}

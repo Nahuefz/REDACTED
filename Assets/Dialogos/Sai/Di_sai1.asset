@@ -16,5 +16,7 @@ MonoBehaviour:
   dialogos:
   - nombrePersonaje: 
     texto: "\xBFTocaron la puerta?"
+    imagen: {fileID: 0}
   - nombrePersonaje: 
-    texto: Ah, pense que me decias que la abra...
+    texto: Ah, pense que tenia que abrir. Yo soy el que abre la puerta...
+    imagen: {fileID: 0}

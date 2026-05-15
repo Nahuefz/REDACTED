@@ -36116,6 +36116,14 @@ PrefabInstance:
       propertyPath: 'listaDialogos.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: f635d05ba88bd1341bd10bd840cd0739, type: 2}
+    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: sonidosInteraccion.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: 'sonidosInteraccion.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: c34f2a23262e7c84790cf6b799ccccd6, type: 3}
     - target: {fileID: 9068144331513010950, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: m_Sprite
       value: 

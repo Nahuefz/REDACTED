@@ -15,8 +15,5 @@ MonoBehaviour:
   nombrePorDefecto: Medina
   dialogos:
   - nombrePersonaje: 
-    texto: ...
-  - nombrePersonaje: 
-    texto: "\xBFSe habra caido el sistema?"
-  - nombrePersonaje: 
-    texto: ...
+    texto: "\xBFPor que no me dejan ir al ginecologo?"
+    imagen: {fileID: 0}
