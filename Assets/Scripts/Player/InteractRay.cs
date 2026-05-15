@@ -37,9 +37,11 @@ public class InteractRay : MonoBehaviour
 
         if (Physics.Raycast(interactRay, out raycastHit, rayMaxDistance, interactMask))
         {
-            IInteractable foundInteractable = raycastHit.collider.GetComponent<IInteractable>(); //var local para el delegate del ui
-            //CurrentInteractable = raycastHit.collider.GetComponentInParent<IInteractable>();
-            if (CurrentInteractable != foundInteractable )
+            // Usamos GetComponentInParent para encontrar el script aunque el collider esté en un hijo
+            IInteractable foundInteractable = raycastHit.collider.GetComponentInParent<IInteractable>();
+            
+            // Si el objeto que estamos mirando ha cambiado
+            if (foundInteractable != CurrentInteractable)
             {
                 CurrentInteractable = foundInteractable;
                 OnInteractSeen?.Invoke(CurrentInteractable != null);
@@ -64,11 +66,13 @@ public class InteractRay : MonoBehaviour
         }
         else
         {
+            // Si no golpeamos nada, reseteamos el interactuable actual
             if (CurrentInteractable != null)
             {
                 CurrentInteractable = null;
                 OnInteractSeen?.Invoke(false);
             }
+
             if (lastTarget != null)
             {
                 if (lastTargetObj != null) lastTarget.EraseOutline(lastTargetObj);
