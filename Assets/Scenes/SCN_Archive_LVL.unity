@@ -15627,27 +15627,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3368416165883846920, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: m_Height
-      value: 3.04
+      value: 9.31302
       objectReference: {fileID: 0}
     - target: {fileID: 3368416165883846920, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: m_Radius
-      value: 0.94
+      value: 3.2977202
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368416165883846920, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: m_Center.x
+      value: -0.7514989
       objectReference: {fileID: 0}
     - target: {fileID: 3368416165883846920, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: m_Center.y
-      value: -0.12
+      value: -0.79597306
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368416165883846920, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: m_Center.z
+      value: 0.000007636686
       objectReference: {fileID: 0}
     - target: {fileID: 4498986471775667480, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.61807203
+      value: 0.18732098
       objectReference: {fileID: 0}
     - target: {fileID: 4498986471775667480, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.61807203
+      value: 0.18732098
       objectReference: {fileID: 0}
     - target: {fileID: 4498986471775667480, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.61807203
+      value: 0.18732098
       objectReference: {fileID: 0}
     - target: {fileID: 4498986471775667480, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15720,7 +15728,7 @@ PrefabInstance:
     - target: {fileID: 9068144331513010950, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 030cafa35a69f344fbccb790a5ae681d, type: 3}
+      objectReference: {fileID: 21300000, guid: 41752d47f29f90147994c2512e37ab1b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 243126482980297585, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
