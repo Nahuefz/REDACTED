@@ -13,7 +13,6 @@ public class DialogosCindy : MonoBehaviour, IInteractable, IInterceptor
     public Transform puntoDeAparicion;
 
     [Header("Componentes y audio")]
-    public GameObject iconoInteraccion;
     public AudioSource audioSource;
     public AudioClip[] sonidosInteraccion;
 
@@ -24,7 +23,6 @@ public class DialogosCindy : MonoBehaviour, IInteractable, IInterceptor
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        iconoInteraccion.SetActive(false);
 
         comportamientoRegreso = GetComponent<RegresoSigiloso>();
     }
@@ -102,11 +100,11 @@ public class DialogosCindy : MonoBehaviour, IInteractable, IInterceptor
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) iconoInteraccion.SetActive(true);
+        if (other.CompareTag("Player")) Debug.Log("Entro");
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player")) iconoInteraccion.SetActive(false);
+        if (other.CompareTag("Player")) Debug.Log("Salio");
     }
 }

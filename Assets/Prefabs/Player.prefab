@@ -384,6 +384,8 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 512
+  coyoteTime: 0.15
+  spawnPoint: {fileID: 0}
 --- !u!23 &1963870868480219307
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -469,7 +471,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   lastTargetObj: {fileID: 0}
-  _camera: {fileID: 0}
+  playerCamera: {fileID: 0}
 --- !u!54 &4109342226288410264
 Rigidbody:
   m_ObjectHideFlags: 0

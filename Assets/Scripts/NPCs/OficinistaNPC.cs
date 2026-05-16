@@ -6,9 +6,6 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
     [Header("Datos")]
     public DialogoData[] listaDialogos;
 
-    [Header("Componentes")]
-    public GameObject iconoInteraccion; //La "E"
-
     [Header("Audio")]
     public AudioSource audioSource;
     public AudioClip[] sonidosInteraccion;
@@ -16,7 +13,6 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        iconoInteraccion.SetActive(false);
     }
 
     public void Interact()
@@ -56,7 +52,6 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
         if (other.CompareTag("Player"))
         {
             Debug.Log("Entro");
-            iconoInteraccion.SetActive(true);
         }
     }
 
@@ -64,7 +59,7 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
     {
         if (other.CompareTag("Player"))
         {
-            iconoInteraccion.SetActive(false);
+            Debug.Log("Salio");
         }
     }
 

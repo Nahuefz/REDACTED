@@ -17,6 +17,7 @@ public class DialogueManager : MonoBehaviour
 
     private Queue<LineaDeDialogo> oraciones;
     private bool talking = false;
+    private bool looking = false;
 
     [SerializeField] Image interactButtonImage;
 
@@ -125,6 +126,7 @@ public class DialogueManager : MonoBehaviour
         panelDialogo.SetActive(false);
 
         if (notaEnCamara != null) notaEnCamara.SetActive(false);
+        if (interactButtonImage != null) interactButtonImage.enabled = looking;
     }
 
     public bool EstaHablando()
@@ -135,14 +137,10 @@ public class DialogueManager : MonoBehaviour
     void InteractableSeen(bool isSeen)
     {
         //Debug.Log($"<color=red>INTERACTABLES IS SEEN {isSeen}</color>");
-        if (interactButtonImage != null)
-        {
-            if (talking)
-            {
-                interactButtonImage.enabled = false;
-            }
-            interactButtonImage.enabled = isSeen;
-        }
+
+        looking = isSeen;
+
+        if (interactButtonImage != null) interactButtonImage.enabled = looking && !talking;
     }
 
     private void OnEnable()

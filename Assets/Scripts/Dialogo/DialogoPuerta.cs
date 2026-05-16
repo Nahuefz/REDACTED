@@ -8,19 +8,11 @@ public class DialogoPuerta : MonoBehaviour, IInteractable
 
     [Header("Conexiones")]
     public DialogosCindy npc;
-    public GameObject iconoInteraccion;
     public AudioSource audioPuerta;
-
-
-    void Start()
-    {
-        if (iconoInteraccion != null) iconoInteraccion.SetActive(false);
-    }
 
     public void Interact()
     {
         if (DialogueManager.Instance.EstaHablando()) return;
-        if (iconoInteraccion != null) iconoInteraccion.SetActive(false);
 
         StartCoroutine(RutinaPuerta());
     }
@@ -55,14 +47,14 @@ public class DialogoPuerta : MonoBehaviour, IInteractable
     {
         if (other.CompareTag("Player"))
         {
-            if (iconoInteraccion != null) iconoInteraccion.SetActive(true);
+            Debug.Log("Entro");
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            if (iconoInteraccion != null) iconoInteraccion.SetActive(false);
+            Debug.Log("Salio");
         }
     }
 
