@@ -16,9 +16,11 @@ public class DialogosCindy : MonoBehaviour, IInteractable, IInterceptor
     public AudioSource audioSource;
     public AudioClip[] sonidosInteraccion;
 
-    private RegresoSigiloso comportamientoRegreso;
+    [Header("Ancla Cinematografica")]
+    public Transform anclaDeInteraccion;
+    private bool seEstaAlineando = false;
 
-  
+    private RegresoSigiloso comportamientoRegreso;
 
     void Start()
     {
@@ -35,6 +37,31 @@ public class DialogosCindy : MonoBehaviour, IInteractable, IInterceptor
             return;
         }
 
+        if (seEstaAlineando) return;
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null && anclaDeInteraccion != null)
+        {
+            PlayerAlignment alignment = player.GetComponent<PlayerAlignment>();
+            if (alignment != null)
+            {
+                seEstaAlineando = true;
+                alignment.Alinear(anclaDeInteraccion, transform, () =>
+                {
+                    seEstaAlineando = false;
+                    LanzarDialogoDirecto();
+                });
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Te olvidaste de asignar el ancla!");
+            LanzarDialogoDirecto();
+        }
+    }
+
+    private void LanzarDialogoDirecto()
+    {
         ReproducirSonidoRandom();
 
         if (dialogosDirectos.Length > 0)
@@ -47,7 +74,6 @@ public class DialogosCindy : MonoBehaviour, IInteractable, IInterceptor
                 indiceIndirecto++;
             }
         }
-
     }
 
     public void InterceptPlayer (Transform player)
