@@ -12,6 +12,7 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
 
     [Header("Ancla Cinematografica")]
     public Transform anclaDeInteraccion;
+    public Transform anclaDeMirada;
     private bool seEstaAlineando = false;
 
     void Start()
@@ -36,7 +37,7 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
             if (alignment != null)
             {
                 seEstaAlineando = true;
-                alignment.Alinear(anclaDeInteraccion, transform, () =>
+                alignment.Alinear(anclaDeInteraccion, transform, anclaDeMirada, () =>
                 {
                     seEstaAlineando = false;
                     LanzarDialogo();

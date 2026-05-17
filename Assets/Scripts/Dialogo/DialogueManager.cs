@@ -101,7 +101,6 @@ public class DialogueManager : MonoBehaviour
                 //
                 //notaEnCamara.SetActive(true);
 
-
                 Image image = notaEnCamara.GetComponent<Image>();
 
                 if (image != null)

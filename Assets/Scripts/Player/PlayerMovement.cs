@@ -145,6 +145,20 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public float GetXRotation()
+    {
+        return _xRotation;
+    }
+
+    public void SetXRotation(float xRotation)
+    {
+        _xRotation = xRotation;
+        if (cameraTransform != null)
+        {
+            cameraTransform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
+        }
+    }
+
     public void Respawn()
     {
         transform.position = spawnPoint.position;
