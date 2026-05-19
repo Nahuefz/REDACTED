@@ -36166,6 +36166,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1562184514807578898, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1562184514807578898, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: MaxDistance
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1562184514807578898, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211117944586010802, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: m_Name
       value: Jefe Digangi
@@ -58071,6 +58083,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 97295552}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1525284085 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1562184514807578898, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+  m_PrefabInstance: {fileID: 736159444}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1533141808
 Mesh:
   m_ObjectHideFlags: 0
@@ -58365,7 +58382,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogoPuerta: {fileID: 11400000, guid: bb0568a765d3bea4b9744a0e14543828, type: 2}
   npc: {fileID: 828433989}
-  audioPuerta: {fileID: 0}
+  dialogoJefe: {fileID: 11400000, guid: f635d05ba88bd1341bd10bd840cd0739, type: 2}
+  elJefe:
+  - nombreEnElScript: Jefe Digangi
+    anclaMirada: {fileID: 690966350}
+    hacerZoom: 1
+    nivelDeZoom: 0.5
+  audioSource: {fileID: 1525284085}
+  sonidosInteraccion:
+  - {fileID: 8300000, guid: c34f2a23262e7c84790cf6b799ccccd6, type: 3}
 --- !u!43 &1574193506
 Mesh:
   m_ObjectHideFlags: 0

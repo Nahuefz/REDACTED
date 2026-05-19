@@ -133,6 +133,11 @@ public class DialogosCindy : MonoBehaviour, IInteractable, IInterceptor
         } 
     }
 
+    public bool YaHabloConElJugador()
+    {
+        return indiceDirecto > 0 || indiceIndirecto > 0;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")) Debug.Log("Entro");

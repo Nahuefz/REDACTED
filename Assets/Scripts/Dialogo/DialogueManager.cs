@@ -132,6 +132,7 @@ public class DialogueManager : MonoBehaviour
 
         if (notaEnCamara != null) notaEnCamara.SetActive(false);
         if (interactButtonImage != null) interactButtonImage.enabled = looking;
+        if (playerAlignmentCache != null) playerAlignmentCache.RestaurarFOV();
     }
 
     public bool EstaHablando()

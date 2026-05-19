@@ -145,4 +145,10 @@ public class PlayerAlignment : MonoBehaviour
         if (camaraPrincipal != null) camaraPrincipal.fieldOfView = fovFinal;
     }
     #endregion
+    
+    public void RestaurarFOV()
+    {
+        if (camaraPrincipal != null) camaraPrincipal.fieldOfView = fovPorDefecto;
+    }
+
 }
