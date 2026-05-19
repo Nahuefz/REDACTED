@@ -8,6 +8,9 @@ public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance { get; private set; }
 
+    private ActorDialogo[] actoresActuales;
+    private PlayerAlignment playerAlignmentCache;
+
     [Header("Componentes UI")] public GameObject panelDialogo;
     public TextMeshProUGUI textoNombre;
     public TextMeshProUGUI textoDialogo;
@@ -23,14 +26,8 @@ public class DialogueManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
 
         oraciones = new Queue<LineaDeDialogo>();
         panelDialogo.SetActive(false);
@@ -40,20 +37,21 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if (talking && Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            MostrarSiguienteOracion();
-        }
+        if (talking && Mouse.current.leftButton.wasPressedThisFrame) MostrarSiguienteOracion();
     }
 
-    public void EmpezarDialogo(DialogoData dialogo)
+    public void EmpezarDialogo(DialogoData dialogo, ActorDialogo[] actoresEscena = null)
     {
         talking = true;
         panelDialogo.SetActive(true);
 
-        if (interactButtonImage != null)
+        if (interactButtonImage != null) interactButtonImage.enabled = false;
+
+        actoresActuales = actoresEscena;
+        if (playerAlignmentCache == null)
         {
-            interactButtonImage.enabled = false;
+            GameObject p = GameObject.FindGameObjectWithTag("Player");
+            if (p != null) playerAlignmentCache = p.GetComponent<PlayerAlignment>();
         }
 
         oraciones.Clear();
@@ -86,6 +84,18 @@ public class DialogueManager : MonoBehaviour
         textoNombre.text = oracionActual.nombrePersonaje;
         textoDialogo.text = oracionActual.texto;
 
+        if (actoresActuales != null && playerAlignmentCache != null)
+        {
+            foreach (ActorDialogo actor in actoresActuales)
+            {
+                if (actor.nombreEnElScript == oracionActual.nombrePersonaje && actor.anclaMirada != null)
+                {
+                    playerAlignmentCache.CambiarMirada(actor.anclaMirada, actor.hacerZoom, actor.nivelDeZoom);
+                    break;
+                }
+            }
+        }
+
         if (oracionActual.imagen != null)
         {
             if (notaEnCamara != null)
@@ -100,13 +110,9 @@ public class DialogueManager : MonoBehaviour
                 //}
                 //
                 //notaEnCamara.SetActive(true);
-
                 Image image = notaEnCamara.GetComponent<Image>();
 
-                if (image != null)
-                {
-                    image.sprite = oracionActual.imagen;
-                }
+                if (image != null) image.sprite = oracionActual.imagen;
 
                 notaEnCamara.SetActive(true);
             }

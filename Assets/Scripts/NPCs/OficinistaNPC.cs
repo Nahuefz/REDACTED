@@ -3,7 +3,7 @@ using UnityEngine;
 public class OficinistaNPC : MonoBehaviour, IInteractable
 {
 
-    [Header("Datos")]
+    [Header("Datos de Dialogo")]
     public DialogoData[] listaDialogos;
 
     [Header("Audio")]
@@ -13,6 +13,11 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
     [Header("Ancla Cinematografica")]
     public Transform anclaDeInteraccion;
     public Transform anclaDeMirada;
+
+    [Header("Director de Camaras (Opcional)")]
+    [Tooltip("Si este dialogo involucra a otros personajes, agregarlos aca.")]
+    public ActorDialogo[] actoresEnEscena;
+
     private bool seEstaAlineando = false;
 
     void Start()
@@ -57,7 +62,7 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
         if (listaDialogos != null && listaDialogos.Length > 0)
         {
             int indiceDialogo = Random.Range(0, listaDialogos.Length);
-            DialogueManager.Instance.EmpezarDialogo(listaDialogos[indiceDialogo]);
+            DialogueManager.Instance.EmpezarDialogo(listaDialogos[indiceDialogo], actoresEnEscena);
         }
         else
         {

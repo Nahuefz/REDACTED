@@ -762,6 +762,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: actoresEnEscena.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: 'listaDialogos.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: 3e6d5012c32d85040a46f64746dacb70, type: 2}
@@ -769,6 +773,30 @@ PrefabInstance:
       propertyPath: 'listaDialogos.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: 7701ac1a67e4c5848ad6e2ef55c02996, type: 2}
+    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: actoresEnEscena.Array.data[0].hacerZoom
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: actoresEnEscena.Array.data[0].anclaMirada
+      value: 
+      objectReference: {fileID: 1489946240}
+    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: actoresEnEscena.Array.data[0].nivelDeZoom
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: actoresEnEscena.Array.data[1].anclaMirada
+      value: 
+      objectReference: {fileID: 583960804}
+    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: actoresEnEscena.Array.data[0].nombreEnElScript
+      value: Bruno
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: actoresEnEscena.Array.data[1].nombreEnElScript
+      value: Nahuel
+      objectReference: {fileID: 0}
     - target: {fileID: 9068144331513010950, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -59127,6 +59155,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: actoresEnEscena.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: 'listaDialogos.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: b05167d0089d79345a1ecd25bfb9c20c, type: 2}
@@ -59134,6 +59166,30 @@ PrefabInstance:
       propertyPath: 'listaDialogos.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: 7eee04621c8cc7b4a96efa5924123545, type: 2}
+    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: actoresEnEscena.Array.data[0].hacerZoom
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: actoresEnEscena.Array.data[0].anclaMirada
+      value: 
+      objectReference: {fileID: 583960804}
+    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: actoresEnEscena.Array.data[0].nivelDeZoom
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: actoresEnEscena.Array.data[1].anclaMirada
+      value: 
+      objectReference: {fileID: 1489946240}
+    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: actoresEnEscena.Array.data[0].nombreEnElScript
+      value: Nahuel
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: actoresEnEscena.Array.data[1].nombreEnElScript
+      value: Bruno
+      objectReference: {fileID: 0}
     - target: {fileID: 9068144331513010950, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: m_Sprite
       value: 
