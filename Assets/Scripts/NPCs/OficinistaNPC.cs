@@ -3,20 +3,26 @@ using UnityEngine;
 public class OficinistaNPC : MonoBehaviour, IInteractable
 {
 
-    [Header("Datos")]
+    [Header("Datos de Dialogo")]
     public DialogoData[] listaDialogos;
-
-    [Header("Componentes")]
-    public GameObject iconoInteraccion; //La "E"
 
     [Header("Audio")]
     public AudioSource audioSource;
     public AudioClip[] sonidosInteraccion;
 
+    [Header("Ancla Cinematografica")]
+    public Transform anclaDeInteraccion;
+    public Transform anclaDeMirada;
+
+    [Header("Director de Camaras (Opcional)")]
+    [Tooltip("Si este dialogo involucra a otros personajes, agregarlos aca.")]
+    public ActorDialogo[] actoresEnEscena;
+
+    private bool seEstaAlineando = false;
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        iconoInteraccion.SetActive(false);
     }
 
     public void Interact()
@@ -24,19 +30,43 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
         if (DialogueManager.Instance.EstaHablando())
         {
             DialogueManager.Instance.MostrarSiguienteOracion();
+            return;
+        }
+        
+        if (seEstaAlineando) return;
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null && anclaDeInteraccion != null)
+        {
+            PlayerAlignment alignment = player.GetComponent<PlayerAlignment>();
+            if (alignment != null)
+            {
+                seEstaAlineando = true;
+                alignment.Alinear(anclaDeInteraccion, transform, anclaDeMirada, () =>
+                {
+                    seEstaAlineando = false;
+                    LanzarDialogo();
+                });
+            }
         }
         else
         {
-            ReproducirSonidoRandom();
-            if(listaDialogos != null && listaDialogos.Length > 0)
-            {
-                int indiceDialogo = Random.Range(0, listaDialogos.Length);
-                DialogueManager.Instance.EmpezarDialogo(listaDialogos[indiceDialogo]);
-            }
-            else
-            {
-                Debug.LogWarning("¡El NPC " + gameObject.name + " no tiene diálogos asignados!");
-            }
+            Debug.LogWarning("Te olvidaste de asignar el ancla!");
+            LanzarDialogo();
+        }
+    }
+
+    private void LanzarDialogo()
+    {
+        ReproducirSonidoRandom();
+        if (listaDialogos != null && listaDialogos.Length > 0)
+        {
+            int indiceDialogo = Random.Range(0, listaDialogos.Length);
+            DialogueManager.Instance.EmpezarDialogo(listaDialogos[indiceDialogo], actoresEnEscena);
+        }
+        else
+        {
+            Debug.LogWarning("¡El NPC " + gameObject.name + " no tiene diálogos asignados!");
         }
     }
 
@@ -56,7 +86,6 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
         if (other.CompareTag("Player"))
         {
             Debug.Log("Entro");
-            iconoInteraccion.SetActive(true);
         }
     }
 
@@ -64,7 +93,7 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
     {
         if (other.CompareTag("Player"))
         {
-            iconoInteraccion.SetActive(false);
+            Debug.Log("Salio");
         }
     }
 

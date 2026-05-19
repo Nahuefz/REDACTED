@@ -16,7 +16,7 @@ MonoBehaviour:
   dialogos:
   - nombrePersonaje: 
     texto: "\xBFYa buscaste?"
+    imagen: {fileID: 0}
   - nombrePersonaje: 
-    texto: "\xA1Dale, anda a buscar! "
-  - nombrePersonaje: 
-    texto: Espero que encuentres lo que tenes que encontrar.
+    texto: "\xBFQue haces aca? Deja de boludear, no me hagas renegar."
+    imagen: {fileID: 0}
