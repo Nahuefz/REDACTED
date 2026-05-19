@@ -36,12 +36,13 @@ public class DialogosCindy : MonoBehaviour, IInteractable, IInterceptor
             DialogueManager.Instance.MostrarSiguienteOracion();
             return;
         }
+        Inventory playerInventory = interactor.GetComponent<Inventory>();
 
         ReproducirSonidoRandom();
 
         if (dialogosDirectos.Length > 0)
         {
-            DialogueManager.Instance.EmpezarDialogo(dialogosDirectos[indiceDirecto]);
+            DialogueManager.Instance.EmpezarDialogo(dialogosDirectos[indiceDirecto], playerInventory);
 
             if (indiceDirecto < dialogosDirectos.Length - 1)
             {
@@ -71,10 +72,11 @@ public class DialogosCindy : MonoBehaviour, IInteractable, IInterceptor
         }
 
         ReproducirSonidoRandom();
-
+        
+        Inventory playerInventory = player.GetComponent<Inventory>();
         if (dialogosIndirectos.Length > 0)
         {
-            DialogueManager.Instance.EmpezarDialogo(dialogosIndirectos[indiceIndirecto]);
+            DialogueManager.Instance.EmpezarDialogo(dialogosIndirectos[indiceIndirecto], playerInventory);
 
             if(indiceIndirecto < dialogosIndirectos.Length - 1)
             {

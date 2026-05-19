@@ -27,10 +27,12 @@ public class DialogoPuerta : MonoBehaviour, IInteractable
 
     private IEnumerator RutinaPuerta()
     {
+        Inventory playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>(); //no se me ocurrio otra cosa ;c
+        
         if (audioPuerta != null) audioPuerta.Play();
         if (dialogoPuerta !=null)
         {
-            DialogueManager.Instance.EmpezarDialogo(dialogoPuerta);
+            DialogueManager.Instance.EmpezarDialogo(dialogoPuerta, playerInventory);
         }
 
         //Para esperar el click

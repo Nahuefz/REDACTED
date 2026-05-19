@@ -27,11 +27,12 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
         }
         else
         {
+            Inventory playerInventory = interactor.GetComponent<Inventory>();
             ReproducirSonidoRandom();
             if(listaDialogos != null && listaDialogos.Length > 0)
             {
                 int indiceDialogo = Random.Range(0, listaDialogos.Length);
-                DialogueManager.Instance.EmpezarDialogo(listaDialogos[indiceDialogo]);
+                DialogueManager.Instance.EmpezarDialogo(listaDialogos[indiceDialogo], playerInventory);
             }
             else
             {

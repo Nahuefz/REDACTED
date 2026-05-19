@@ -19,6 +19,8 @@ public class DialogueManager : MonoBehaviour
     private bool talking = false;
 
     [SerializeField] Image interactButtonImage;
+    Inventory _currentInventory;
+    
 
     void Awake()
     {
@@ -45,8 +47,9 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void EmpezarDialogo(DialogoData dialogo)
+    public void EmpezarDialogo(DialogoData dialogo, Inventory inventory)
     {
+        _currentInventory = inventory; //para añadir los objetos x imagen al inventario del player
         talking = true;
         panelDialogo.SetActive(true);
 
@@ -109,6 +112,10 @@ public class DialogueManager : MonoBehaviour
                 }
 
                 notaEnCamara.SetActive(true);
+                if (notaEnCamara.TryGetComponent(out BasicItem item) && _currentInventory != null)
+                {
+                    _currentInventory.TryAddItem(item.data);
+                }
             }
         }
         else
@@ -122,6 +129,7 @@ public class DialogueManager : MonoBehaviour
     public void TerminarDialogo()
     {
         talking = false;
+        _currentInventory = null;
         panelDialogo.SetActive(false);
 
         if (notaEnCamara != null) notaEnCamara.SetActive(false);
