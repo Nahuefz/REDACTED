@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2f70d68b1452c74a801f3c8e8ec89f5, type: 3}
   m_Name: Cafe
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: Cafe
   itemImage: {fileID: 0}
-  itemDescription: 
+  itemDescription: cafe que sale de la maquina de cafe en la oficina

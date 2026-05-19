@@ -17,7 +17,7 @@ public class Inventory : MonoBehaviour
             Debug.Log("\"Objeto añadido: \" + item.itemName + \". Total: \" + inventory.Count");
             return true;
         }
-        else if (inventory.Contains(item))
+        else if (inventory.Contains(item) && inventory.Count < _maxSize)
         {
             Debug.Log("item duplicado?");
             return false;
