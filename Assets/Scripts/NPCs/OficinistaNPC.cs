@@ -19,7 +19,7 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
         iconoInteraccion.SetActive(false);
     }
 
-    public void Interact()
+    public void Interact(GameObject interactor)
     {
         if (DialogueManager.Instance.EstaHablando())
         {
@@ -35,7 +35,7 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
             }
             else
             {
-                Debug.LogWarning("¡El NPC " + gameObject.name + " no tiene diálogos asignados!");
+                Debug.LogWarning("ï¿½El NPC " + gameObject.name + " no tiene diï¿½logos asignados!");
             }
         }
     }

@@ -38,10 +38,11 @@ public class PlayerInteraction : MonoBehaviour
         if (interactuableCercano != null)
         {
             Debug.Log("Interactua");
-            interactuableCercano.Interact();
+            interactuableCercano.Interact(this.gameObject);
         }
         //Debug.Log("FUNCIONA EL INPUT");
-        _interactRay.CurrentInteractable?.Interact();
+        _interactRay.CurrentInteractable?.Interact(this.gameObject);
+        
     }
 
     private void OnTriggerEnter(Collider other)

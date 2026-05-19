@@ -29,7 +29,7 @@ public class DialogosCindy : MonoBehaviour, IInteractable, IInterceptor
         comportamientoRegreso = GetComponent<RegresoSigiloso>();
     }
 
-    public void Interact()
+    public void Interact(GameObject interactor)
     {
         if (DialogueManager.Instance.EstaHablando())
         {

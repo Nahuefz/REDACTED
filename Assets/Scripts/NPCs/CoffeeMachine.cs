@@ -7,7 +7,7 @@ public class CoffeeMachine : MonoBehaviour, IInteractable
     [SerializeField] private GameObject cheesePrefab;
     [SerializeField] private Transform spawnPoint;
 
-    public void Interact()
+    public void Interact(GameObject interactor)
     {
         Debug.Log(" INTERACCION Coffee Machine");
         // Random.Range(1, 11) devuelve un entero entre 1 y 10 (el máximo es exclusivo para enteros)

@@ -17,7 +17,7 @@ public class DialogoPuerta : MonoBehaviour, IInteractable
         if (iconoInteraccion != null) iconoInteraccion.SetActive(false);
     }
 
-    public void Interact()
+    public void Interact(GameObject interactor)
     {
         if (DialogueManager.Instance.EstaHablando()) return;
         if (iconoInteraccion != null) iconoInteraccion.SetActive(false);
