@@ -7,8 +7,6 @@ public partial class MainMenu : MonoBehaviour
     public GameObject mainMenuPanel;
     public GameObject controlsPanel;
     public GameObject creditsPanel;
-
-    [Header("Pop-Up")]
     public GameObject popUpPanel;
 
 
@@ -30,10 +28,15 @@ public partial class MainMenu : MonoBehaviour
     {
         if (popUpPanel != null) popUpPanel.SetActive(false);
         Debug.Log("Se acepto el mensaje, viene la animacion...");
+        if (mainMenuPanel != null) mainMenuPanel.SetActive(false);
 
-        //Aca va la animacion de la camara levantandose del escritorio.
+        
+        if (DirectorInicio.Instance != null)
+        {
+            DirectorInicio.Instance.IniciarSecuenciaLevantarse();
+        }
     }
-
+    
     public void OpenControls()
     {
         mainMenuPanel.SetActive(false);
