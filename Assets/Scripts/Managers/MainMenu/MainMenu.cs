@@ -8,12 +8,30 @@ public partial class MainMenu : MonoBehaviour
     public GameObject controlsPanel;
     public GameObject creditsPanel;
 
+    [Header("Pop-Up")]
+    public GameObject popUpPanel;
+
+
+    private void Start()
+    {
+        if (popUpPanel != null) popUpPanel.SetActive(false);
+    }
+
     public void PlayGame()
     {
         // Carga la siguiente escena en la lista de Build Settings
-        SceneManager.LoadScene("SCN_Office_LVL");
-
+        //SceneManager.LoadScene("SCN_Office_LVL");
         //SceneManager.LoadScene("TEST_Enemy");
+
+        if (popUpPanel != null) popUpPanel.SetActive(true); 
+    }
+
+    public void ConfirmarMensaje()
+    {
+        if (popUpPanel != null) popUpPanel.SetActive(false);
+        Debug.Log("Se acepto el mensaje, viene la animacion...");
+
+        //Aca va la animacion de la camara levantandose del escritorio.
     }
 
     public void OpenControls()
