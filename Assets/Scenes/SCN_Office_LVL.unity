@@ -20997,7 +20997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b42fdf10a9866d4a81590b6a744f598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenuPanel: {fileID: 1468437549}
+  mainMenuPanel: {fileID: 277728597}
   controlsPanel: {fileID: 1543664721}
   creditsPanel: {fileID: 564920191}
   popUpPanel: {fileID: 2051318276}
