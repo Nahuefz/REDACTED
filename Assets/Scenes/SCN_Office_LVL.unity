@@ -7867,7 +7867,7 @@ GameObject:
   - component: {fileID: 411166501}
   - component: {fileID: 411166503}
   - component: {fileID: 411166502}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Controles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22748,7 +22748,7 @@ GameObject:
   - component: {fileID: 564920194}
   - component: {fileID: 564920193}
   - component: {fileID: 564920192}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CreditsMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23155,7 +23155,7 @@ GameObject:
   - component: {fileID: 580645427}
   - component: {fileID: 580645429}
   - component: {fileID: 580645428}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Creditos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58776,6 +58776,7 @@ GameObject:
   - component: {fileID: 1468437550}
   - component: {fileID: 1468437552}
   - component: {fileID: 1468437551}
+  - component: {fileID: 1468437553}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -58884,6 +58885,23 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 5
   m_TargetDisplay: 0
+--- !u!114 &1468437553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468437549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!4 &1470366894 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4498986471775667480, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
@@ -60249,7 +60267,7 @@ GameObject:
   - component: {fileID: 1543664722}
   - component: {fileID: 1543664724}
   - component: {fileID: 1543664723}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ControlsMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
