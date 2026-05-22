@@ -9,10 +9,15 @@ public class Inventory : MonoBehaviour
     [SerializeField] private InventoryINFO _inventoryInfo;
 
     public event Action OnInventoryChanged;
+    private static bool _yaInicializado = false;
 
     private void Start()
     {
-        _inventoryInfo.Clear();
+        if(!_yaInicializado)
+        {
+            _inventoryInfo.Clear();
+            _yaInicializado = true;
+        }
     }
 
     public bool TryAddItem(ItemData item)
