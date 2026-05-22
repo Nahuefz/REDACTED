@@ -8,6 +8,7 @@ public partial class MainMenu : MonoBehaviour
     public GameObject controlsPanel;
     public GameObject creditsPanel;
     public GameObject popUpPanel;
+    public GameObject exitPanel;
 
 
     private void Start()
@@ -36,22 +37,35 @@ public partial class MainMenu : MonoBehaviour
             DirectorInicio.Instance.IniciarSecuenciaLevantarse();
         }
     }
-    
+
     public void OpenControls()
     {
-        mainMenuPanel.SetActive(false);
+        // ELIMINADO: mainMenuPanel.SetActive(false); 
         controlsPanel.SetActive(true);
     }
+
     public void OpenCredits()
     {
-        mainMenuPanel.SetActive(false);
+        // ELIMINADO: mainMenuPanel.SetActive(false);
         creditsPanel.SetActive(true);
     }
+
     public void BackToMenu()
     {
+        // Simplemente cerramos las ventanas, el menú principal ya está ahí
         controlsPanel.SetActive(false);
         creditsPanel.SetActive(false);
-        mainMenuPanel.SetActive(true);
+    }
+    // Método para cerrar los Controles
+    public void CloseControls()
+    {
+        controlsPanel.SetActive(false);
+    }
+
+    // Método para cerrar los Créditos
+    public void CloseCredits()
+    {
+        creditsPanel.SetActive(false);
     }
 
     public void QuitGame()
