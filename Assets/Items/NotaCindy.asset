@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: NotaCindy
   m_EditorClassIdentifier: 
   itemName: Nota
-  itemImage: {fileID: 0}
+  itemImage: {fileID: 21300000, guid: 70c53de3f6bfa044a8b58c4e1d3dd0d7, type: 3}
+  itemType: 1
   itemDescription: La nota que te da cindy en el comienzo

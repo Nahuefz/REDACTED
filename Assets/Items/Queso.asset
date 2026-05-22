@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Queso
   m_EditorClassIdentifier: 
   itemName: Queso
-  itemImage: {fileID: 0}
+  itemImage: {fileID: 21300000, guid: 346977ec8e4ffbb45a145d41425136a5, type: 3}
+  itemType: 0
   itemDescription: El queso para la interaccion con la rata
