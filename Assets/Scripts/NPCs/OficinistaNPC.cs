@@ -19,13 +19,14 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
     public ActorDialogo[] actoresEnEscena;
 
     private bool seEstaAlineando = false;
+    private Inventory _cachedInventory;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void Interact()
+    public void Interact(GameObject interactor)
     {
         if (DialogueManager.Instance.EstaHablando())
         {
@@ -33,6 +34,8 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
             return;
         }
         
+        _cachedInventory = interactor.GetComponent<Inventory>();
+
         if (seEstaAlineando) return;
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -62,11 +65,11 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
         if (listaDialogos != null && listaDialogos.Length > 0)
         {
             int indiceDialogo = Random.Range(0, listaDialogos.Length);
-            DialogueManager.Instance.EmpezarDialogo(listaDialogos[indiceDialogo], actoresEnEscena);
+            DialogueManager.Instance.EmpezarDialogo(listaDialogos[indiceDialogo], _cachedInventory, actoresEnEscena);
         }
         else
         {
-            Debug.LogWarning("¡El NPC " + gameObject.name + " no tiene diálogos asignados!");
+            Debug.LogWarning("El NPC " + gameObject.name + " no tiene dilogos asignados!");
         }
     }
 

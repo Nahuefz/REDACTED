@@ -22,7 +22,7 @@ public class DirectorInicio : MonoBehaviour
     {
         playerMovement = GetComponent<PlayerMovement>();
 
-        if (playerMovement != null && playerMovement.cameraTransform != null)
+        if (playerMovement != null && playerMovement.cameraTransform != null && puntoSentado != null)
         {
             posCamaraParado = playerMovement.cameraTransform.localPosition;
             SentarJugador();
