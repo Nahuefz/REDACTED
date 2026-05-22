@@ -15,14 +15,15 @@ public class DialogoPuerta : MonoBehaviour, IInteractable
     public AudioSource audioSource;
     public AudioClip[] sonidosInteraccion;
 
-    public void Interact()
+    public void Interact(GameObject interactor)
     {
         if (DialogueManager.Instance.EstaHablando()) return;
 
-        StartCoroutine(RutinaPuerta());
+        Inventory inventory = interactor.GetComponent<Inventory>();
+        StartCoroutine(RutinaPuerta(inventory));
     }
 
-    private IEnumerator RutinaPuerta()
+    private IEnumerator RutinaPuerta(Inventory inventory)
     {
         bool yaHablamosConCindy = (npc != null && npc.YaHabloConElJugador());
 
@@ -30,7 +31,7 @@ public class DialogoPuerta : MonoBehaviour, IInteractable
         {
             if (dialogoPuerta != null)
             {
-                DialogueManager.Instance.EmpezarDialogo(dialogoPuerta);
+                DialogueManager.Instance.EmpezarDialogo(dialogoPuerta, inventory);
                 //Para esperar el click
                 yield return new WaitWhile(() => DialogueManager.Instance.EstaHablando());
             }
@@ -52,7 +53,7 @@ public class DialogoPuerta : MonoBehaviour, IInteractable
         {
             ReproducirSonidoRandom();
             //El Jefe
-            if (dialogoJefe != null) DialogueManager.Instance.EmpezarDialogo(dialogoJefe, elJefe);
+            if (dialogoJefe != null) DialogueManager.Instance.EmpezarDialogo(dialogoJefe, inventory, elJefe);
         }
     }
 

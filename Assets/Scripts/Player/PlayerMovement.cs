@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform spawnPoint;
     
     private Rigidbody _rb;
-    private PlayerInputs _controls;
+    public PlayerInputs _controls;
     private Vector2 _moveInputs;
     private Vector2 _lookInputs;
     private float _xRotation = 0f;

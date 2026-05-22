@@ -34,7 +34,7 @@ public class PantallaInteract : MonoBehaviour, IOutlined, IInteractable
             _currentColorIndex[i] = 0;
         }
     }
-    public void Interact()
+    public void Interact(GameObject interactor)
     {
         Debug.Log($"Interact called, focused index = {_focusedIndex}");
         CyclicColorChange();

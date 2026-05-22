@@ -21,7 +21,14 @@ public class DialogosCindy : MonoBehaviour, IInteractable, IInterceptor
     public Transform anclaDeMirada;
     private bool seEstaAlineando = false;
 
+    [Header("Director de Camaras (Opcional)")]
+    [Tooltip("Si este dialogo involucra a otros personajes, agregarlos aca.")]
+    public ActorDialogo[] actoresEnEscena;
+
     private RegresoSigiloso comportamientoRegreso;
+    
+    // Cache para el inventario tras el merge
+    private Inventory _cachedInventory;
 
     void Start()
     {
@@ -30,13 +37,15 @@ public class DialogosCindy : MonoBehaviour, IInteractable, IInterceptor
         comportamientoRegreso = GetComponent<RegresoSigiloso>();
     }
 
-    public void Interact()
+    public void Interact(GameObject interactor)
     {
         if (DialogueManager.Instance.EstaHablando())
         {
             DialogueManager.Instance.MostrarSiguienteOracion();
             return;
         }
+        
+        _cachedInventory = interactor.GetComponent<Inventory>();
 
         if (seEstaAlineando) return;
 
@@ -67,7 +76,7 @@ public class DialogosCindy : MonoBehaviour, IInteractable, IInterceptor
 
         if (dialogosDirectos.Length > 0)
         {
-            DialogueManager.Instance.EmpezarDialogo(dialogosDirectos[indiceDirecto]);
+            DialogueManager.Instance.EmpezarDialogo(dialogosDirectos[indiceDirecto], _cachedInventory, actoresEnEscena);
 
             if (indiceDirecto < dialogosDirectos.Length - 1)
             {
@@ -86,6 +95,7 @@ public class DialogosCindy : MonoBehaviour, IInteractable, IInterceptor
             transform.position = puntoDeAparicion.position;
         }
 
+        _cachedInventory = player.GetComponent<Inventory>();
         PlayerAlignment alignment = player.GetComponent<PlayerAlignment>();
 
         if (alignment != null && anclaDeInteraccion != null)
@@ -104,10 +114,10 @@ public class DialogosCindy : MonoBehaviour, IInteractable, IInterceptor
     private void LanzarDialogoIndirecto()
     {
         ReproducirSonidoRandom();
-
+        
         if (dialogosIndirectos.Length > 0)
         {
-            DialogueManager.Instance.EmpezarDialogo(dialogosIndirectos[indiceIndirecto]);
+            DialogueManager.Instance.EmpezarDialogo(dialogosIndirectos[indiceIndirecto], _cachedInventory, actoresEnEscena);
 
             if(indiceIndirecto < dialogosIndirectos.Length - 1)
             {

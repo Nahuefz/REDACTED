@@ -23,6 +23,7 @@ public class DialogueManager : MonoBehaviour
     private bool looking = false;
 
     [SerializeField] Image interactButtonImage;
+    private Inventory _currentInventory;
 
     void Awake()
     {
@@ -40,8 +41,9 @@ public class DialogueManager : MonoBehaviour
         if (talking && Mouse.current.leftButton.wasPressedThisFrame) MostrarSiguienteOracion();
     }
 
-    public void EmpezarDialogo(DialogoData dialogo, ActorDialogo[] actoresEscena = null)
+    public void EmpezarDialogo(DialogoData dialogo, Inventory inventory, ActorDialogo[] actoresEscena = null)
     {
+        _currentInventory = inventory;
         talking = true;
         panelDialogo.SetActive(true);
 
@@ -84,6 +86,7 @@ public class DialogueManager : MonoBehaviour
         textoNombre.text = oracionActual.nombrePersonaje;
         textoDialogo.text = oracionActual.texto;
 
+        // Logica de alineacion de camara (del merge)
         if (actoresActuales != null && playerAlignmentCache != null)
         {
             foreach (ActorDialogo actor in actoresActuales)
@@ -96,25 +99,20 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
+        // Logica de la nota (tuya)
         if (oracionActual.imagen != null)
         {
             if (notaEnCamara != null)
             {
-                //  �Para cuando sea en 3D la imagen!
-                //
-                //SpriteRenderer rederizador = notaEnCamara.GetComponent<SpriteRenderer>();
-                //
-                //if (rederizador != null)
-                //{
-                //    rederizador.sprite = oracionActual.imagen;
-                //}
-                //
-                //notaEnCamara.SetActive(true);
                 Image image = notaEnCamara.GetComponent<Image>();
-
                 if (image != null) image.sprite = oracionActual.imagen;
-
+                
                 notaEnCamara.SetActive(true);
+                
+                if (notaEnCamara.TryGetComponent(out BasicItem item) && _currentInventory != null)
+                {
+                    _currentInventory.TryAddItem(item.data);
+                }
             }
         }
         else
@@ -128,6 +126,7 @@ public class DialogueManager : MonoBehaviour
     public void TerminarDialogo()
     {
         talking = false;
+        _currentInventory = null;
         panelDialogo.SetActive(false);
 
         if (notaEnCamara != null) notaEnCamara.SetActive(false);
@@ -142,10 +141,7 @@ public class DialogueManager : MonoBehaviour
 
     void InteractableSeen(bool isSeen)
     {
-        //Debug.Log($"<color=red>INTERACTABLES IS SEEN {isSeen}</color>");
-
         looking = isSeen;
-
         if (interactButtonImage != null) interactButtonImage.enabled = looking && !talking;
     }
 
@@ -157,11 +153,5 @@ public class DialogueManager : MonoBehaviour
     private void OnDisable()
     {
         InteractRay.OnInteractSeen -= InteractableSeen;
-    }
-
-    private void OnDestroy()
-    {
-        // Ya se desuscribe en OnDisable, pero lo dejamos por si acaso o lo removemos si OnDisable es suficiente.
-        // En Unity, OnDisable se llama antes que OnDestroy.
     }
 }
