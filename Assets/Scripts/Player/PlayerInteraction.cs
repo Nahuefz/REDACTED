@@ -35,14 +35,24 @@ public class PlayerInteraction : MonoBehaviour
 
     private void EjecutarInteraccion(InputAction.CallbackContext context)
     {
-        if (interactuableCercano != null)
+        IInteractable target = null;
+
+        // Prioridad al interactuable detectado por Raycast (mirada directa)
+        if (_interactRay != null && _interactRay.CurrentInteractable != null)
         {
-            Debug.Log("Interactua");
-            interactuableCercano.Interact(this.gameObject);
+            target = _interactRay.CurrentInteractable;
         }
-        //Debug.Log("FUNCIONA EL INPUT");
-        _interactRay.CurrentInteractable?.Interact(this.gameObject);
-        
+        // Si no hay nada en la mirada, usamos el detectado por trigger (proximidad)
+        else if (interactuableCercano != null)
+        {
+            target = interactuableCercano;
+        }
+
+        if (target != null)
+        {
+            Debug.Log("Interactua con: " + target.ToString());
+            target.Interact(this.gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

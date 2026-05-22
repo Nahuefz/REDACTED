@@ -61,5 +61,9 @@ public class Inventory : MonoBehaviour
     // }
     //
     // #endregion
-    
+    public void RemoveItem(ItemData item)
+    {
+        _inventoryInfo.list.Remove(item);
+        OnInventoryChanged?.Invoke();
+    }
 }
