@@ -15,8 +15,11 @@ MonoBehaviour:
   nombrePorDefecto: Nahuel
   dialogos:
   - nombrePersonaje: 
-    texto: "\xBFMe das un mate gordito?"
+    texto: Me das un mate gordito?
+    imagen: {fileID: 0}
   - nombrePersonaje: Bruno
     texto: "Pero no estes mil a\xF1os que se me enfria."
+    imagen: {fileID: 0}
   - nombrePersonaje: 
     texto: Que pesado...
+    imagen: {fileID: 0}

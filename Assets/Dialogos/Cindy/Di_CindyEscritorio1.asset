@@ -15,11 +15,11 @@ MonoBehaviour:
   nombrePorDefecto: Cindy
   dialogos:
   - nombrePersonaje: 
-    texto: "\xBFComo le va buen hombre?"
+    texto: Como le va buen hombre?
     imagen: {fileID: 0}
   - nombrePersonaje: 
-    texto: "Justo te iba a buscar para preguntarte, \xBFMe das una mano buscando
-      unos expedientes?"
+    texto: Justo te iba a buscar para preguntarte, Me das una mano buscando unos
+      expedientes?
     imagen: {fileID: 0}
   - nombrePersonaje: 
     texto: Toma, estan en el archivo. Busca bien, que es IMPORTANTE.

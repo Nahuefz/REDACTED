@@ -15,7 +15,7 @@ MonoBehaviour:
   nombrePorDefecto: Simon
   dialogos:
   - nombrePersonaje: 
-    texto: "\xBFTocaron la puerta?"
+    texto: Tocaron la puerta?
     imagen: {fileID: 0}
   - nombrePersonaje: 
     texto: Ah, pense que tenia que abrir. Yo soy el que abre la puerta...

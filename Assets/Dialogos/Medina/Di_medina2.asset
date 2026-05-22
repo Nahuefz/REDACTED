@@ -18,5 +18,5 @@ MonoBehaviour:
     texto: Me hacen subir la presion...
     imagen: {fileID: 0}
   - nombrePersonaje: 
-    texto: "\xA1No entiendo ni como hablan!"
+    texto: No entiendo ni como hablan!
     imagen: {fileID: 0}

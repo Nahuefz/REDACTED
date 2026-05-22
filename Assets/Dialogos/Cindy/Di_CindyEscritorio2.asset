@@ -15,8 +15,8 @@ MonoBehaviour:
   nombrePorDefecto: Cindy
   dialogos:
   - nombrePersonaje: 
-    texto: "\xBFYa buscaste?"
+    texto: Ya buscaste?
     imagen: {fileID: 0}
   - nombrePersonaje: 
-    texto: "\xBFQue haces aca? Deja de boludear, no me hagas renegar."
+    texto: Que haces aca? Deja de boludear, no me hagas renegar.
     imagen: {fileID: 0}

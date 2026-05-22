@@ -16,5 +16,7 @@ MonoBehaviour:
   dialogos:
   - nombrePersonaje: 
     texto: Si me ves un poco verde es por el mate.
+    imagen: {fileID: 0}
   - nombrePersonaje: 
-    texto: "\xA1Vaya a trabajar!"
+    texto: Vaya a trabajar!
+    imagen: {fileID: 0}

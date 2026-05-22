@@ -21,11 +21,10 @@ MonoBehaviour:
     texto: Mira, alla abajo esta el real deal.
     imagen: {fileID: 0}
   - nombrePersonaje: 
-    texto: "\xBFQue no te explico nada? La voy a matar, siempre me tira el fardo
-      a mi."
+    texto: Que no te explico nada? La voy a matar, siempre me tira el fardo a mi.
     imagen: {fileID: 0}
   - nombrePersonaje: 
-    texto: "\xBFNotaste algo raro con tus jefes? No estan verdes por el mate, \xBFok?"
+    texto: Notaste algo raro con tus jefes? No estan verdes por el mate, ok?
     imagen: {fileID: 0}
   - nombrePersonaje: 
     texto: Cindy te saco de la hipnosis para ver si podias huir. Afuera esta todo

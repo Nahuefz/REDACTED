@@ -15,8 +15,8 @@ MonoBehaviour:
   nombrePorDefecto: Rata
   dialogos:
   - nombrePersonaje: 
-    texto: "\xA1Nah! \xBFQue es esa porqueria?"
+    texto: Nah! Que es esa porqueria?
     imagen: {fileID: 0}
   - nombrePersonaje: 
-    texto: "\xBFEsto le das a una pobre rata que te quiere ayudar?"
+    texto: Esto le das a una pobre rata que te quiere ayudar?
     imagen: {fileID: 0}

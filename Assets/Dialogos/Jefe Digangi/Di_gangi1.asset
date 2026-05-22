@@ -15,4 +15,5 @@ MonoBehaviour:
   nombrePorDefecto: Jefe Digangi
   dialogos:
   - nombrePersonaje: 
-    texto: "\xBFMmmh...?"
+    texto: Mmmh...?
+    imagen: {fileID: 0}
