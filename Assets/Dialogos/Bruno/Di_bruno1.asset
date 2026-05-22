@@ -17,7 +17,10 @@ MonoBehaviour:
   - nombrePersonaje: 
     texto: Mi hermano dice que no vio ninguna rata en el archivo. Se hace el que
       labura...
+    imagen: {fileID: 0}
   - nombrePersonaje: Nahuel
     texto: Porque yo si estoy laburando, a ver si te pones a laburar vos pajero.
+    imagen: {fileID: 0}
   - nombrePersonaje: 
-    texto: "\xBFQue no vas a ver ninguna, mentiroso de mierda?"
+    texto: Que no vas a ver ninguna, mentiroso de mierda?
+    imagen: {fileID: 0}

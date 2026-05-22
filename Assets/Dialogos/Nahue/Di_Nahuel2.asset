@@ -16,7 +16,10 @@ MonoBehaviour:
   dialogos:
   - nombrePersonaje: 
     texto: No le prestes atencion a este, se cree todo lo que escucha.
+    imagen: {fileID: 0}
   - nombrePersonaje: Bruno
-    texto: "\xA1Te dije que vi yo la rata, tontito!"
+    texto: Te dije que vi yo la rata, tontito!
+    imagen: {fileID: 0}
   - nombrePersonaje: 
-    texto: "\xBFQue vas a estar haciendo vos en el archivo?"
+    texto: Que vas a estar haciendo vos en el archivo?
+    imagen: {fileID: 0}

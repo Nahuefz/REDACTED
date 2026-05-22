@@ -15,10 +15,10 @@ MonoBehaviour:
   nombrePorDefecto: Cindy
   dialogos:
   - nombrePersonaje: 
-    texto: "\xBFA donde vas?"
+    texto: A donde vas?
     imagen: {fileID: 0}
   - nombrePersonaje: 
-    texto: "\xBFMe ayudas con unos expedientes que tengo que buscar?"
+    texto: Me ayudas con unos expedientes que tengo que buscar?
     imagen: {fileID: 0}
   - nombrePersonaje: 
     texto: Toma, estan en el archivo. Busca bien, que es IMPORTANTE.

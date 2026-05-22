@@ -6,50 +6,63 @@ public class DialogoPuerta : MonoBehaviour, IInteractable
     [Header("Dialogo de la Puerta")]
     public DialogoData dialogoPuerta;
 
-    [Header("Conexiones")]
+    [Header("Cindy")]
     public DialogosCindy npc;
-    public GameObject iconoInteraccion;
-    public AudioSource audioPuerta;
 
+    [Header("El Jefe")]
+    public DialogoData dialogoJefe;
+    public ActorDialogo[] elJefe;
+    public AudioSource audioSource;
+    public AudioClip[] sonidosInteraccion;
 
-    void Start()
-    {
-        if (iconoInteraccion != null) iconoInteraccion.SetActive(false);
-    }
-
-    public void Interact(GameObject interactor)
+    public void Interact()
     {
         if (DialogueManager.Instance.EstaHablando()) return;
-        if (iconoInteraccion != null) iconoInteraccion.SetActive(false);
 
         StartCoroutine(RutinaPuerta());
     }
 
     private IEnumerator RutinaPuerta()
     {
-        Inventory playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>(); //no se me ocurrio otra cosa ;c
-        
-        if (audioPuerta != null) audioPuerta.Play();
-        if (dialogoPuerta !=null)
-        {
-            DialogueManager.Instance.EmpezarDialogo(dialogoPuerta, playerInventory);
-        }
+        bool yaHablamosConCindy = (npc != null && npc.YaHabloConElJugador());
 
-        //Para esperar el click
-        yield return new WaitWhile(() => DialogueManager.Instance.EstaHablando());
-
-        //Interaccion con Cindy
-        if (npc != null)
+        if (!yaHablamosConCindy)
         {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if (player != null)
+            if (dialogoPuerta != null)
             {
-                IInterceptor interceptor = npc.GetComponent<IInterceptor>();
-                if (interceptor != null)
+                DialogueManager.Instance.EmpezarDialogo(dialogoPuerta);
+                //Para esperar el click
+                yield return new WaitWhile(() => DialogueManager.Instance.EstaHablando());
+            }
+            //Interaccion con Cindy
+            if (npc != null)
+            {
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+                if (player != null)
                 {
-                    interceptor.InterceptPlayer(player.transform);
+                    IInterceptor interceptor = npc.GetComponent<IInterceptor>();
+                    if (interceptor != null)
+                    {
+                        interceptor.InterceptPlayer(player.transform);
+                    }
                 }
             }
+        }
+        else
+        {
+            ReproducirSonidoRandom();
+            //El Jefe
+            if (dialogoJefe != null) DialogueManager.Instance.EmpezarDialogo(dialogoJefe, elJefe);
+        }
+    }
+
+    private void ReproducirSonidoRandom()
+    {
+        if (audioSource != null && sonidosInteraccion.Length > 0)
+        {
+            int indice = Random.Range(0, sonidosInteraccion.Length);
+            audioSource.clip = sonidosInteraccion[indice];
+            audioSource.Play();
         }
     }
 
@@ -57,14 +70,14 @@ public class DialogoPuerta : MonoBehaviour, IInteractable
     {
         if (other.CompareTag("Player"))
         {
-            if (iconoInteraccion != null) iconoInteraccion.SetActive(true);
+            Debug.Log("Entro");
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            if (iconoInteraccion != null) iconoInteraccion.SetActive(false);
+            Debug.Log("Salio");
         }
     }
 

@@ -13,18 +13,19 @@ public class DialogosCindy : MonoBehaviour, IInteractable, IInterceptor
     public Transform puntoDeAparicion;
 
     [Header("Componentes y audio")]
-    public GameObject iconoInteraccion;
     public AudioSource audioSource;
     public AudioClip[] sonidosInteraccion;
 
-    private RegresoSigiloso comportamientoRegreso;
+    [Header("Ancla Cinematografica")]
+    public Transform anclaDeInteraccion;
+    public Transform anclaDeMirada;
+    private bool seEstaAlineando = false;
 
-  
+    private RegresoSigiloso comportamientoRegreso;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        iconoInteraccion.SetActive(false);
 
         comportamientoRegreso = GetComponent<RegresoSigiloso>();
     }
@@ -38,6 +39,31 @@ public class DialogosCindy : MonoBehaviour, IInteractable, IInterceptor
         }
         Inventory playerInventory = interactor.GetComponent<Inventory>();
 
+        if (seEstaAlineando) return;
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null && anclaDeInteraccion != null)
+        {
+            PlayerAlignment alignment = player.GetComponent<PlayerAlignment>();
+            if (alignment != null)
+            {
+                seEstaAlineando = true;
+                alignment.Alinear(anclaDeInteraccion, transform, anclaDeMirada, () =>
+                {
+                    seEstaAlineando = false;
+                    LanzarDialogoDirecto();
+                });
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Te olvidaste de asignar el ancla!");
+            LanzarDialogoDirecto();
+        }
+    }
+
+    private void LanzarDialogoDirecto()
+    {
         ReproducirSonidoRandom();
 
         if (dialogosDirectos.Length > 0)
@@ -50,10 +76,9 @@ public class DialogosCindy : MonoBehaviour, IInteractable, IInterceptor
                 indiceIndirecto++;
             }
         }
-
     }
 
-    public void InterceptPlayer (Transform player)
+    public void InterceptPlayer(Transform player)
     {
         if (DialogueManager.Instance.EstaHablando()) return;
 
@@ -62,15 +87,23 @@ public class DialogosCindy : MonoBehaviour, IInteractable, IInterceptor
             transform.position = puntoDeAparicion.position;
         }
 
-        Vector3 puntoAMirar = new Vector3(transform.position.x, player.position.y, transform.position.z);
-        player.LookAt(puntoAMirar);
-        PlayerMovement playermovement = player.GetComponent<PlayerMovement>();
+        PlayerAlignment alignment = player.GetComponent<PlayerAlignment>();
 
-        if (playermovement != null)
+        if (alignment != null && anclaDeInteraccion != null)
         {
-            playermovement.LookAtFront();
+            alignment.Alinear(anclaDeInteraccion, transform, anclaDeMirada, () =>
+            {
+                LanzarDialogoIndirecto();
+            });
         }
+        else
+        {
+            LanzarDialogoIndirecto();
+        }
+    }
 
+    private void LanzarDialogoIndirecto()
+    {
         ReproducirSonidoRandom();
         
         Inventory playerInventory = player.GetComponent<Inventory>();
@@ -102,13 +135,18 @@ public class DialogosCindy : MonoBehaviour, IInteractable, IInterceptor
         } 
     }
 
+    public bool YaHabloConElJugador()
+    {
+        return indiceDirecto > 0 || indiceIndirecto > 0;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) iconoInteraccion.SetActive(true);
+        if (other.CompareTag("Player")) Debug.Log("Entro");
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player")) iconoInteraccion.SetActive(false);
+        if (other.CompareTag("Player")) Debug.Log("Salio");
     }
 }

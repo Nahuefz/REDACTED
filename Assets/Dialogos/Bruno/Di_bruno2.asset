@@ -16,7 +16,10 @@ MonoBehaviour:
   dialogos:
   - nombrePersonaje: 
     texto: No es microfono el mate.
+    imagen: {fileID: 0}
   - nombrePersonaje: Nahuel
-    texto: "Te lo deje ahi hace media hora, gil. \xBFNo lo viste?"
+    texto: Te lo deje ahi hace media hora, gil. No lo viste?
+    imagen: {fileID: 0}
   - nombrePersonaje: 
-    texto: "\xA1Pero mira donde me lo deja! \xA1Dios mio!"
+    texto: "Pero mira donde me lo deja! \xA1Dios mio!"
+    imagen: {fileID: 0}

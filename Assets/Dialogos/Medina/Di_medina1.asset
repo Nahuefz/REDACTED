@@ -15,5 +15,5 @@ MonoBehaviour:
   nombrePorDefecto: Medina
   dialogos:
   - nombrePersonaje: 
-    texto: "\xBFPor que no me dejan ir al ginecologo?"
+    texto: Por que no me dejan ir al ginecologo?
     imagen: {fileID: 0}

@@ -15,8 +15,8 @@ MonoBehaviour:
   nombrePorDefecto: Rata
   dialogos:
   - nombrePersonaje: 
-    texto: "\xBFAsi que vos sos el amigo de Cindy?"
+    texto: Asi que vos sos el amigo de Cindy?
     imagen: {fileID: 0}
   - nombrePersonaje: 
-    texto: "Ok, yo te ayudo, \xBFpero que me das a cambio?"
+    texto: Ok, yo te ayudo, pero que me das a cambio?
     imagen: {fileID: 0}

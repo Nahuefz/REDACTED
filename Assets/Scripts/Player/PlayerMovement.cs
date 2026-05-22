@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -142,7 +143,20 @@ public class PlayerMovement : MonoBehaviour
         {
             cameraTransform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         }
+    }
 
+    public float GetXRotation()
+    {
+        return _xRotation;
+    }
+
+    public void SetXRotation(float xRotation)
+    {
+        _xRotation = xRotation;
+        if (cameraTransform != null)
+        {
+            cameraTransform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
+        }
     }
 
     public void Respawn()
@@ -152,7 +166,5 @@ public class PlayerMovement : MonoBehaviour
         _rb.position = spawnPoint.position;
         _rb.linearVelocity = Vector3.zero;
         _rb.angularVelocity = Vector3.zero;
-
-        
     }
 }

@@ -8,6 +8,9 @@ public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance { get; private set; }
 
+    private ActorDialogo[] actoresActuales;
+    private PlayerAlignment playerAlignmentCache;
+
     [Header("Componentes UI")] public GameObject panelDialogo;
     public TextMeshProUGUI textoNombre;
     public TextMeshProUGUI textoDialogo;
@@ -17,21 +20,14 @@ public class DialogueManager : MonoBehaviour
 
     private Queue<LineaDeDialogo> oraciones;
     private bool talking = false;
+    private bool looking = false;
 
     [SerializeField] Image interactButtonImage;
-    Inventory _currentInventory;
-    
 
     void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
 
         oraciones = new Queue<LineaDeDialogo>();
         panelDialogo.SetActive(false);
@@ -41,21 +37,21 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if (talking && Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            MostrarSiguienteOracion();
-        }
+        if (talking && Mouse.current.leftButton.wasPressedThisFrame) MostrarSiguienteOracion();
     }
 
-    public void EmpezarDialogo(DialogoData dialogo, Inventory inventory)
+    public void EmpezarDialogo(DialogoData dialogo, ActorDialogo[] actoresEscena = null)
     {
-        _currentInventory = inventory; //para añadir los objetos x imagen al inventario del player
         talking = true;
         panelDialogo.SetActive(true);
 
-        if (interactButtonImage != null)
+        if (interactButtonImage != null) interactButtonImage.enabled = false;
+
+        actoresActuales = actoresEscena;
+        if (playerAlignmentCache == null)
         {
-            interactButtonImage.enabled = false;
+            GameObject p = GameObject.FindGameObjectWithTag("Player");
+            if (p != null) playerAlignmentCache = p.GetComponent<PlayerAlignment>();
         }
 
         oraciones.Clear();
@@ -88,6 +84,18 @@ public class DialogueManager : MonoBehaviour
         textoNombre.text = oracionActual.nombrePersonaje;
         textoDialogo.text = oracionActual.texto;
 
+        if (actoresActuales != null && playerAlignmentCache != null)
+        {
+            foreach (ActorDialogo actor in actoresActuales)
+            {
+                if (actor.nombreEnElScript == oracionActual.nombrePersonaje && actor.anclaMirada != null)
+                {
+                    playerAlignmentCache.CambiarMirada(actor.anclaMirada, actor.hacerZoom, actor.nivelDeZoom);
+                    break;
+                }
+            }
+        }
+
         if (oracionActual.imagen != null)
         {
             if (notaEnCamara != null)
@@ -102,20 +110,11 @@ public class DialogueManager : MonoBehaviour
                 //}
                 //
                 //notaEnCamara.SetActive(true);
-
-
                 Image image = notaEnCamara.GetComponent<Image>();
 
-                if (image != null)
-                {
-                    image.sprite = oracionActual.imagen;
-                }
+                if (image != null) image.sprite = oracionActual.imagen;
 
                 notaEnCamara.SetActive(true);
-                if (notaEnCamara.TryGetComponent(out BasicItem item) && _currentInventory != null)
-                {
-                    _currentInventory.TryAddItem(item.data);
-                }
             }
         }
         else
@@ -129,10 +128,11 @@ public class DialogueManager : MonoBehaviour
     public void TerminarDialogo()
     {
         talking = false;
-        _currentInventory = null;
         panelDialogo.SetActive(false);
 
         if (notaEnCamara != null) notaEnCamara.SetActive(false);
+        if (interactButtonImage != null) interactButtonImage.enabled = looking;
+        if (playerAlignmentCache != null) playerAlignmentCache.RestaurarFOV();
     }
 
     public bool EstaHablando()
@@ -143,14 +143,10 @@ public class DialogueManager : MonoBehaviour
     void InteractableSeen(bool isSeen)
     {
         //Debug.Log($"<color=red>INTERACTABLES IS SEEN {isSeen}</color>");
-        if (interactButtonImage != null)
-        {
-            if (talking)
-            {
-                interactButtonImage.enabled = false;
-            }
-            interactButtonImage.enabled = isSeen;
-        }
+
+        looking = isSeen;
+
+        if (interactButtonImage != null) interactButtonImage.enabled = looking && !talking;
     }
 
     private void OnEnable()

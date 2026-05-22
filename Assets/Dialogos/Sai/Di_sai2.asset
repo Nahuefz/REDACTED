@@ -18,5 +18,5 @@ MonoBehaviour:
     texto: Yo la abro, estoy todo el tiempo pendiente de la puerta.
     imagen: {fileID: 0}
   - nombrePersonaje: 
-    texto: "Alguien puede venir, \xA1Asique yo estoy siempre atento!"
+    texto: Alguien puede venir... Asique yo estoy siempre atento!
     imagen: {fileID: 0}
