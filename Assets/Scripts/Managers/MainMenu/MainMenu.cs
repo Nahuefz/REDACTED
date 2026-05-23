@@ -50,6 +50,11 @@ public partial class MainMenu : MonoBehaviour
         creditsPanel.SetActive(true);
     }
 
+    public void OpenExit()
+    {
+        exitPanel.SetActive(true);
+    }
+
     public void BackToMenu()
     {
         // Simplemente cerramos las ventanas, el menú principal ya está ahí
@@ -66,6 +71,11 @@ public partial class MainMenu : MonoBehaviour
     public void CloseCredits()
     {
         creditsPanel.SetActive(false);
+    }
+
+    public void CloseExit()
+    {
+        exitPanel.SetActive(false);
     }
 
     public void QuitGame()
