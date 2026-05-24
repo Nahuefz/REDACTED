@@ -13,7 +13,7 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Texture Atlas
-    second: {fileID: 2800000, guid: 8609ad152a24b2549ac8491f615f5f15, type: 3}
+    second: {fileID: 2800000, guid: a7d66a89ec26f0c41af17502f774948a, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -74,7 +74,7 @@ ModelImporter:
     secondaryUVMarginMethod: 1
     secondaryUVMinLightmapResolution: 15
     secondaryUVMinObjectScale: 1
-    secondaryUVPackMargin: 11
+    secondaryUVPackMargin: 4
     useFileScale: 1
     strictVertexDataChecks: 0
   tangentSpace:
