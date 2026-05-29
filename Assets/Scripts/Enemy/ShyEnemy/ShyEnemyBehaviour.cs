@@ -84,3 +84,5 @@ namespace Enemy.ShyEnemy
         void UpdateState(); // Se ejecuta en cada frame (reemplaza al Update de Unity)
         void ExitState();   // Se ejecuta antes de cambiar a otro estado
     }
+// fue terrible amigo, me desperte y la tipa me rechazo y fue lo primero que lei en el dia. no me pude concetrar
+//full gemini, no me pregunten tecnicismos porque no entiendo nada
