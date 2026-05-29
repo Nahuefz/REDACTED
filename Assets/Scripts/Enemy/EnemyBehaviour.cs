@@ -124,16 +124,19 @@ public class EnemyBehaviour : MonoBehaviour
         _navMeshAgent.isStopped = false;
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Bullet") && enemyLife > 1)
+        if (other.gameObject.CompareTag("Bullet"))
         {
-            enemyLife -= 1;
-            Debug.Log("BALA COLISION");
-        }
-        else
-        {
-             Destroy(gameObject);
+            if (enemyLife > 1)
+            {
+                enemyLife -= 1;
+                Debug.Log("BALA COLISION");
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

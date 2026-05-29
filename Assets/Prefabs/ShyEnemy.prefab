@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1849135282026753187}
   - component: {fileID: 7246069336388206757}
   - component: {fileID: 3443688541539698976}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ShyEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.36
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 30
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -69,13 +69,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ccfe5fb5710d2b43a5680fead23ea61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolWaypoints: []
+  patrolWaypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   fleeWaypoint: {fileID: 0}
-  patrolSpeed: 0
-  fleeSpeed: 0
+  patrolSpeed: 5
+  fleeSpeed: 8
   isScared: 0
-  timeToGetScared: 0
-  contactTimer: 0
+  timeToGetScared: 3
   aiAgent: {fileID: 0}
   waypointWaitTime: 3
   player: {fileID: 0}
@@ -112,7 +116,7 @@ GameObject:
   - component: {fileID: 1736211903111050478}
   - component: {fileID: 5989419192877321356}
   - component: {fileID: 1189621218779217544}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
