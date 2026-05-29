@@ -704,7 +704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 112db223baf847846a7248a869459bd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EscenaDestino: 3
+  EscenaDestino: 0
 --- !u!65 &137277569
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -853,17 +853,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 215d0ac3ed73efd4d88558254d371179, type: 3}
---- !u!114 &155130727 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5913698016057637530, guid: 215d0ac3ed73efd4d88558254d371179, type: 3}
-  m_PrefabInstance: {fileID: 155130726}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 983ede1197cff6743823ca61e8e2d7d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &155130728 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4859791204067325376, guid: 215d0ac3ed73efd4d88558254d371179, type: 3}
@@ -6969,7 +6958,7 @@ PrefabInstance:
     - target: {fileID: 773979438849409677, guid: d39338385198c55499f24a4ff1fcf8dc, type: 3}
       propertyPath: playerInventory
       value: 
-      objectReference: {fileID: 155130727}
+      objectReference: {fileID: 0}
     - target: {fileID: 869770271002591911, guid: d39338385198c55499f24a4ff1fcf8dc, type: 3}
       propertyPath: m_Pivot.x
       value: 0
