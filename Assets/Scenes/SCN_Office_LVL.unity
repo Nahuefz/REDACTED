@@ -1007,7 +1007,7 @@ PrefabInstance:
     - target: {fileID: 773979438849409677, guid: d39338385198c55499f24a4ff1fcf8dc, type: 3}
       propertyPath: playerInventory
       value: 
-      objectReference: {fileID: 1318518411}
+      objectReference: {fileID: 1318518413}
     - target: {fileID: 773979438849409677, guid: d39338385198c55499f24a4ff1fcf8dc, type: 3}
       propertyPath: slots.Array.size
       value: 24
@@ -57484,35 +57484,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 97295552}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1318518400 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8213495528751366090, guid: 215d0ac3ed73efd4d88558254d371179, type: 3}
-  m_PrefabInstance: {fileID: 1508494970}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1318518409 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4859791204067325376, guid: 215d0ac3ed73efd4d88558254d371179, type: 3}
   m_PrefabInstance: {fileID: 1508494970}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1318518400}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a45fd12971219b04caf2ace38818ddc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1318518411
+--- !u!114 &1318518413 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 5913698016057637530, guid: 215d0ac3ed73efd4d88558254d371179, type: 3}
+  m_PrefabInstance: {fileID: 1508494970}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1318518400}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 983ede1197cff6743823ca61e8e2d7d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inventoryInfo: {fileID: 11400000, guid: 624e958b440016246995879c5408f05c, type: 2}
 --- !u!1001 &1342908912
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58126,7 +58119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 112db223baf847846a7248a869459bd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EscenaDestino: SCN_Archive_LVL
+  EscenaDestino: 3
 --- !u!1 &1393722349 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7508481293239206615, guid: d39338385198c55499f24a4ff1fcf8dc, type: 3}
@@ -60094,10 +60087,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 677510666922832266, guid: 215d0ac3ed73efd4d88558254d371179, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1252463559}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8213495528751366090, guid: 215d0ac3ed73efd4d88558254d371179, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1318518411}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 215d0ac3ed73efd4d88558254d371179, type: 3}
 --- !u!4 &1508494971 stripped
 Transform:
