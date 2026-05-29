@@ -57775,11 +57775,11 @@ PrefabInstance:
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: 'listaDialogos.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 2975e168e39bdbd44835a526bf91143e, type: 2}
+      objectReference: {fileID: 11400000, guid: 4e3f345e21f845d43a275b0dcf0a37d6, type: 2}
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: 'listaDialogos.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: 15150810c67c6c746a5f9867922241a0, type: 2}
+      objectReference: {fileID: 11400000, guid: 42cf3f9a0f379d54a9f9545de6fe9a8d, type: 2}
     - target: {fileID: 9068144331513010950, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: m_Sprite
       value: 
