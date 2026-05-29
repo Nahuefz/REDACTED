@@ -7,44 +7,53 @@ namespace Enemy.ShyEnemy
     {
         //parametros
         [Header("<color=white>Waypoints del Patrullaje</color>")]
-        [SerializeField] private Transform[] patrolWaypoints;
+        public Transform[] patrolWaypoints;
         [SerializeField] private Transform fleeWaypoint;
         [Space(2)]
         [Header("<color=white>Parametros de deteccion</color>")]
-        [SerializeField] private int patrolSpeed, fleeSpeed;
+        public int patrolSpeed, fleeSpeed;
         [SerializeField] private bool isScared;
         [SerializeField] private float timeToGetScared, contactTimer;
         [Space(2)]
         public NavMeshAgent aiAgent;
-        [SerializeField] private StateMachine _stateMachine;
-        [SerializeField] private StateMachine _currentState;
+        public float waypointWaitTime = 3f;
+
+        public Transform player;
         private int _currentWaypoint;
+        
+        IEnemyState  _currentState;
+        public PatrolState PatrolState { get; private set; }
+        public FleeState FleeState { get; private set; }
+
+        private void Awake()
+        {
+            aiAgent = GetComponent<NavMeshAgent>();
+            PatrolState = new PatrolState(this);
+            FleeState = new FleeState(this);
+        }
 
         private void Start()
         {
-            aiAgent = GetComponent<NavMeshAgent>();
-            aiAgent.speed = patrolSpeed;
+            TransitionToState(PatrolState);
+        }
 
-            if (patrolWaypoints.Length > 0)
-            {
-                aiAgent.SetDestination(patrolWaypoints[0].position);
-            }
+        private void TransitionToState(IEnemyState newState)
+        {
+            _currentState?.ExitState();
+            _currentState = newState;
+            _currentState?.EnterState();
         }
 
         private void Update()
         {
-            //logica de estados escalables
-            if (isScared) return;
-            if (patrolWaypoints.Length > 0 && !aiAgent.pathPending && aiAgent.remainingDistance <= aiAgent.stoppingDistance)
-            {
-                GoToNextWaypoint();
-            }
+            _currentState?.UpdateState();   
         }
-
-        void GoToNextWaypoint()
-        {
-            _currentWaypoint = (_currentWaypoint + 1) % patrolWaypoints.Length;
-            aiAgent.SetDestination(patrolWaypoints[_currentWaypoint].position);
-        }
+        
+    }
+    public interface IEnemyState
+    {
+        void EnterState();  // Se ejecuta al entrar al estado
+        void UpdateState(); // Se ejecuta en cada frame (reemplaza al Update de Unity)
+        void ExitState();   // Se ejecuta antes de cambiar a otro estado
     }
 }
