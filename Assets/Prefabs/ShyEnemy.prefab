@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5395658513863355650}
   - component: {fileID: 1849135282026753187}
   - component: {fileID: 7246069336388206757}
+  - component: {fileID: 3443688541539698976}
   m_Layer: 0
   m_Name: ShyEnemy
   m_TagString: Untagged
@@ -69,6 +70,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patrolWaypoints: []
+  fleeWaypoint: {fileID: 0}
+  patrolSpeed: 0
+  fleeSpeed: 0
+  isScared: 0
+  timeToGetScared: 0
+  contactTimer: 0
+  aiAgent: {fileID: 0}
+  waypointWaitTime: 3
+  player: {fileID: 0}
+--- !u!65 &3443688541539698976
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732392453991931576}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.3480372, y: 1, z: 7.988153}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5991211547249371721
 GameObject:
   m_ObjectHideFlags: 0
