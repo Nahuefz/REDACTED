@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,20 +9,21 @@ namespace Enemy.ShyEnemy
         //parametros
         [Header("<color=white>Waypoints del Patrullaje</color>")]
         public Transform[] patrolWaypoints;
+
         public Transform fleeWaypoint;
-        [Space(2)]
-        [Header("<color=white>Parametros de deteccion</color>")]
+
+        [Space(2)] [Header("<color=white>Parametros de deteccion</color>")]
         public int patrolSpeed, fleeSpeed;
+
         [SerializeField] private bool isScared;
         [SerializeField] private float timeToGetScared;
-        [Space(2)]
-        public NavMeshAgent aiAgent;
+        [Space(2)] public NavMeshAgent aiAgent;
         public float waypointWaitTime = 3f;
 
         public Transform player;
         private int _currentWaypoint;
-        
-        IEnemyState  _currentState;
+
+        IEnemyState _currentState;
         public PatrolState PatrolState { get; private set; }
         public FleeState FleeState { get; private set; }
 
@@ -46,8 +48,9 @@ namespace Enemy.ShyEnemy
 
         private void Update()
         {
-            _currentState?.UpdateState();   
+            _currentState?.UpdateState();
         }
+
         // Variable para el control del tiempo (ponela arriba con las demás)
         private float _contactTimer = 0f;
 
@@ -76,13 +79,16 @@ namespace Enemy.ShyEnemy
                 _contactTimer = 0f;
             }
         }
-        }
+
+        public void OnBulletCollision(){ Destroy(gameObject); }
     }
-    public interface IEnemyState
-    {
-        void EnterState();  // Se ejecuta al entrar al estado
-        void UpdateState(); // Se ejecuta en cada frame (reemplaza al Update de Unity)
-        void ExitState();   // Se ejecuta antes de cambiar a otro estado
-    }
+}
+
+public interface IEnemyState
+{
+    void EnterState(); // Se ejecuta al entrar al estado
+    void UpdateState(); // Se ejecuta en cada frame (reemplaza al Update de Unity)
+    void ExitState(); // Se ejecuta antes de cambiar a otro estado
+}
 // fue terrible amigo, me desperte y la tipa me rechazo y fue lo primero que lei en el dia. no me pude concetrar
 //full gemini, no me pregunten tecnicismos porque no entiendo nada
