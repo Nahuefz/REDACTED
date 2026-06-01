@@ -10,6 +10,10 @@ public class uiInventory : MonoBehaviour
    [SerializeField] private GameObject[] UIinventory;
    private void Start()
    {
+      if (playerInventory == null)
+      {
+         playerInventory = gameObject.transform.Find("Player").GetComponent<Inventory>();
+      }
       playerInventory.OnInventoryChanged += UpdateItemInventory;
       UpdateItemInventory();
    }
