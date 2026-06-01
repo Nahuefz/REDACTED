@@ -31,5 +31,6 @@ public enum GameScenes
     SCN_Office_LVL,
     SCN_MainMenu,
     SCN_Archive_LVL,
-    TEST_Enemy
+    TEST_Enemy,
+    SCN_PUZZLE1
 }
