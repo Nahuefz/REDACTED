@@ -63,12 +63,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listaDialogos: []
+  objetoRequerido: {fileID: 0}
+  tipoRequerido: 1
+  dialogoPeticion: {fileID: 0}
+  dialogoAgradecimiento: {fileID: 0}
+  dialogoYaCompletado: {fileID: 0}
+  objetoADesbloquear: {fileID: 0}
+  yaEntregado: 0
   audioSource: {fileID: 1562184514807578898}
   sonidosInteraccion:
   - {fileID: 8300000, guid: 088b858a3a506a144a3f7fd7553bc2fb, type: 3}
   - {fileID: 8300000, guid: 6b10dc9cffe4d6b45b76266929f59106, type: 3}
   anclaDeInteraccion: {fileID: 0}
   anclaDeMirada: {fileID: 0}
+  actoresEnEscena: []
 --- !u!212 &9068144331513010950
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -92,7 +100,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: 53c2948cf25d07847a99db1357d08eca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
