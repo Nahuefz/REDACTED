@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 327e632dd02f549409f2e17898f48f14, type: 3}
-  m_Name: Di_pereyra1
+  m_Name: Di_pereyraBanio
   m_EditorClassIdentifier: 
   nombrePorDefecto: Jefe Pereyra
   dialogos:
-  - nombrePersonaje: 
-    texto: Que quiere?
+  - nombrePersonaje: Jefe Pereyra
+    texto: Date vuelta
     imagen: {fileID: 0}
   - nombrePersonaje: 
-    texto: A trabajar!
+    texto: No viste nada
     imagen: {fileID: 0}
