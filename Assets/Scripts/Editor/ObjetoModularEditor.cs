@@ -1,0 +1,54 @@
+using UnityEngine;
+using UnityEditor;
+
+[CustomEditor(typeof(ObjetoModular))]
+public class ObjetoModularEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        ObjetoModular script = (ObjetoModular)target;
+
+        DrawDefaultInspector();
+        EditorGUILayout.Space();
+
+        if (script.variantes.Count > 0)
+        {
+            string[] opcionesDelMenu = new string[script.variantes.Count];
+            for (int i = 0; i < script.variantes.Count; i++)
+                opcionesDelMenu[i] = script.variantes[i] != null ? script.variantes[i].name : "Vacío";
+
+            GUILayout.Label("Diseño Visual", EditorStyles.boldLabel);
+
+            EditorGUI.BeginChangeCheck();
+            int eleccion = EditorGUILayout.Popup("Elegir Variante:", script.indiceActual, opcionesDelMenu);
+
+            if (EditorGUI.EndChangeCheck())
+            {
+                Undo.RecordObject(script, "Cambiar modelo modular");
+                script.indiceActual = eleccion;
+                ActualizarModelo(script);
+            }
+        }
+        else EditorGUILayout.HelpBox("Agregá prefabs a la lista para verlos", MessageType.Info);
+    }
+
+    void ActualizarModelo(ObjetoModular script)
+    {
+        while (script.transform.childCount > 0)
+        {
+            DestroyImmediate(script.transform.GetChild(0).gameObject);
+        }
+
+        GameObject prefabElegido = script.variantes[script.indiceActual];
+        if (prefabElegido != null)
+        {
+            GameObject nuevoModelo = (GameObject)PrefabUtility.InstantiatePrefab(prefabElegido);
+
+            nuevoModelo.transform.SetParent(script.transform);
+            nuevoModelo.transform.localPosition = Vector3.zero;
+            nuevoModelo.transform.rotation = Quaternion.identity;
+
+            Undo.RegisterCreatedObjectUndo(nuevoModelo, "Aparecer nuevo modelo");
+        }
+    }
+}
