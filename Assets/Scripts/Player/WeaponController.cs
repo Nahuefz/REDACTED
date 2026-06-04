@@ -1,11 +1,10 @@
-using System;
-using JetBrains.Annotations;
+//using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class WeaponController : MonoBehaviour
 {
-    [CanBeNull] private PlayerInputs _shootInput;
+    private PlayerInputs _shootInput;
     [SerializeField] private Transform firePoint;
     [SerializeField] private float fireRate = 0.2f;
     private float _nextFireTime;
@@ -34,7 +33,7 @@ public class WeaponController : MonoBehaviour
         {
             //Debug.Log("<color=white>boton presionado</color>");
             Shoot();
-            Debug.Log("Disparo <color=red>BANG BANG</color>");
+            //Debug.Log("Disparo <color=red>BANG BANG</color>");
             _nextFireTime = Time.time + fireRate;
         }
     }
