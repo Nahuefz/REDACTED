@@ -6,7 +6,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("<color=yellow>Movement Variables</color>")] 
+    [Header("<color=yellow>Movement Variables</color>")]
+    public bool canMove = true;
     public float walkSpeed = 5f;
     public float mouseSensitivity = 0.1f;
     public Transform cameraTransform;
