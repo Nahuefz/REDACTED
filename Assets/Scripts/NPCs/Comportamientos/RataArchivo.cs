@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-
 public class RataArchivo : MonoBehaviour
 {
     [Header("Configuracion de Movimiento")]
