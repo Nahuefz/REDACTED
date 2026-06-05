@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(ObjetoModular))]
+[CanEditMultipleObjects]
 public class ObjetoModularEditor : Editor
 {
     public override void OnInspectorGUI()
@@ -24,9 +25,13 @@ public class ObjetoModularEditor : Editor
 
             if (EditorGUI.EndChangeCheck())
             {
-                Undo.RecordObject(script, "Cambiar modelo modular");
-                script.indiceActual = eleccion;
-                ActualizarModelo(script);
+                foreach (var objetoSeleccionado in targets)
+                {
+                    ObjetoModular modulo = (ObjetoModular)objetoSeleccionado;
+                    Undo.RecordObject(modulo, "Cambiar modelo modular");
+                    modulo.indiceActual = eleccion;
+                    ActualizarModelo(modulo);
+                }
             }
         }
         else EditorGUILayout.HelpBox("Agregá prefabs a la lista para verlos", MessageType.Info);
