@@ -4,6 +4,7 @@ using System.Collections;
 public class DirectorInicio : MonoBehaviour
 {
     public static DirectorInicio Instance { get; private set; }
+    private static bool IsStarted;
 
     private void Awake()
     {
@@ -24,8 +25,11 @@ public class DirectorInicio : MonoBehaviour
 
         if (playerMovement != null && playerMovement.cameraTransform != null && puntoSentado != null)
         {
-            posCamaraParado = playerMovement.cameraTransform.localPosition;
-            SentarJugador();
+            if (!IsStarted)
+            {
+                posCamaraParado = playerMovement.cameraTransform.localPosition;
+                SentarJugador();
+            }
         }
     }
 
@@ -73,7 +77,7 @@ public class DirectorInicio : MonoBehaviour
 
         playerMovement.SetXRotation(0f);
         playerMovement.enabled = true;
-
+        IsStarted = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 

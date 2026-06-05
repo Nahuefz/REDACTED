@@ -1,5 +1,3 @@
-using System;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -23,7 +21,11 @@ public class EnemyBehaviour : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         
         _navMeshAgent.speed = enemySpeed;
-        //player = GetComponent<PlayerMovement>();
+        
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerMovement>();
+        }
     }
     
     private void FixedUpdate()
@@ -46,8 +48,9 @@ public class EnemyBehaviour : MonoBehaviour
 
         float animLerpSpeed = 3f;
         float targetAnimValue = (_navMeshAgent.velocity.magnitude > 0.1f) ? -1f : 0f;
-        _animator.SetFloat("xAxis", Mathf.Lerp(_animator.GetFloat("xAxis"), targetAnimValue, Time.fixedDeltaTime * animLerpSpeed));
+        if (_animator != null) _animator.SetFloat("xAxis", Mathf.Lerp(_animator.GetFloat("xAxis"), targetAnimValue, Time.fixedDeltaTime * animLerpSpeed));
 
+        if (currentTarget == null) return;
         float distanceToTarget = Vector3.Distance(transform.position, currentTarget.position);
 
         if (distanceToTarget < attackRange)
@@ -66,7 +69,7 @@ public class EnemyBehaviour : MonoBehaviour
             if (!_isAttacking)
             {
                 _isAttacking = true;
-                _animator.SetTrigger("IsAttacking");
+                if (_animator != null) _animator.SetTrigger("IsAttacking");
             }
         }
         else
@@ -86,7 +89,7 @@ public class EnemyBehaviour : MonoBehaviour
         float animLerpSpeed = 5f; 
         
         float targetAnimValue = (_navMeshAgent.velocity.sqrMagnitude > 0.1f) ? -0.5f : 0f;
-        _animator.SetFloat("xAxis", Mathf.Lerp(_animator.GetFloat("xAxis"), targetAnimValue, Time.fixedDeltaTime * animLerpSpeed));
+        if (_animator != null) _animator.SetFloat("xAxis", Mathf.Lerp(_animator.GetFloat("xAxis"), targetAnimValue, Time.fixedDeltaTime * animLerpSpeed));
 
         if (!_navMeshAgent.pathPending && _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance + 0.1f)
         {
