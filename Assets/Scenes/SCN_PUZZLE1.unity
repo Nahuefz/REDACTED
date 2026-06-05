@@ -710,6 +710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EscenaDestino: 0
+  spawnIDDestino: PUZZLE_TUNELES
 --- !u!54 &1164716715
 Rigidbody:
   m_ObjectHideFlags: 0
