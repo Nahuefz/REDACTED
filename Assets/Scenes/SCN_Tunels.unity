@@ -704,7 +704,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 112db223baf847846a7248a869459bd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EscenaDestino: 0
+  EscenaDestino: 3
+  spawnIDDestino: ARCHIVOS_TUNELES
 --- !u!65 &137277569
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8440,6 +8441,38 @@ Transform:
   - {fileID: 247776197}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1062009689
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1062009690}
+  m_Layer: 0
+  m_Name: cosa2.0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1062009690
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062009689}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.64, y: 1.79, z: -2.95}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1112820658}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1098499259
 GameObject:
   m_ObjectHideFlags: 0
@@ -8471,6 +8504,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 28279459}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1112820657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1112820658}
+  - component: {fileID: 1112820659}
+  m_Layer: 0
+  m_Name: SalidaTuneles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1112820658
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112820657}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1062009690}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1112820659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112820657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df2b49479419b346bc3cbb84c683604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entranceID: TUNELES_ARCHIVOS
 --- !u!1 &1171251894
 GameObject:
   m_ObjectHideFlags: 0
@@ -14593,6 +14671,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EscenaDestino: 5
+  spawnIDDestino: 
 --- !u!65 &2010787898
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16020,6 +16099,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 8915049678261985438, guid: eba919c09ee8ecb4798cef6d4bf9ff75, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 8944398949869982721, guid: eba919c09ee8ecb4798cef6d4bf9ff75, type: 3}
       propertyPath: m_Name
       value: AngryEnemy
@@ -16027,6 +16110,10 @@ PrefabInstance:
     - target: {fileID: 8944398949869982721, guid: eba919c09ee8ecb4798cef6d4bf9ff75, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8944398949869982721, guid: eba919c09ee8ecb4798cef6d4bf9ff75, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16046,3 +16133,4 @@ SceneRoots:
   - {fileID: 137277571}
   - {fileID: 2010787900}
   - {fileID: 5481023097866304479}
+  - {fileID: 1062009690}

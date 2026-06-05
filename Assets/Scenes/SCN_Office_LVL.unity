@@ -2671,6 +2671,38 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2140010532}
   m_SourcePrefab: {fileID: 100100000, guid: 24a7cc54a967f9a4698116e63dc296e9, type: 3}
+--- !u!1 &87260640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 87260641}
+  m_Layer: 0
+  m_Name: cosa 2.0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &87260641
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87260640}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12.311256, y: 1.1606339, z: -4.3729305}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 91423697}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &87460480
 GameObject:
   m_ObjectHideFlags: 0
@@ -3167,6 +3199,51 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d39338385198c55499f24a4ff1fcf8dc, type: 3}
+--- !u!1 &91423696
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 91423697}
+  - component: {fileID: 91423698}
+  m_Layer: 0
+  m_Name: EntradaArchivos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &91423697
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91423696}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.652, y: -0.101, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 87260641}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &91423698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91423696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df2b49479419b346bc3cbb84c683604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entranceID: OFICINA_ARCHIVOS
 --- !u!1 &98338747
 GameObject:
   m_ObjectHideFlags: 0
@@ -33838,6 +33915,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EscenaDestino: 3
+  spawnIDDestino: 
 --- !u!4 &1382054138 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 71ae4f6220e9ac1448fc25f9ff7a7685, type: 3}
@@ -54030,3 +54108,4 @@ SceneRoots:
   - {fileID: 1596985066}
   - {fileID: 608134356}
   - {fileID: 636821309}
+  - {fileID: 87260641}

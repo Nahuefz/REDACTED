@@ -1433,6 +1433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EscenaDestino: 1
+  spawnIDDestino: OFICINA_ARCHIVOS
 --- !u!43 &179502660
 Mesh:
   m_ObjectHideFlags: 0
@@ -1990,6 +1991,39 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &351998575
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 351998576}
+  m_Layer: 0
+  m_Name: cosa 2.0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &351998576
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351998575}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.16, y: 1.053, z: -29.99}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 446001041}
+  - {fileID: 1930783666}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &382846319
 Mesh:
   m_ObjectHideFlags: 0
@@ -2155,6 +2189,51 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &446001040
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 446001041}
+  - component: {fileID: 446001042}
+  m_Layer: 0
+  m_Name: EntradaOficina
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &446001041
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446001040}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 351998576}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &446001042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446001040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df2b49479419b346bc3cbb84c683604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entranceID: ARCHIVOS_OFICINA
 --- !u!1 &481675282
 GameObject:
   m_ObjectHideFlags: 0
@@ -7067,6 +7146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EscenaDestino: 0
+  spawnIDDestino: TUNELES_ARCHIVOS
 --- !u!212 &919153291
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13405,6 +13485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EscenaDestino: 0
+  spawnIDDestino: 
 --- !u!54 &1557403788
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15363,6 +15444,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 827379765699232012, guid: 9d373de64d696004980f93ce6ebc708b, type: 3}
   m_PrefabInstance: {fileID: 1922873188}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1930783665
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1930783666}
+  - component: {fileID: 1930783667}
+  m_Layer: 0
+  m_Name: EntradaTuneles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1930783666
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930783665}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -19.531, y: 0.002, z: 5.23}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 351998576}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1930783667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930783665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df2b49479419b346bc3cbb84c683604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entranceID: ARCHIVOS_TUNELES
 --- !u!43 &1958263422
 Mesh:
   m_ObjectHideFlags: 0
@@ -16276,3 +16402,4 @@ SceneRoots:
   - {fileID: 793458899}
   - {fileID: 919153292}
   - {fileID: 1566184493}
+  - {fileID: 351998576}
