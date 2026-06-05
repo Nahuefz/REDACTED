@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327e632dd02f549409f2e17898f48f14, type: 3}
+  m_Name: Di_primo1
+  m_EditorClassIdentifier: 
+  nombrePorDefecto: 
+  dialogos:
+  - nombrePersonaje: 
+    texto: Pasa tranquilo, que aca somos todos amigos.
+    imagen: {fileID: 0}
+  - nombrePersonaje: 
+    texto: Te mando Cindy? Nunca se rinde eh...
+    imagen: {fileID: 0}
+  - nombrePersonaje: 
+    texto: No esta tan facil la cosa aca abajo. Si te descubren fuiste!
+    imagen: {fileID: 0}
+  - nombrePersonaje: 
+    texto: Escuchame. Queres salir? Traeme lo que te pido y yo te saco.
+    imagen: {fileID: 0}
+  - nombrePersonaje: 
+    texto: 'Necesito un frasco de nitroglicerina, aserrin y un mapa de estos tuneles. '
+    imagen: {fileID: 0}
+  - nombrePersonaje: 
+    texto: Una papa. Yo no me puedo meter a esas habitaciones a buscarla, muy peligroso.
+    imagen: {fileID: 0}
+  - nombrePersonaje: 
+    texto: Capaz vos tenes mas suerte...
+    imagen: {fileID: 0}
