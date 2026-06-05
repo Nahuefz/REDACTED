@@ -1,19 +1,9 @@
 fileFormatVersion: 2
-guid: 0e21d2020d6062a4ba93d6c372f6b174
+guid: 95192082ca5da204f8e4238edfaf9e8b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Arriba
-    second: {fileID: 2100000, guid: 5d217a5e575781c45a7ead3425446584, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Texture Atlas
-    second: {fileID: 2800000, guid: a7d66a89ec26f0c41af17502f774948a, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

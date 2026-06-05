@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 59a1d70b632a69b468fc933b6c40538c
+guid: 0e21d2020d6062a4ba93d6c372f6b174
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: MAT_Coffee
-    second: {fileID: 2100000, guid: 320b24a4ce998b44ea2042c08546cb81, type: 2}
+      name: Arriba
+    second: {fileID: 2100000, guid: 5d217a5e575781c45a7ead3425446584, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Texture Atlas
+    second: {fileID: 2800000, guid: a7d66a89ec26f0c41af17502f774948a, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -35,12 +40,12 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 10
-    meshCompression: 3
-    addColliders: 0
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importPhysicalCameras: 1
@@ -81,7 +86,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 0
+  importAnimation: 1
   humanDescription:
     serializedVersion: 3
     human: []
@@ -93,14 +98,14 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 10
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
