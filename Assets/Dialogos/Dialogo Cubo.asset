@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327e632dd02f549409f2e17898f48f14, type: 3}
+  m_Name: Dialogo Cubo
+  m_EditorClassIdentifier: 
+  nombrePorDefecto: Cubo
+  dialogos:
+  - nombrePersonaje: 
+    texto: Yo soy un Cubo, pero cuando los desarrolladores se pongan las pilas, quiero
+      ser arquitecto!
+    imagen: {fileID: 0}
+  - nombrePersonaje: 
+    texto: Ahora mismo solo existo.
+    imagen: {fileID: 0}
+  - nombrePersonaje: 
+    texto: En algun momento te dare algo importante, pero por ahora, no hay nada!
+    imagen: {fileID: 0}
+  - nombrePersonaje: 
+    texto: Hay que arreglar ese temita tambien.... Pero eu, te gusto el truquito,
+      no?
+    imagen: {fileID: 0}
