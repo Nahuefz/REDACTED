@@ -5901,6 +5901,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 155130729}
     - target: {fileID: 7246069336388206757, guid: 12c037769001b164a900668c78461c9c, type: 3}
+      propertyPath: isScared
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246069336388206757, guid: 12c037769001b164a900668c78461c9c, type: 3}
       propertyPath: fleeSpeed
       value: 9
       objectReference: {fileID: 0}
@@ -5918,7 +5922,7 @@ PrefabInstance:
       objectReference: {fileID: 903642152}
     - target: {fileID: 7246069336388206757, guid: 12c037769001b164a900668c78461c9c, type: 3}
       propertyPath: timeToGetScared
-      value: 2
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 7246069336388206757, guid: 12c037769001b164a900668c78461c9c, type: 3}
       propertyPath: patrolWaypoints.Array.size
