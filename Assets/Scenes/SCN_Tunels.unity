@@ -4889,44 +4889,17 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!1 &620172794 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8944398949869982721, guid: eba919c09ee8ecb4798cef6d4bf9ff75, type: 3}
-  m_PrefabInstance: {fileID: 5481023097866304479}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &620172796 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6866972256854728898, guid: eba919c09ee8ecb4798cef6d4bf9ff75, type: 3}
   m_PrefabInstance: {fileID: 5481023097866304479}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 620172794}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e98013587867cf246b5dbad80bf5706f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!195 &620172798
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 620172794}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 1.77
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 6.45
-  m_BaseOffset: 3.1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &623927085
 GameObject:
   m_ObjectHideFlags: 0
@@ -15934,8 +15907,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4833351090196702220, guid: eba919c09ee8ecb4798cef6d4bf9ff75, type: 3}
-      propertyPath: currentTarget
-      value: 
+      propertyPath: enemySpeed
+      value: 7.85
       objectReference: {fileID: 0}
     - target: {fileID: 5779144455427107417, guid: eba919c09ee8ecb4798cef6d4bf9ff75, type: 3}
       propertyPath: m_LocalScale.x
@@ -15989,6 +15962,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5837532961627261876, guid: eba919c09ee8ecb4798cef6d4bf9ff75, type: 3}
+      propertyPath: m_Radius
+      value: 2.03
+      objectReference: {fileID: 0}
     - target: {fileID: 8944398949869982721, guid: eba919c09ee8ecb4798cef6d4bf9ff75, type: 3}
       propertyPath: m_Name
       value: AngryEnemy
@@ -15996,10 +15973,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8944398949869982721, guid: eba919c09ee8ecb4798cef6d4bf9ff75, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 620172798}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eba919c09ee8ecb4798cef6d4bf9ff75, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
