@@ -4829,7 +4829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pereyraRef: {fileID: 332138428}
   comportamientoRataRef: {fileID: 1470366895}
-  pereyraPoint: {fileID: 0}
+  pereyraPoint: {fileID: 1765097305}
   playerInputScript: {fileID: 1318518409}
   playerObj: {fileID: 1508494972}
 --- !u!1001 &165640121
@@ -9108,7 +9108,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2211117944586010802, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3294367560356140510, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9215,6 +9215,10 @@ PrefabInstance:
       value: 11.48
       objectReference: {fileID: 0}
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: anclaDeMirada
       value: 
       objectReference: {fileID: 1346598696}
@@ -9262,7 +9266,8 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.73
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
     m_RemovedGameObjects:
     - {fileID: 243126482980297585, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
     m_AddedGameObjects: []
@@ -9270,6 +9275,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2211117944586010802, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       insertIndex: -1
       addedObject: {fileID: 332138428}
+    - targetCorrespondingSourceObject: {fileID: 2211117944586010802, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 332138434}
   m_SourcePrefab: {fileID: 100100000, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
 --- !u!4 &332138426 stripped
 Transform:
@@ -9293,15 +9301,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80af1f84e569bd34588739f8cd0da1cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogosDirectos: []
+  dialogosDirectos:
+  - {fileID: 11400000, guid: 57aa1588596662b4bad6a533141066d2, type: 2}
   dialogosIndirectos:
   - {fileID: 11400000, guid: 57aa1588596662b4bad6a533141066d2, type: 2}
   puntoDeAparicion: {fileID: 1765097305}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 332138430}
   sonidosInteraccion: []
   anclaDeInteraccion: {fileID: 1950287065}
   anclaDeMirada: {fileID: 1346598696}
   actoresEnEscena: []
+--- !u!82 &332138430 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1562184514807578898, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+  m_PrefabInstance: {fileID: 332138425}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &332138434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332138427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a379e1bf19625124897578d05fd0adc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tiempoDeEspera: 1
 --- !u!1 &334411084
 GameObject:
   m_ObjectHideFlags: 0

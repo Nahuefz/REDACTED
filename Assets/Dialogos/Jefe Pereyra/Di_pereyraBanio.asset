@@ -17,6 +17,9 @@ MonoBehaviour:
   - nombrePersonaje: Jefe Pereyra
     texto: Date vuelta
     imagen: {fileID: 0}
-  - nombrePersonaje: 
+  - nombrePersonaje: Jefe Pereyra
     texto: No viste nada
+    imagen: {fileID: 0}
+  - nombrePersonaje: Jefe Pereyra
+    texto: Crack
     imagen: {fileID: 0}

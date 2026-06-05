@@ -151,15 +151,16 @@ public class DialogosPereyra : MonoBehaviour, IInteractable, IInterceptor
     public void IniciarEscenaBanio(GameObject player)
     {
         _cachedInventory = player.GetComponent<Inventory>();
-
         PlayerAlignment alignment = player.GetComponent<PlayerAlignment>();
 
-        if(alignment != null && anclaDeInteraccion != null)
+        if (alignment != null)
         {
-            alignment.Alinear(anclaDeInteraccion, transform, anclaDeMirada, () =>
-            {
-                LanzarDialogoIndirecto();
-            });
+            // Usamos el método que no desplaza al jugador
+            alignment.AlinearSoloRotacion(transform, anclaDeMirada, LanzarDialogoIndirecto);
+        }
+        else
+        {
+            LanzarDialogoIndirecto();
         }
     }
 }
