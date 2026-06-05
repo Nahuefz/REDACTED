@@ -12664,6 +12664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EscenaDestino: 1
+  spawnIDDestino: OFICINA_ARCHIVOS
 --- !u!1 &175371806
 GameObject:
   m_ObjectHideFlags: 0
@@ -20921,6 +20922,38 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1018071003299937991, guid: 6892d7b537e68ee45a49ad1d0d5ba8ba, type: 3}
   m_PrefabInstance: {fileID: 299430037}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &300051707
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 300051708}
+  m_Layer: 0
+  m_Name: cosa2.0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &300051708
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300051707}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.439134, y: 1.2664866, z: -5.4969997}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 656804761}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &300337718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46555,6 +46588,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1411226508944206765, guid: 9a630f5f244a1d744ad6b35b7cdda49a, type: 3}
   m_PrefabInstance: {fileID: 656071682}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &656804760
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 656804761}
+  - component: {fileID: 656804762}
+  m_Layer: 0
+  m_Name: SalidaArchivos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &656804761
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656804760}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 14.84, y: 0.48, z: -28.058}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 300051708}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &656804762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656804760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df2b49479419b346bc3cbb84c683604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entranceID: ARCHIVOS_OFICINA
 --- !u!1 &657564100
 GameObject:
   m_ObjectHideFlags: 0
@@ -65047,6 +65125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EscenaDestino: 0
+  spawnIDDestino: 
 --- !u!212 &919153291
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -107119,6 +107198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EscenaDestino: 0
+  spawnIDDestino: 
 --- !u!54 &1557403788
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -151626,3 +151706,4 @@ SceneRoots:
   - {fileID: 1087191048}
   - {fileID: 939074827}
   - {fileID: 1105441466}
+  - {fileID: 300051708}
