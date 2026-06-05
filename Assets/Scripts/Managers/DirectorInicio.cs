@@ -4,7 +4,7 @@ using System.Collections;
 public class DirectorInicio : MonoBehaviour
 {
     public static DirectorInicio Instance { get; private set; }
-    public static bool IsStarted;
+    private static bool IsStarted;
 
     private void Awake()
     {
