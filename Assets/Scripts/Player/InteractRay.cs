@@ -27,8 +27,20 @@ public class InteractRay : MonoBehaviour
     private void Update()
     {
         CastInteractiveRay();
-        //OnInteractSeen?.Invoke(CurrentInteractable != null); ponerlo en algun
         Debug.DrawRay(playerCamera.position, playerCamera.forward * rayMaxDistance, Color.red);
+
+        // Intentamos interactuar solo si hay algo válido
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (CurrentInteractable != null)
+            {
+                CurrentInteractable.Interact(this.gameObject);
+            }
+            else
+            {
+                Debug.Log("No estoy mirando nada interactuable");
+            }
+        }
     }
     void CastInteractiveRay()
     {
