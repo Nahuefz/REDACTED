@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3069833086982761359}
   - component: {fileID: 948391262298307961}
+  - component: {fileID: 6920031006840695673}
   m_Layer: 0
   m_Name: ModulosObjetosVariosOficina
   m_TagString: Untagged
@@ -51,6 +52,28 @@ MonoBehaviour:
   - {fileID: 8853217284032579096, guid: 7d7d3d6a327aee74da8e51011796ed48, type: 3}
   - {fileID: 3278724800920354044, guid: 881c7c325d90ae440a21db3f6dbd61ce, type: 3}
   indiceActual: 0
+--- !u!64 &6920031006840695673
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144740805185897178}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1001 &5926903667670270425
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1411226508944206765}
   - component: {fileID: 4995086918208145355}
+  - component: {fileID: -1143628315260477134}
   m_Layer: 0
   m_Name: ModulosCajas
   m_TagString: Untagged
@@ -50,6 +51,28 @@ MonoBehaviour:
   - {fileID: 8432847116082261676, guid: 26f202bb2556fd24195d8c336be3aaee, type: 3}
   - {fileID: 3905609266906443602, guid: 93736a6357f22e54d8c064968e163a26, type: 3}
   indiceActual: 2
+--- !u!64 &-1143628315260477134
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839002553471582088}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1001 &517007259236039179
 PrefabInstance:
   m_ObjectHideFlags: 0
