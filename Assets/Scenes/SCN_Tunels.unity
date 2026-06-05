@@ -704,8 +704,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 112db223baf847846a7248a869459bd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EscenaDestino: 3
-  spawnIDDestino: ARCHIVOS_TUNELES
+  EscenaDestino: 0
+  spawnIDDestino: 
 --- !u!65 &137277569
 BoxCollider:
   m_ObjectHideFlags: 0
