@@ -44,9 +44,7 @@ public class ObjetoModularEditor : Editor
         {
             GameObject nuevoModelo = (GameObject)PrefabUtility.InstantiatePrefab(prefabElegido);
 
-            nuevoModelo.transform.SetParent(script.transform);
-            nuevoModelo.transform.localPosition = Vector3.zero;
-            nuevoModelo.transform.rotation = Quaternion.identity;
+            nuevoModelo.transform.SetParent(script.transform, false);
 
             Undo.RegisterCreatedObjectUndo(nuevoModelo, "Aparecer nuevo modelo");
         }
