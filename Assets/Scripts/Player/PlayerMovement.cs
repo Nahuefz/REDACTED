@@ -1,7 +1,6 @@
 using System;
-using System.Collections;
+using Enemy.AngryEnemy;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
@@ -118,6 +117,22 @@ public class PlayerMovement : MonoBehaviour
 
         if (other.CompareTag("Placa"))
         {
+            Respawn();
+        }
+
+        if (other.CompareTag("Enemy"))
+        {
+            Debug.Log($"Colision con enemigo {other.gameObject.name}");
+            
+            // Buscamos el componente en el objeto o sus padres (por si el collider está en un hijo)
+            var angryEnemy = other.GetComponent<AngryEnemyBehaviour>();
+            if (angryEnemy == null) angryEnemy = other.GetComponentInParent<AngryEnemyBehaviour>();
+
+            if (angryEnemy != null)
+            {
+                angryEnemy.ClearTarget();
+            }
+            
             Respawn();
         }
     }

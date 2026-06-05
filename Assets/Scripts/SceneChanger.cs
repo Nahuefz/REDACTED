@@ -5,12 +5,19 @@ using UnityEngine.SceneManagement; // Necesario para gestionar escenas
 public class SceneChanger : MonoBehaviour
 {
     [SerializeField] private GameScenes EscenaDestino;
+    [SerializeField] private string spawnIDDestino;
 
     private void OnTriggerEnter(Collider other)
     {
-        // Verificamos que el objeto que entr� tenga el Tag "Player"
+        // Verificamos que el objeto que entr tenga el Tag "Player"
         if (other.CompareTag("Player"))
         {
+            if (!string.IsNullOrEmpty(spawnIDDestino))
+            {
+                PlayerPrefs.SetString("NextSpawnID", spawnIDDestino);
+                PlayerPrefs.Save();
+            }
+
             // Cargamos la siguiente escena
             ChangeScene(EscenaDestino);
         }
@@ -19,7 +26,7 @@ public class SceneChanger : MonoBehaviour
     void ChangeScene(GameScenes scene)
     {
         string sceneName = scene.ToString();
-        
+
         // Cargamos la escena
         SceneManager.LoadScene(sceneName);
     }

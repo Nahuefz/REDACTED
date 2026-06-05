@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Enemy.AngryEnemy
@@ -25,6 +26,12 @@ namespace Enemy.AngryEnemy
             {
                 Debug.LogWarning("AngryEnemy: Cannot hunt, missing EnemyBehaviour or Player tag.");
             }
+        }
+
+        public void ClearTarget()
+        {
+            Debug.Log("current target null");
+            _enemyBehaviour.currentTarget = null;
         }
     }
 }
