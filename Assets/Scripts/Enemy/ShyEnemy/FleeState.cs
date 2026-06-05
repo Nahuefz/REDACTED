@@ -32,8 +32,19 @@ namespace Enemy.ShyEnemy
             // Chequeamos si ya llegó a la guarida
             if (!_enemy.aiAgent.pathPending && _enemy.aiAgent.remainingDistance < 0.5f)
             {
-                // Llegó a salvo. Acá podés dejarlo quieto, o como te muestro abajo,
-                // hacerlo volver a patrullar después de ponerse a salvo.
+                // Llegó a salvo.
+                Debug.Log("Llegué a la guarida, ¡busquen al intruso!");
+                
+                // Trigger AngryEnemy
+                if (_enemy.angryEnemy != null)
+                {
+                    _enemy.angryEnemy.TriggerHunt();
+                }
+                else
+                {
+                    Debug.LogWarning("ShyEnemy: No AngryEnemy assigned to trigger!");
+                }
+
                 _enemy.TransitionToState(_enemy.PatrolState);
             }
         }

@@ -23,6 +23,9 @@ namespace Enemy.ShyEnemy
         public Transform player;
         private int _currentWaypoint;
 
+        [Header("<color=white>Angry Enemy Trigger</color>")]
+        public AngryEnemy.AngryEnemyBehaviour angryEnemy;
+
         IEnemyState _currentState;
         public PatrolState PatrolState { get; private set; }
         public FleeState FleeState { get; private set; }

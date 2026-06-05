@@ -1,16 +1,30 @@
 using UnityEngine;
 
-public class AngryEnemyBehaviour : MonoBehaviour
+namespace Enemy.AngryEnemy
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [RequireComponent(typeof(EnemyBehaviour))]
+    public class AngryEnemyBehaviour : MonoBehaviour
     {
-        
-    }
+        private EnemyBehaviour _enemyBehaviour;
+        private GameObject _player;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Awake()
+        {
+            _enemyBehaviour = GetComponent<EnemyBehaviour>();
+            _player = GameObject.FindGameObjectWithTag("Player");
+        }
+
+        public void TriggerHunt()
+        {
+            if (_enemyBehaviour != null && _player != null)
+            {
+                Debug.Log("AngryEnemy: Hunting player!");
+                _enemyBehaviour.currentTarget = _player.transform;
+            }
+            else
+            {
+                Debug.LogWarning("AngryEnemy: Cannot hunt, missing EnemyBehaviour or Player tag.");
+            }
+        }
     }
 }
