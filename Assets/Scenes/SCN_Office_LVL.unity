@@ -7456,7 +7456,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogosDirectos:
-  - {fileID: 11400000, guid: 57aa1588596662b4bad6a533141066d2, type: 2}
+  - {fileID: 11400000, guid: 686400d690fcd2a4881cf25c36dcacfb, type: 2}
+  - {fileID: 11400000, guid: bde40ac9db89d4946b0e5d788b0e8474, type: 2}
+  - {fileID: 11400000, guid: 0f5a873dcf6b8fc479545154881dad6e, type: 2}
   dialogosIndirectos:
   - {fileID: 11400000, guid: 57aa1588596662b4bad6a533141066d2, type: 2}
   puntoDeAparicion: {fileID: 1765097305}
