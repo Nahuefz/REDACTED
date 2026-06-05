@@ -41,10 +41,10 @@ MonoBehaviour:
     ColorOutlineNoiseIntensity: 0
     ColorOutlineNoiseAdd: 0
     ColorOutlineClip: 1
-    GeoOutlineColor: {r: 0.045167305, g: 0.052897085, b: 0.066037714, a: 1}
-    GeoOutlineNormalStrength: 0.73
-    GeoOutlineNormalCutoffMaskStrength: 8.17
-    GeoOutlineNormalCutoffMaskAdd: 5.66
+    GeoOutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    GeoOutlineNormalStrength: 0.4
+    GeoOutlineNormalCutoffMaskStrength: 0
+    GeoOutlineNormalCutoffMaskAdd: 10
     GeoOutlineDepthStrengthStart: 0.04
     GeoOutlineDepthStrengthEnd: 10
     GeoOutlineDepthAdd: 10

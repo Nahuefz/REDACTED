@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-
 public class PlayerAlignment : MonoBehaviour
 {
     private PlayerMovement playerMovement;
@@ -14,7 +13,7 @@ public class PlayerAlignment : MonoBehaviour
     {
         playerMovement = GetComponent<PlayerMovement>();
         camaraPrincipal = Camera.main;
-        if (camaraPrincipal != null ) fovPorDefecto = camaraPrincipal.fieldOfView;
+        if (camaraPrincipal != null) fovPorDefecto = camaraPrincipal.fieldOfView;
     }
 
     #region Corutina Alinear
@@ -27,7 +26,7 @@ public class PlayerAlignment : MonoBehaviour
     {
         if (playerMovement != null) playerMovement.enabled = false;
 
-        float duracion = 0.4f; //Tiempo de la transicion.
+        float duracion = 0.4f;
         float tiempo = 0f;
 
         Vector3 posInicial = transform.position;
@@ -46,23 +45,20 @@ public class PlayerAlignment : MonoBehaviour
             Vector3 posAFuturo = new Vector3(destinoPlano.x, playerMovement.cameraTransform.position.y, destinoPlano.z);
             Vector3 diferencia = puntoMirada.position - posAFuturo;
             float distanciaXZ = new Vector2(diferencia.x, diferencia.z).magnitude;
-            pitchFinal = Mathf.Atan2(-diferencia.y, distanciaXZ) * Mathf.Rad2Deg;//Calculo trigonometrico, waos!
+            pitchFinal = Mathf.Atan2(-diferencia.y, distanciaXZ) * Mathf.Rad2Deg;
         }
 
         while (tiempo < duracion)
         {
             tiempo += Time.deltaTime;
             float t = Mathf.SmoothStep(0f, 1f, tiempo / duracion);
-            //Para mover el cuerpo
             transform.position = Vector3.Lerp(posInicial, destinoPlano, t);
             transform.rotation = Quaternion.Slerp(rotInicial, rotFinal, t);
-            //Para mover el cuello
             if (playerMovement != null)
             {
                 float pitchActual = Mathf.Lerp(pitchInicial, pitchFinal, t);
                 playerMovement.SetXRotation(pitchActual);
             }
-
             yield return null;
         }
 
@@ -80,7 +76,59 @@ public class PlayerAlignment : MonoBehaviour
     }
     #endregion
 
-    #region Corutina Mirar
+    #region Alinear Solo Rotacion
+    public void AlinearSoloRotacion(Transform npc, Transform puntoMirada, Action alTerminar)
+    {
+        StartCoroutine(RutinaAlinearSoloRotacion(npc, puntoMirada, alTerminar));
+    }
+
+    private IEnumerator RutinaAlinearSoloRotacion(Transform npc, Transform puntoMirada, Action alTerminar)
+    {
+        if (playerMovement != null) playerMovement.enabled = false;
+
+        float duracion = 0.4f;
+        float tiempo = 0f;
+        Quaternion rotInicial = transform.rotation;
+        float pitchInicial = playerMovement != null ? playerMovement.GetXRotation() : 0f;
+
+        Vector3 dirNpc = npc.position - transform.position;
+        dirNpc.y = 0;
+        Quaternion rotFinal = Quaternion.LookRotation(dirNpc);
+
+        float pitchFinal = 0f;
+        if (puntoMirada != null && playerMovement != null && playerMovement.cameraTransform != null)
+        {
+            Vector3 diferencia = puntoMirada.position - playerMovement.cameraTransform.position;
+            float distanciaXZ = new Vector2(diferencia.x, diferencia.z).magnitude;
+            pitchFinal = Mathf.Atan2(-diferencia.y, distanciaXZ) * Mathf.Rad2Deg;
+        }
+
+        while (tiempo < duracion)
+        {
+            tiempo += Time.deltaTime;
+            float t = Mathf.SmoothStep(0f, 1f, tiempo / duracion);
+
+            // Solo rotación, se omite transform.position
+            transform.rotation = Quaternion.Slerp(rotInicial, rotFinal, t);
+            if (playerMovement != null)
+                playerMovement.SetXRotation(Mathf.Lerp(pitchInicial, pitchFinal, t));
+
+            yield return null;
+        }
+
+        transform.rotation = rotFinal;
+        if (playerMovement != null)
+        {
+            playerMovement.SetXRotation(pitchFinal);
+            playerMovement.enabled = true;
+        }
+
+        alTerminar?.Invoke();
+    }
+    #endregion
+
+    // ... (Mantén tus métodos existentes de CambiarMirada y RestaurarFOV debajo)
+    #region Métodos de Mirada y FOV
     public void CambiarMirada(Transform puntoMirada, bool hacerZoom, float nivelDeZoom)
     {
         if (rutinaMiradaActiva != null) StopCoroutine(rutinaMiradaActiva);
@@ -110,12 +158,10 @@ public class PlayerAlignment : MonoBehaviour
             float distanciaXZ = new Vector2(diferencia.x, diferencia.z).magnitude;
             pitchFinal = Mathf.Atan2(-diferencia.y, distanciaXZ) * Mathf.Rad2Deg;
 
-            //El zoom
             if (hacerZoom && camaraPrincipal != null)
             {
                 float alturaEncuadre = nivelDeZoom > 0f ? nivelDeZoom : 1.2f;
-
-                fovFinal = 2f * Mathf.Atan(alturaEncuadre/(2f * distancia)) * Mathf.Rad2Deg;
+                fovFinal = 2f * Mathf.Atan(alturaEncuadre / (2f * distancia)) * Mathf.Rad2Deg;
                 fovFinal = Mathf.Clamp(fovFinal, 15f, fovPorDefecto);
             }
         }
@@ -128,14 +174,10 @@ public class PlayerAlignment : MonoBehaviour
             transform.rotation = Quaternion.Slerp(rotInicialCuerpo, rotFinalCuerpo, t);
 
             if (playerMovement != null)
-            {
                 playerMovement.SetXRotation(Mathf.Lerp(pitchInicial, pitchFinal, t));
-            }
 
             if (camaraPrincipal != null)
-            {
                 camaraPrincipal.fieldOfView = Mathf.Lerp(fovInicial, fovFinal, t);
-            }
 
             yield return null;
         }
@@ -144,11 +186,10 @@ public class PlayerAlignment : MonoBehaviour
         if (playerMovement != null) playerMovement.SetXRotation(pitchFinal);
         if (camaraPrincipal != null) camaraPrincipal.fieldOfView = fovFinal;
     }
-    #endregion
-    
+
     public void RestaurarFOV()
     {
         if (camaraPrincipal != null) camaraPrincipal.fieldOfView = fovPorDefecto;
     }
-
+    #endregion
 }
