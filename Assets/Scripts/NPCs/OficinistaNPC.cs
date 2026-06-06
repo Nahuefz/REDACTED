@@ -16,6 +16,9 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
     public bool introduccionHecha = false;    // ¿Ya dio su diálogo inicial?
     public bool yaEntregado = false;
 
+    [Header("Estado Lógico")]
+    public bool interaccionHabilitada = true;
+
     [Header("Audio")]
     public AudioSource audioSource;
     public AudioClip[] sonidosInteraccion;
@@ -38,6 +41,8 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
 
     public void Interact(GameObject interactor)
     {
+        if (!interaccionHabilitada) return;
+
         if (DialogueManager.Instance.EstaHablando())
         {
             DialogueManager.Instance.MostrarSiguienteOracion();

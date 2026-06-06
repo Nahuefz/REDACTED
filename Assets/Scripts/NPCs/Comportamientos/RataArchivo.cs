@@ -11,6 +11,10 @@ public class RataArchivo : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip[] sonidoCorriendo;
 
+    [Header("Conexion con el Dialogo")]
+    public OficinistaNPC npcScript;
+    private bool habilitarInteraccion = false;
+
     void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
@@ -20,12 +24,16 @@ public class RataArchivo : MonoBehaviour
         }
 
         if (audioSource == null) audioSource = gameObject.AddComponent<AudioSource>();
+
+        if (npcScript == null) npcScript = GetComponent<OficinistaNPC>();
+        if (npcScript != null) npcScript.interaccionHabilitada = false;
     }
 
-    public void EscapeTo(Transform nuevoPunto)
+    public void EscapeTo(Transform nuevoPunto, bool esPuntoFinal = false)
     {
         if (nuevoPunto == null || _agent == null) return;
 
+        habilitarInteraccion = esPuntoFinal;
         PlayRunningSound();
         _agent.SetDestination(nuevoPunto.position);
     }
@@ -38,6 +46,12 @@ public class RataArchivo : MonoBehaviour
             {
                 audioSource.Stop();
             }
+        }
+
+        if (habilitarInteraccion)
+        {
+            if (npcScript != null) npcScript.interaccionHabilitada = true;
+            habilitarInteraccion = false;
         }
     }
 
