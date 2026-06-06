@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1411226508944206765}
-  - component: {fileID: 4995086918208145355}
+  - component: {fileID: 8735895527634102273}
   - component: {fileID: -1143628315260477134}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ModulosCajas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 7736184827339943089}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4995086918208145355
+--- !u!114 &8735895527634102273
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -50,7 +50,7 @@ MonoBehaviour:
   - {fileID: 1655783809102471251, guid: 6892d7b537e68ee45a49ad1d0d5ba8ba, type: 3}
   - {fileID: 8432847116082261676, guid: 26f202bb2556fd24195d8c336be3aaee, type: 3}
   - {fileID: 3905609266906443602, guid: 93736a6357f22e54d8c064968e163a26, type: 3}
-  indiceActual: 2
+  indiceActual: 0
 --- !u!64 &-1143628315260477134
 MeshCollider:
   m_ObjectHideFlags: 0

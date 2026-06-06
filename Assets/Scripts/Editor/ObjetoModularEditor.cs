@@ -47,9 +47,12 @@ public class ObjetoModularEditor : Editor
         GameObject prefabElegido = script.variantes[script.indiceActual];
         if (prefabElegido != null)
         {
-            GameObject nuevoModelo = (GameObject)PrefabUtility.InstantiatePrefab(prefabElegido);
-
+            //GameObject nuevoModelo = (GameObject)PrefabUtility.InstantiatePrefab(prefabElegido);
+            GameObject nuevoModelo = (GameObject)Instantiate(prefabElegido);
+            nuevoModelo.name = prefabElegido.name;
             nuevoModelo.transform.SetParent(script.transform, false);
+
+            SceneVisibilityManager.instance.DisablePicking(nuevoModelo, true);
 
             Undo.RegisterCreatedObjectUndo(nuevoModelo, "Aparecer nuevo modelo");
         }
