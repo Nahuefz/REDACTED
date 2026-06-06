@@ -8,16 +8,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/TestScenes/TEST_Enemy.unity
     guid: 381b6bf8c80d1f34db25f6954e891003
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SCN_Office_LVL.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 0
     path: Assets/Scenes/SCN_MainMenu.unity
     guid: b5b9b22fedc00604298762396522da32
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SCN_Archive_LVL.unity
     guid: b1aee3527eae75648a0e42eb091bcc54
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SCN_Tunels.unity
     guid: 3659ae70097f82a48a08301e5f7f756a
   - enabled: 0
