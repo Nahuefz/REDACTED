@@ -15,16 +15,19 @@ MonoBehaviour:
   nombrePorDefecto: Cubo
   dialogos:
   - nombrePersonaje: 
-    texto: Yo soy un Cubo, pero cuando los desarrolladores se pongan las pilas, quiero
-      ser arquitecto!
+    texto: Hola Galo! Como estas?
     imagen: {fileID: 0}
   - nombrePersonaje: 
-    texto: Ahora mismo solo existo.
+    texto: Este espacio va a ser el segundo puzzle. Un espacio infinito donde tengo
+      que interactuar con otros personajes.
     imagen: {fileID: 0}
   - nombrePersonaje: 
-    texto: En algun momento te dare algo importante, pero por ahora, no hay nada!
+    texto: Solo esta hecho el loop para que parezca infinito.
     imagen: {fileID: 0}
   - nombrePersonaje: 
-    texto: Hay que arreglar ese temita tambien.... Pero eu, te gusto el truquito,
-      no?
+    texto: "Pero la idea es a\xF1adir mas personajes y un acertijo de quien tiene
+      el objeto para robarselo."
+    imagen: {fileID: 0}
+  - nombrePersonaje: 
+    texto: Cualquier duda me puede preguntar por ds o mail!
     imagen: {fileID: 0}

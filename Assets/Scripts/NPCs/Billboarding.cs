@@ -11,9 +11,12 @@ public class Billboarding : MonoBehaviour
 
     void LateUpdate()
     {
+        if (mainCameraTransform == null) if (Camera.main != null) mainCameraTransform = Camera.main.transform;
+        else return;
+
         Vector3 targetPosition = new Vector3(mainCameraTransform.position.x,
-            transform.position.y,
-            mainCameraTransform.position.z);
+                    transform.position.y,
+                    mainCameraTransform.position.z);
         transform.LookAt(targetPosition);
     }
 }

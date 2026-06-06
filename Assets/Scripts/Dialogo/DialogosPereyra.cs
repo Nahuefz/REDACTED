@@ -74,15 +74,10 @@ public class DialogosPereyra : MonoBehaviour, IInteractable, IInterceptor
     {
         ReproducirSonidoRandom();
 
-        if (dialogosDirectos.Length > 0)
+        if (dialogosDirectos != null && dialogosDirectos.Length > 0)
         {
-            DialogueManager.Instance.EmpezarDialogo(dialogosDirectos[indiceDirecto], _cachedInventory, actoresEnEscena);
-
-            if (indiceDirecto < dialogosDirectos.Length - 1)
-            {
-                indiceDirecto++;
-                indiceIndirecto++;
-            }
+            int indiceDialogo = Random.Range(0, dialogosDirectos.Length);
+            DialogueManager.Instance.EmpezarDialogo(dialogosDirectos[indiceDialogo], _cachedInventory, actoresEnEscena);
         }
     }
 
@@ -119,12 +114,6 @@ public class DialogosPereyra : MonoBehaviour, IInteractable, IInterceptor
         {
             DialogueManager.Instance.EmpezarDialogo(dialogosIndirectos[indiceIndirecto], _cachedInventory, actoresEnEscena);
 
-            if (indiceIndirecto < dialogosIndirectos.Length - 1)
-            {
-                indiceIndirecto++;
-                indiceDirecto++;
-            }
-
             if (comportamientoRegreso != null)
             {
                 comportamientoRegreso.IniciarRegreso();
@@ -141,11 +130,6 @@ public class DialogosPereyra : MonoBehaviour, IInteractable, IInterceptor
             audioSource.clip = sonidosInteraccion[indice];
             audioSource.Play();
         }
-    }
-
-    public bool YaHabloConElJugador()
-    {
-        return indiceDirecto > 0 || indiceIndirecto > 0;
     }
 
     public void IniciarEscenaBanio(GameObject player)
