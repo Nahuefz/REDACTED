@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2115581614762501763}
   - component: {fileID: 8682731583879888108}
   - component: {fileID: 5199818187296373682}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CajaGrande
   m_TagString: Untagged
   m_Icon: {fileID: 0}
