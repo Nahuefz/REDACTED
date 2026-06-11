@@ -20,15 +20,15 @@ MonoBehaviour:
     ShadowClip: 0
     ShadowRangeMult: 0
     EnvironmentLightColor: {r: 0.9433962, g: 0.4123794, b: 0.24474904, a: 0}
-    EnvironmentLightIntensity: 0
-    EnvironmentLightInfluence: 0
+    EnvironmentLightIntensity: 0.46
+    EnvironmentLightInfluence: 0.683
   Skybox:
-    BaseColor: {r: 0.19223925, g: 0.40974566, b: 0.9056604, a: 0}
-    AccentColor: {r: 1, g: 0.810727, b: 0.7213191, a: 0}
-    StarsColor: {r: 0.032838106, g: 0.032838106, b: 0.032838106, a: 0}
+    BaseColor: {r: 0.8113208, g: 0.33939642, b: 0.14925243, a: 0}
+    AccentColor: {r: 0.8018868, g: 0.7912247, b: 0.40472588, a: 0}
+    StarsColor: {r: 0, g: 0, b: 0, a: 0}
     BandIntensity: 1.0834873
-    BandAdd: -0.22747649
-    BandHorizontalWidth: 0.3738835
+    BandAdd: -0
+    BandHorizontalWidth: 0.444
     BandContrast: 2.68
     StarmapDensity: 684
     StarmapScale: 0.055
@@ -36,14 +36,14 @@ MonoBehaviour:
     StarmapTilt: 60.32838
   Outline:
     ColorOutlineColor: {r: 0.030927373, g: 0.037088294, b: 0.047169805, a: 1}
-    ColorOutlineStrength: 3
-    ColorOutlineNoiseScale: 0
-    ColorOutlineNoiseIntensity: 0
-    ColorOutlineNoiseAdd: 0
+    ColorOutlineStrength: 0.4
+    ColorOutlineNoiseScale: 10
+    ColorOutlineNoiseIntensity: 5
+    ColorOutlineNoiseAdd: 1
     ColorOutlineClip: 1
     GeoOutlineColor: {r: 0.045167305, g: 0.052897085, b: 0.066037714, a: 1}
-    GeoOutlineNormalStrength: 0.73
-    GeoOutlineNormalCutoffMaskStrength: 8.17
+    GeoOutlineNormalStrength: 0.4
+    GeoOutlineNormalCutoffMaskStrength: 10
     GeoOutlineNormalCutoffMaskAdd: 5.66
     GeoOutlineDepthStrengthStart: 0.04
     GeoOutlineDepthStrengthEnd: 10
