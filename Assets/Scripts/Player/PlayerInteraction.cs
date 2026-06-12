@@ -23,6 +23,8 @@ public class PlayerInteraction : MonoBehaviour
         Debug.Log("Enable");
         inputActions.Enable();
         inputActions.Player.Interact.performed += EjecutarInteraccion;
+
+        inputActions.Player.Shoot.performed += EjecutarAtaque;
     }
 
     private void OnDisable()
@@ -30,6 +32,8 @@ public class PlayerInteraction : MonoBehaviour
         inputActions.Player.Interact.performed -= EjecutarInteraccion;
         inputActions.Disable();
         Debug.Log("Disable");
+
+        inputActions.Player.Shoot.performed -= EjecutarAtaque;
     }
 
 
@@ -52,6 +56,22 @@ public class PlayerInteraction : MonoBehaviour
         {
             Debug.Log("Interactua con: " + target.ToString());
             target.Interact(this.gameObject);
+        }
+    }
+
+    private void EjecutarAtaque(InputAction.CallbackContext context)
+    {
+        IInteractable target = null;
+
+        if (_interactRay != null && _interactRay.CurrentInteractable != null) target = _interactRay.CurrentInteractable;
+        else if (interactuableCercano != null) target = interactuableCercano;
+
+        if (target != null)
+        {
+            SurrealPuzzleNPC npc = target as SurrealPuzzleNPC;
+
+            if (npc != null) npc.RecibirAtaqueMortal();
+            else Debug.Log("El objetivo no puede atacar.");
         }
     }
 

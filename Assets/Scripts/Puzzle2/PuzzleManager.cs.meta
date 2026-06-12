@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 7d40c836ba0d5854cb6a626a58462e38
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - escenaAnteriorAsset: {instanceID: 0}
+  - itemRecompensaPrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
