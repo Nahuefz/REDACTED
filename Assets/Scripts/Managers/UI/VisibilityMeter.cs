@@ -27,7 +27,6 @@ public class VisibilityMeter : MonoBehaviour
 
     private void OnDisable()
     {
-        // Importante desuscribirse para evitar errores de memoria
         ShyEnemyBehaviour.OnVisibilityChanged -= UpdateVisibilityUI;
     }
 
