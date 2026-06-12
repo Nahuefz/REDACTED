@@ -23,6 +23,9 @@ namespace Enemy.ShyEnemy
         public Transform player;
         private int _currentWaypoint;
 
+        [Header("<color=white>Angry Enemy Trigger</color>")]
+        public AngryEnemy.AngryEnemyBehaviour angryEnemy;
+
         IEnemyState _currentState;
         public PatrolState PatrolState { get; private set; }
         public FleeState FleeState { get; private set; }
@@ -54,6 +57,11 @@ namespace Enemy.ShyEnemy
         // Variable para el control del tiempo (ponela arriba con las demás)
         private float _contactTimer = 0f;
 
+        public static event Action<float> OnVisibilityChanged;
+
+        public float DetectionProgress => timeToGetScared > 0 ? _contactTimer / timeToGetScared : 0;
+        public bool IsDetectingPlayer => _contactTimer > 0;
+
         private void OnTriggerStay(Collider other)
         {
             // Solo reaccionamos si estamos en PatrolState (si ya está huyendo, ignoramos)
@@ -62,10 +70,14 @@ namespace Enemy.ShyEnemy
             if (other.CompareTag("Player"))
             {
                 _contactTimer += Time.deltaTime;
+                
+                // Notificamos el cambio de visibilidad
+                OnVisibilityChanged?.Invoke(DetectionProgress);
 
                 if (_contactTimer >= timeToGetScared)
                 {
                     _contactTimer = 0f; // Reseteamos el reloj
+                    OnVisibilityChanged?.Invoke(0f); // Limpiamos el medidor al cambiar de estado
                     TransitionToState(FleeState); // ¡Pánico!
                 }
             }
@@ -77,6 +89,7 @@ namespace Enemy.ShyEnemy
             if (other.CompareTag("Player"))
             {
                 _contactTimer = 0f;
+                OnVisibilityChanged?.Invoke(0f);
             }
         }
 
@@ -90,5 +103,3 @@ public interface IEnemyState
     void UpdateState(); // Se ejecuta en cada frame (reemplaza al Update de Unity)
     void ExitState(); // Se ejecuta antes de cambiar a otro estado
 }
-// fue terrible amigo, me desperte y la tipa me rechazo y fue lo primero que lei en el dia. no me pude concetrar
-//full gemini, no me pregunten tecnicismos porque no entiendo nada

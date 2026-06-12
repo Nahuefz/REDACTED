@@ -13,7 +13,11 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
     public DialogoData dialogoAgradecimiento; // Justo al entregarlo
     public DialogoData dialogoYaCompletado;   // Cuando hablas después de entregar
     public GameObject objetoADesbloquear;     // Por ejemplo, una puerta o bloqueo
+    public bool introduccionHecha = false;    // ¿Ya dio su diálogo inicial?
     public bool yaEntregado = false;
+
+    [Header("Estado Lógico")]
+    public bool interaccionHabilitada = true;
 
     [Header("Audio")]
     public AudioSource audioSource;
@@ -37,6 +41,8 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
 
     public void Interact(GameObject interactor)
     {
+        if (!interaccionHabilitada) return;
+
         if (DialogueManager.Instance.EstaHablando())
         {
             DialogueManager.Instance.MostrarSiguienteOracion();
@@ -72,12 +78,23 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
     {
         ReproducirSonidoRandom();
 
-        // 1. ¿Es un NPC de misión?
-        if (objetoRequerido != null || tipoRequerido != ItemType.Default)
+        bool esMision = (objetoRequerido != null || tipoRequerido != ItemType.Default);
+
+        // 1. Si es de misión y NO ha dado la introducción, la damos primero.
+        if (esMision && !introduccionHecha && listaDialogos != null && listaDialogos.Length > 0)
+        {
+            // Usamos el primer diálogo como introducción
+            DialogueManager.Instance.EmpezarDialogo(listaDialogos[0], _cachedInventory, actoresEnEscena);
+            introduccionHecha = true;
+            return;
+        }
+
+        // 2. ¿Es un NPC de misión? (Ya pasó la intro o no tiene lista de diálogos iniciales)
+        if (esMision)
         {
             LogicaDeMision();
         }
-        // 2. Si no, es un NPC normal con diálogos aleatorios
+        // 3. Si no, es un NPC normal con diálogos aleatorios
         else if (listaDialogos != null && listaDialogos.Length > 0)
         {
             int indiceDialogo = Random.Range(0, listaDialogos.Length);
