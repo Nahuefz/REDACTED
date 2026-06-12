@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using Enemy.AngryEnemy;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
@@ -28,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _lookInputs;
     private float _xRotation = 0f;
     private bool shouldJump;
+    private bool _isRespawning = false;
 
     private void Awake()
     {
@@ -47,7 +50,8 @@ public class PlayerMovement : MonoBehaviour
         _moveInputs = _controls.Player.Move.ReadValue<Vector2>();
         _lookInputs = _controls.Player.Look.ReadValue<Vector2>();
 
-        //No Borrar esta linea, es importante para que no se mueva el Player mientras le hablan
+        // Bloqueamos el input si no puede moverse o está en diálogo
+        if (!canMove) return;
         if (DialogueManager.Instance != null && DialogueManager.Instance.EstaHablando()) return; 
 
         if (IsGrounded())
@@ -82,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //No Borrar esta linea tampoco, es importante para que no se mueva el Player mientras le hablan
+        if (!canMove) return;
         if (DialogueManager.Instance != null && DialogueManager.Instance.EstaHablando()) return;
 
         Vector3 moveDir = transform.forward * _moveInputs.y + transform.right * _moveInputs.x;
@@ -177,10 +181,38 @@ public class PlayerMovement : MonoBehaviour
 
     public void Respawn()
     {
-        transform.position = spawnPoint.position;
+        if (_isRespawning) return;
+        StartCoroutine(RespawnRoutine());
+    }
 
-        _rb.position = spawnPoint.position;
+    private IEnumerator RespawnRoutine()
+    {
+        _isRespawning = true;
+        canMove = false;
+        
+        // Detener físicamente al jugador
         _rb.linearVelocity = Vector3.zero;
         _rb.angularVelocity = Vector3.zero;
+        _rb.isKinematic = true;
+
+        TransitionFade fade = UnityEngine.Object.FindFirstObjectByType<TransitionFade>();
+
+        if (fade != null)
+        {
+            yield return StartCoroutine(fade.FadeToBlack());
+        }
+
+        // Opción recomendada: Recargar la escena para resetear todo el nivel
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
+        /* 
+        // Alternativa sin recargar escena (si prefieres solo mover al jugador):
+        // transform.position = spawnPoint.position;
+        // _rb.position = spawnPoint.position;
+        // _rb.isKinematic = false;
+        // if (fade != null) yield return StartCoroutine(fade.Fade(1f, 0f));
+        // canMove = true;
+        // _isRespawning = false;
+        */
     }
 }
