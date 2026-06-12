@@ -1,6 +1,6 @@
-using UnityEditor;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement; // Necesario para gestionar escenas
+using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
@@ -9,7 +9,6 @@ public class SceneChanger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Verificamos que el objeto que entr tenga el Tag "Player"
         if (other.CompareTag("Player"))
         {
             if (!string.IsNullOrEmpty(spawnIDDestino))
@@ -18,14 +17,25 @@ public class SceneChanger : MonoBehaviour
                 PlayerPrefs.Save();
             }
 
-            // Cargamos la siguiente escena
             ChangeScene(EscenaDestino);
         }
     }
 
-    void ChangeScene(GameScenes scene)
+    public void ChangeScene(GameScenes scene)
     {
-        string sceneName = scene.ToString();
+        StartCoroutine(ChangeSceneRoutine(scene.ToString()));
+    }
+
+    private IEnumerator ChangeSceneRoutine(string sceneName)
+    {
+        // Buscamos el componente en la escena actual
+        TransitionFade fade = Object.FindFirstObjectByType<TransitionFade>();
+
+        if (fade != null)
+        {
+            // Esperamos a que la pantalla se ponga negra
+            yield return StartCoroutine(fade.FadeToBlack());
+        }
 
         // Cargamos la escena
         SceneManager.LoadScene(sceneName);
