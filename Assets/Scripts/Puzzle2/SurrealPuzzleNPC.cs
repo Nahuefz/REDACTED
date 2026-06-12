@@ -8,6 +8,9 @@ public class SurrealPuzzleNPC : MonoBehaviour, IInteractable
     [Header("Dialogos Dinamicos")]
     public DialogoData[] dialogosPorEscenario;
 
+    [Header("Punto del Hueco")]
+    public Transform puntoHueco;
+
     public void Interact(GameObject player)
     {
         int objetivoActual = PuzzleManager.Instance.ObjetivoID;
@@ -26,7 +29,8 @@ public class SurrealPuzzleNPC : MonoBehaviour, IInteractable
 
     public void RecibirAtaqueMortal()
     {
-        PuzzleManager.Instance.IntentarAsesinato(miID, transform);
-        Destroy(gameObject);
+        Debug.Log("El NPC " + miID + " ha sido acusado.");
+        Vector3 posicionSuelo = puntoHueco != null ? puntoHueco.position : transform.position;
+        PuzzleManager.Instance.IntentarAsesinato(miID, this.gameObject, posicionSuelo);
     }
 }
