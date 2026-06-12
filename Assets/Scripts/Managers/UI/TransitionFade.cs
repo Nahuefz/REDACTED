@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class TransitionFade : MonoBehaviour
 {
     [SerializeField] private Image fadeImage;
-    [SerializeField] private float fadeTime = 1f;
+    [SerializeField] private float fadeTime;
 
     private void Start()
     {

@@ -1485,7 +1485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeImage: {fileID: 5116059919697315862}
-  fadeTime: 1.2
+  fadeTime: 0.5
 --- !u!223 &1081937860567740605
 Canvas:
   m_ObjectHideFlags: 0
