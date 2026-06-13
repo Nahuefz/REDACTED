@@ -607,6 +607,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 114564199}
   m_CullTransparentMesh: 1
+--- !u!1 &132623459 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5863211674482534188, guid: 652231b2f7d0b194ca56fc244d13fb7c, type: 3}
+  m_PrefabInstance: {fileID: 1819703729}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &132623460 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5589947599808945555, guid: 652231b2f7d0b194ca56fc244d13fb7c, type: 3}
+  m_PrefabInstance: {fileID: 1819703729}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &141875049
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4405,8 +4415,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1449438757}
   - {fileID: 728460712}
+  - {fileID: 132623460}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &578535615
@@ -5289,6 +5299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EscenaDestino: 0
+  spawnIDDestino: 
 --- !u!212 &728460711
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9325,7 +9336,7 @@ MonoBehaviour:
   cantidadDeNPCs: 5
   escenaAnteriorAsset: {fileID: 102900000, guid: 3659ae70097f82a48a08301e5f7f756a, type: 3}
   escenaAnterior: SCN_Tunels
-  itemRecompensaPrefab: {fileID: 1449438750}
+  itemRecompensaPrefab: {fileID: 132623459}
   sonidoAcierto: {fileID: 8300000, guid: 3fc501a35b4c41447bc444cc99263ee0, type: 3}
   huecoSalidaPrefab: {fileID: 728460708}
 --- !u!4 &1439164688
@@ -9418,16 +9429,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1442996995}
   m_CullTransparentMesh: 1
---- !u!1 &1449438750 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8640717360187007670, guid: 652231b2f7d0b194ca56fc244d13fb7c, type: 3}
-  m_PrefabInstance: {fileID: 1819703729}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1449438757 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8980791201658517516, guid: 652231b2f7d0b194ca56fc244d13fb7c, type: 3}
-  m_PrefabInstance: {fileID: 1819703729}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1458957840
 GameObject:
   m_ObjectHideFlags: 0
