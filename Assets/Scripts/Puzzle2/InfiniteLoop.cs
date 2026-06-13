@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class InfiniteLoop : MonoBehaviour
 {
-    private float mapSize = 24f;
+    public float mapSize = 24f;
     private float limit;
     private Rigidbody rb;
 

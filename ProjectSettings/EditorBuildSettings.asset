@@ -30,5 +30,6 @@ EditorBuildSettings:
     path: Assets/Scenes/SCN_PUZZLE2.unity
     guid: e430f23a653ef074498e8b712e76b48b
   m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: dafac8c02cdb08f47a5f04390694cdf9, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
