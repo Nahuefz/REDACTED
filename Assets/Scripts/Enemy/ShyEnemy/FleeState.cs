@@ -1,4 +1,5 @@
 using Enemy.Core;
+using UnityEngine;
 
 namespace Enemy.ShyEnemy
 {
@@ -16,7 +17,7 @@ namespace Enemy.ShyEnemy
             _enemy.Motor.SetSpeed(_enemy.fleeSpeed);
 
             if (_enemy.fleeWaypoint != null)
-                _enemy.Motor.MoveTo(_enemy.fleeWaypoint.position);
+                _enemy.Motor.MoveTo(_enemy.angryEnemyTransform.position);
         }
 
         public override void Update()

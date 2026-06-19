@@ -5979,6 +5979,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7246069336388206757, guid: 12c037769001b164a900668c78461c9c, type: 3}
+      propertyPath: angryEnemyTransform
+      value: 
+      objectReference: {fileID: 1853981015}
+    - target: {fileID: 7246069336388206757, guid: 12c037769001b164a900668c78461c9c, type: 3}
       propertyPath: patrolWaypoints.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -13432,6 +13436,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 28279459}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1853981015 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5779144455427107417, guid: eba919c09ee8ecb4798cef6d4bf9ff75, type: 3}
+  m_PrefabInstance: {fileID: 183056504}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1856064121
 GameObject:
   m_ObjectHideFlags: 0

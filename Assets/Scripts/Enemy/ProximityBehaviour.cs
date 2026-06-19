@@ -19,10 +19,10 @@ namespace Enemy
                 angryEnemy?.SetHuntTarget(other.transform);
         }
 
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.CompareTag("Player"))
-                angryEnemy?.ClearHuntTarget();
-        }
+        // private void OnTriggerExit(Collider other)
+        // {
+        //     if (other.CompareTag("Player"))
+        //         angryEnemy?.ClearHuntTarget();
+        // }
     }
 }
