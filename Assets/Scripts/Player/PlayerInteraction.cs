@@ -55,6 +55,7 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+
     private void OnTriggerEnter(Collider other)
     {
         IInteractable interactuable = other.GetComponent<IInteractable>();

@@ -25,7 +25,6 @@ public class WeaponController : MonoBehaviour
 
     void Update()
     {
- 
 
         if (DialogueManager.Instance != null && DialogueManager.Instance.EstaHablando()) return;
 
