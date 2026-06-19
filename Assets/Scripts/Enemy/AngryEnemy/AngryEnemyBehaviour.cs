@@ -1,37 +1,163 @@
-using System;
+using Enemy.Core;
 using UnityEngine;
 
 namespace Enemy.AngryEnemy
 {
-    [RequireComponent(typeof(EnemyBehaviour))]
+    [RequireComponent(typeof(EnemyMotor))]
+    [RequireComponent(typeof(EnemyHealth))]
     public class AngryEnemyBehaviour : MonoBehaviour
     {
-        private EnemyBehaviour _enemyBehaviour;
-        private GameObject _player;
+        [SerializeField, Range(1f, 10f)] private float moveSpeed = 7f;
+        [SerializeField, Range(0.1f, 1f)] private float patrolSpeedMultiplier = 0.3f;
+        [SerializeField] private float attackRange = 1.5f;
+        [SerializeField] private Transform playerTransform;
+        [SerializeField] private PlayerMovement player;
+
+        private IEnemyState _currentState;
+
+        public EnemyMotor Motor { get; private set; }
+        private AngryPatrolState PatrolState { get; set; }
+        private AngryChaseState ChaseState { get; set; }
+
+        public float MoveSpeed
+        {
+            get { return moveSpeed; }
+        }
+
+        public float PatrolSpeed
+        {
+            get { return moveSpeed * patrolSpeedMultiplier; }
+        }
+
+        public float AttackRange
+        {
+            get { return attackRange; }
+        }
+
+        public Transform HuntTarget { get; private set; }
 
         private void Awake()
         {
-            _enemyBehaviour = GetComponent<EnemyBehaviour>();
-            _player = GameObject.FindGameObjectWithTag("Player");
+            Motor = GetComponent<EnemyMotor>();
+            PatrolState = new AngryPatrolState(this);
+            ChaseState = new AngryChaseState(this);
+
+            ResolvePlayerReferences();
         }
 
-        public void TriggerHunt()
+        private void OnEnable()
         {
-            if (_enemyBehaviour != null && _player != null)
+            EnemyEvents.OnIntruderDetected += TriggerHunt;
+        }
+
+        private void OnDisable()
+        {
+            EnemyEvents.OnIntruderDetected -= TriggerHunt;
+        }
+
+        private void Start()
+        {
+            TransitionToState(PatrolState);
+        }
+
+        private void Update()
+        {
+            if (_currentState != null)
             {
-                Debug.Log("AngryEnemy: Hunting player!");
-                _enemyBehaviour.currentTarget = _player.transform;
-            }
-            else
-            {
-                Debug.LogWarning("AngryEnemy: Cannot hunt, missing EnemyBehaviour or Player tag.");
+                _currentState.Update();
             }
         }
 
-        public void ClearTarget()
+        private void FixedUpdate()
         {
-            Debug.Log("current target null");
-            _enemyBehaviour.currentTarget = null;
+            if (_currentState != null)
+            {
+                _currentState.FixedUpdate();
+            }
+        }
+
+        private void TransitionToState(IEnemyState newState)
+        {
+            if (_currentState != null)
+            {
+                _currentState.Exit();
+            }
+
+            _currentState = newState;
+
+            if (_currentState != null)
+            {
+                _currentState.Enter();
+            }
+        }
+
+        public void SetHuntTarget(Transform target)
+        {
+            if (target == null || !target.CompareTag("Player")) return;
+
+            HuntTarget = target;
+            TransitionToState(ChaseState);
+        }
+
+        public void ClearHuntTarget()
+        {
+            HuntTarget = null;
+            TransitionToState(PatrolState);
+        }
+
+        private void TriggerHunt()
+        {
+            if (playerTransform == null)
+            {
+                ResolvePlayerReferences();
+            }
+
+            if (playerTransform != null)
+            {
+                SetHuntTarget(playerTransform);
+            }
+        }
+
+        public void ResetAttackState()
+        {
+            ChaseState.ResetAttack();
+        }
+
+        public void DealDamageToPlayer()
+        {
+            ResetAttackState();
+
+            if (player != null)
+            {
+                player.Respawn();
+            }
+        }
+
+        public void ResumeMovement()
+        {
+            Motor.Resume();
+        }
+
+        private void ResolvePlayerReferences()
+        {
+            if (playerTransform != null && player == null)
+            {
+                player = playerTransform.GetComponent<PlayerMovement>();
+            }
+
+            if (playerTransform != null) return;
+
+            if (player != null)
+            {
+                playerTransform = player.transform;
+                return;
+            }
+
+            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+            if (playerObject == null) return;
+
+            playerTransform = playerObject.transform;
+            player = playerObject.GetComponent<PlayerMovement>();
         }
     }
 }

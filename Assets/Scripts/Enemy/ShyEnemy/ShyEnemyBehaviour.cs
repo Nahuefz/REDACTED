@@ -1,40 +1,82 @@
-using System;
+using Enemy.Core;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Enemy.ShyEnemy
 {
+    [RequireComponent(typeof(EnemyMotor))]
     public class ShyEnemyBehaviour : MonoBehaviour
     {
-        //parametros
         [Header("<color=white>Waypoints del Patrullaje</color>")]
         public Transform[] patrolWaypoints;
+        public Transform angryEnemyTransform;
 
-        public Transform fleeWaypoint;
+        [Space(2)]
+        [Header("<color=white>Parametros de movimiento</color>")]
+        public float patrolSpeed = 2f;
+        public float searchAngryEnemySpeed = 5f;
 
-        [Space(2)] [Header("<color=white>Parametros de deteccion</color>")]
-        public int patrolSpeed, fleeSpeed;
+        [Space(2)]
+        [Header("<color=white>Parametros de deteccion</color>")]
+        [SerializeField] private Camera playerCamera;
+        [SerializeField] private Transform visibilityPoint;
+        [SerializeField] private LayerMask visionBlockerMask;
+        [SerializeField] private float timeToGetScared = 2f;
+        [SerializeField] private float lookAtCameraSpeed = 360f;
+        [Space(2)] public float waypointWaitTime = 3f;
 
-        [SerializeField] private bool isScared;
-        [SerializeField] private float timeToGetScared;
-        [Space(2)] public NavMeshAgent aiAgent;
-        public float waypointWaitTime = 3f;
+        private IEnemyState _currentState;
+        private float _visibilityTimer;
 
-        public Transform player;
-        private int _currentWaypoint;
+        public EnemyMotor Motor { get; private set; }
+        public ShyPatrolState PatrolState { get; private set; }
+        private ShyFrozenState FrozenState { get; set; }
+        private SearchAngryEnemyState SearchAngryEnemyState { get; set; }
 
-        [Header("<color=white>Angry Enemy Trigger</color>")]
-        public AngryEnemy.AngryEnemyBehaviour angryEnemy;
+        public bool IsVisibleToPlayerCamera
+        {
+            get
+            {
+                ResolvePlayerCamera();
 
-        IEnemyState _currentState;
-        public PatrolState PatrolState { get; private set; }
-        public FleeState FleeState { get; private set; }
+                if (playerCamera == null) return false;
+
+                Vector3 targetPosition = visibilityPoint != null ? visibilityPoint.position : transform.position;
+                Vector3 viewportPoint = playerCamera.WorldToViewportPoint(targetPosition);
+
+                bool isInsideCameraView = viewportPoint.z > 0f &&
+                                          viewportPoint.x >= 0f && viewportPoint.x <= 1f &&
+                                          viewportPoint.y >= 0f && viewportPoint.y <= 1f;
+
+                if (!isInsideCameraView) return false;
+
+                return !IsViewBlocked(targetPosition);
+            }
+        }
+
+        public bool HasFinishedDetection
+        {
+            get { return _visibilityTimer >= timeToGetScared; }
+        }
+
+        private float DetectionProgress
+        {
+            get
+            {
+                if (timeToGetScared > 0f)
+                {
+                    return _visibilityTimer / timeToGetScared;
+                }
+
+                return 0f;
+            }
+        }
 
         private void Awake()
         {
-            aiAgent = GetComponent<NavMeshAgent>();
-            PatrolState = new PatrolState(this);
-            FleeState = new FleeState(this);
+            Motor = GetComponent<EnemyMotor>();
+            PatrolState = new ShyPatrolState(this);
+            FrozenState = new ShyFrozenState(this);
+            SearchAngryEnemyState = new SearchAngryEnemyState(this);
         }
 
         private void Start()
@@ -42,64 +84,98 @@ namespace Enemy.ShyEnemy
             TransitionToState(PatrolState);
         }
 
-        public void TransitionToState(IEnemyState newState)
-        {
-            _currentState?.ExitState();
-            _currentState = newState;
-            _currentState?.EnterState();
-        }
-
         private void Update()
         {
-            _currentState?.UpdateState();
-        }
-
-        // Variable para el control del tiempo (ponela arriba con las demás)
-        private float _contactTimer = 0f;
-
-        public static event Action<float> OnVisibilityChanged;
-
-        public float DetectionProgress => timeToGetScared > 0 ? _contactTimer / timeToGetScared : 0;
-        public bool IsDetectingPlayer => _contactTimer > 0;
-
-        private void OnTriggerStay(Collider other)
-        {
-            // Solo reaccionamos si estamos en PatrolState (si ya está huyendo, ignoramos)
-            if (_currentState != PatrolState) return;
-
-            if (other.CompareTag("Player"))
+            if (_currentState != null)
             {
-                _contactTimer += Time.deltaTime;
-                
-                // Notificamos el cambio de visibilidad
-                OnVisibilityChanged?.Invoke(DetectionProgress);
-
-                if (_contactTimer >= timeToGetScared)
-                {
-                    _contactTimer = 0f; // Reseteamos el reloj
-                    OnVisibilityChanged?.Invoke(0f); // Limpiamos el medidor al cambiar de estado
-                    TransitionToState(FleeState); // ¡Pánico!
-                }
+                _currentState.Update();
             }
         }
 
-        private void OnTriggerExit(Collider other)
+        public void TransitionToState(IEnemyState newState)
         {
-            // Si el jugador se aleja del collider antes de tiempo, reseteamos el contador
-            if (other.CompareTag("Player"))
+            if (_currentState != null)
             {
-                _contactTimer = 0f;
-                OnVisibilityChanged?.Invoke(0f);
+                _currentState.Exit();
+            }
+
+            _currentState = newState;
+
+            if (_currentState != null)
+            {
+                _currentState.Enter();
             }
         }
 
-        public void OnBulletCollision(){ Destroy(gameObject); }
+        public bool TryFreezeFromCameraVisibility()
+        {
+            if (_currentState != PatrolState) return false;
+
+            if (IsVisibleToPlayerCamera)
+            {
+                TransitionToState(FrozenState);
+                return true;
+            }
+
+            return false;
+        }
+
+        public void IncreaseDetection(float deltaTime)
+        {
+            _visibilityTimer += deltaTime;
+            EnemyEvents.RaiseShyVisibilityChanged(DetectionProgress);
+        }
+
+        public void LookAtPlayerCamera()
+        {
+            ResolvePlayerCamera();
+
+            if (playerCamera == null) return;
+
+            Vector3 direction = playerCamera.transform.position - transform.position;
+            direction.y = 0f;
+
+            if (direction == Vector3.zero) return;
+
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.RotateTowards(
+                transform.rotation,
+                targetRotation,
+                lookAtCameraSpeed * Time.deltaTime
+            );
+        }
+
+        public void StopDetecting()
+        {
+            _visibilityTimer = 0f;
+            EnemyEvents.RaiseShyVisibilityChanged(0f);
+            TransitionToState(PatrolState);
+        }
+
+        public void SearchAngryEnemy()
+        {
+            _visibilityTimer = 0f;
+            EnemyEvents.RaiseShyVisibilityChanged(0f);
+            TransitionToState(SearchAngryEnemyState);
+        }
+
+        private void ResolvePlayerCamera()
+        {
+            if (playerCamera != null) return;
+
+            playerCamera = Camera.main;
+        }
+
+        private bool IsViewBlocked(Vector3 targetPosition)
+        {
+            Vector3 cameraPosition = playerCamera.transform.position;
+
+            return Physics.Linecast(
+                cameraPosition,
+                targetPosition,
+                visionBlockerMask,
+                QueryTriggerInteraction.Ignore
+            );
+        }
     }
-}
-
-public interface IEnemyState
-{
-    void EnterState(); // Se ejecuta al entrar al estado
-    void UpdateState(); // Se ejecuta en cada frame (reemplaza al Update de Unity)
-    void ExitState(); // Se ejecuta antes de cambiar a otro estado
 }
