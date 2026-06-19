@@ -19,7 +19,7 @@ namespace Enemy.ShyEnemy
 
         public override void Update()
         {
-            if (_enemy.DetectedPlayer == null)
+            if (_enemy.DetectedPlayer == null || !_enemy.CanSeeDetectedPlayer())
             {
                 _enemy.StopDetectingPlayer();
                 return;

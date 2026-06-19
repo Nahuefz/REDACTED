@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -24.84243, y: 0.79, z: -12.05109}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3818, y: 1.3818, z: 1.3818}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2577038786525355142}
@@ -77,9 +77,15 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   fleeWaypoint: {fileID: 0}
+  angryEnemyTransform: {fileID: 0}
   patrolSpeed: 5
   fleeSpeed: 8
   timeToGetScared: 3
+  lookAtPlayerSpeed: 360
+  lineOfSightOrigin: {fileID: 0}
+  visionBlockerMask:
+    serializedVersion: 2
+    m_Bits: 0
   waypointWaitTime: 3
 --- !u!65 &3443688541539698976
 BoxCollider:
@@ -100,7 +106,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.3480372, y: 1, z: 7.988153}
+  m_Size: {x: 11.578545, y: 1, z: 11.364769}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6891535561759545763
 MonoBehaviour:

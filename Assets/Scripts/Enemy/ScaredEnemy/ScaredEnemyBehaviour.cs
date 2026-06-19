@@ -18,6 +18,8 @@ namespace Enemy.ShyEnemy
 
         [SerializeField] private float timeToGetScared;
         [SerializeField] private float lookAtPlayerSpeed = 360f;
+        [SerializeField] private Transform lineOfSightOrigin;
+        [SerializeField] private LayerMask visionBlockerMask;
         [Space(2)] public float waypointWaitTime = 3f;
 
         private IEnemyState _currentState;
@@ -82,6 +84,21 @@ namespace Enemy.ShyEnemy
         {
             _contactTimer += deltaTime;
             EnemyEvents.RaiseShyVisibilityChanged(DetectionProgress);
+        }
+
+        public bool CanSeeDetectedPlayer()
+        {
+            if (DetectedPlayer == null) return false;
+
+            Vector3 origin = lineOfSightOrigin != null ? lineOfSightOrigin.position : transform.position;
+            Vector3 target = DetectedPlayer.position;
+
+            return !Physics.Linecast(
+                origin,
+                target,
+                visionBlockerMask,
+                QueryTriggerInteraction.Ignore
+            );
         }
 
         public bool HasFinishedDetection
@@ -151,6 +168,13 @@ namespace Enemy.ShyEnemy
             if (!other.CompareTag("Player")) return;
 
             DetectedPlayer = other.transform;
+
+            if (!CanSeeDetectedPlayer())
+            {
+                DetectedPlayer = null;
+                return;
+            }
+
             TransitionToState(FrozenState);
         }
     }
