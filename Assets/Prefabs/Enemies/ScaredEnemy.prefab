@@ -85,8 +85,8 @@ MonoBehaviour:
   lineOfSightOrigin: {fileID: 0}
   visionBlockerMask:
     serializedVersion: 2
-    m_Bits: 0
-  waypointWaitTime: 3
+    m_Bits: 512
+  waypointWaitTime: 3.5
 --- !u!65 &3443688541539698976
 BoxCollider:
   m_ObjectHideFlags: 0
