@@ -1,25 +1,22 @@
+using Enemy.AngryEnemy;
 using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    private EnemyBehaviour _enemyBehaviour;
+    private AngryEnemyBehaviour _angryEnemy;
 
     private void Awake()
     {
-        // Corregido: asignamos la referencia correctamente
-        _enemyBehaviour = GetComponentInParent<EnemyBehaviour>();
+        _angryEnemy = GetComponentInParent<AngryEnemyBehaviour>();
     }
 
     public void DealDamage()
     {
-        if (_enemyBehaviour != null)
-        {
-            _enemyBehaviour.DealDamage();
-        }
+        _angryEnemy?.DealDamageToPlayer();
     }
 
     public void StopAttacking()
     {
-        _enemyBehaviour.StopAttack();
+        _angryEnemy?.ResumeMovement();
     }
 }

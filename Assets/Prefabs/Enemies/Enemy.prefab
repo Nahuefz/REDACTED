@@ -9,10 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5858818338464074939}
-  - component: {fileID: 5046511851285843680}
   - component: {fileID: 9031515604820068008}
   - component: {fileID: 2685118211012600404}
   - component: {fileID: 1572381284090604454}
+  - component: {fileID: 7870002883738921319}
+  - component: {fileID: 763952417882539260}
+  - component: {fileID: 9132143409412439914}
+  - component: {fileID: 9174804142412733413}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -37,22 +40,6 @@ Transform:
   - {fileID: 4236696086728458917}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5046511851285843680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 317647405221829123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6946f1b79ba4c347bd3a8e656566c16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentTarget: {fileID: 0}
-  enemySpeed: 6.27
-  attackRange: 1.5
-  enemyLife: 1
 --- !u!195 &9031515604820068008
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -125,6 +112,60 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &7870002883738921319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317647405221829123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55450311b6d988740b2b019cc117c536, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &763952417882539260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317647405221829123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1211da91d73f28648b2d3c68dff4746b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLife: 1
+--- !u!114 &9132143409412439914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317647405221829123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e98013587867cf246b5dbad80bf5706f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 7
+  patrolSpeedMultiplier: 0.3
+  attackRange: 1.5
+  playerTransform: {fileID: 0}
+  player: {fileID: 0}
+--- !u!114 &9174804142412733413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317647405221829123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23b2d9762feb7ad479501660edac5ca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9116056484946121526
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1309c3c0d5163944a4ee5030524e1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 5046511851285843680}
+  angryEnemy: {fileID: 0}
 --- !u!1001 &6130122103004223153
 PrefabInstance:
   m_ObjectHideFlags: 0
