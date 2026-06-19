@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1849135282026753187}
   - component: {fileID: 7246069336388206757}
   - component: {fileID: 3443688541539698976}
+  - component: {fileID: 6891535561759545763}
   m_Layer: 8
   m_Name: ShyEnemy
   m_TagString: Untagged
@@ -78,11 +79,8 @@ MonoBehaviour:
   fleeWaypoint: {fileID: 0}
   patrolSpeed: 5
   fleeSpeed: 8
-  isScared: 0
   timeToGetScared: 3
-  aiAgent: {fileID: 0}
   waypointWaitTime: 3
-  player: {fileID: 0}
 --- !u!65 &3443688541539698976
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -104,6 +102,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.3480372, y: 1, z: 7.988153}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6891535561759545763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732392453991931576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55450311b6d988740b2b019cc117c536, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5991211547249371721
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,6 +126,8 @@ GameObject:
   - component: {fileID: 1736211903111050478}
   - component: {fileID: 5989419192877321356}
   - component: {fileID: 1189621218779217544}
+  - component: {fileID: 8129442753472798206}
+  - component: {fileID: 8131378792508836044}
   m_Layer: 8
   m_Name: Mesh
   m_TagString: Untagged
@@ -214,3 +226,28 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8129442753472798206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5991211547249371721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1211da91d73f28648b2d3c68dff4746b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLife: 1
+--- !u!114 &8131378792508836044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5991211547249371721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23b2d9762feb7ad479501660edac5ca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

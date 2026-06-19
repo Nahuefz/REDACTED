@@ -1,105 +1,73 @@
-using System;
+using Enemy.Core;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Enemy.ShyEnemy
 {
+    [RequireComponent(typeof(EnemyMotor))]
     public class ShyEnemyBehaviour : MonoBehaviour
     {
-        //parametros
         [Header("<color=white>Waypoints del Patrullaje</color>")]
         public Transform[] patrolWaypoints;
 
         public Transform fleeWaypoint;
 
-        [Space(2)] [Header("<color=white>Parametros de deteccion</color>")]
+        [Space(2)]
+        [Header("<color=white>Parametros de deteccion</color>")]
         public int patrolSpeed, fleeSpeed;
 
-        [SerializeField] private bool isScared;
         [SerializeField] private float timeToGetScared;
-        [Space(2)] public NavMeshAgent aiAgent;
-        public float waypointWaitTime = 3f;
+        [Space(2)] public float waypointWaitTime = 3f;
 
-        public Transform player;
-        private int _currentWaypoint;
+        private IEnemyState _currentState;
+        private float _contactTimer;
 
-        [Header("<color=white>Angry Enemy Trigger</color>")]
-        public AngryEnemy.AngryEnemyBehaviour angryEnemy;
-
-        IEnemyState _currentState;
+        public EnemyMotor Motor { get; private set; }
         public PatrolState PatrolState { get; private set; }
         public FleeState FleeState { get; private set; }
-
-        private void Awake()
-        {
-            aiAgent = GetComponent<NavMeshAgent>();
-            PatrolState = new PatrolState(this);
-            FleeState = new FleeState(this);
-        }
-
-        private void Start()
-        {
-            TransitionToState(PatrolState);
-        }
-
-        public void TransitionToState(IEnemyState newState)
-        {
-            _currentState?.ExitState();
-            _currentState = newState;
-            _currentState?.EnterState();
-        }
-
-        private void Update()
-        {
-            _currentState?.UpdateState();
-        }
-
-        // Variable para el control del tiempo (ponela arriba con las demás)
-        private float _contactTimer = 0f;
-
-        public static event Action<float> OnVisibilityChanged;
 
         public float DetectionProgress => timeToGetScared > 0 ? _contactTimer / timeToGetScared : 0;
         public bool IsDetectingPlayer => _contactTimer > 0;
 
+        private void Awake()
+        {
+            Motor = GetComponent<EnemyMotor>();
+            PatrolState = new PatrolState(this);
+            FleeState = new FleeState(this);
+        }
+
+        private void Start() => TransitionToState(PatrolState);
+
+        private void Update() => _currentState?.Update();
+
+        public void TransitionToState(IEnemyState newState)
+        {
+            _currentState?.Exit();
+            _currentState = newState;
+            _currentState?.Enter();
+        }
+
         private void OnTriggerStay(Collider other)
         {
-            // Solo reaccionamos si estamos en PatrolState (si ya está huyendo, ignoramos)
             if (_currentState != PatrolState) return;
 
-            if (other.CompareTag("Player"))
-            {
-                _contactTimer += Time.deltaTime;
-                
-                // Notificamos el cambio de visibilidad
-                OnVisibilityChanged?.Invoke(DetectionProgress);
+            if (!other.CompareTag("Player")) return;
 
-                if (_contactTimer >= timeToGetScared)
-                {
-                    _contactTimer = 0f; // Reseteamos el reloj
-                    OnVisibilityChanged?.Invoke(0f); // Limpiamos el medidor al cambiar de estado
-                    TransitionToState(FleeState); // ¡Pánico!
-                }
-            }
+            _contactTimer += Time.deltaTime;
+            EnemyEvents.RaiseShyVisibilityChanged(DetectionProgress);
+
+            if (_contactTimer < timeToGetScared) return;
+
+            _contactTimer = 0f;
+            EnemyEvents.RaiseShyVisibilityChanged(0f);
+            TransitionToState(FleeState);
         }
 
         private void OnTriggerExit(Collider other)
         {
-            // Si el jugador se aleja del collider antes de tiempo, reseteamos el contador
-            if (other.CompareTag("Player"))
-            {
-                _contactTimer = 0f;
-                OnVisibilityChanged?.Invoke(0f);
-            }
+            if (!other.CompareTag("Player")) return;
+
+            _contactTimer = 0f;
+            EnemyEvents.RaiseShyVisibilityChanged(0f);
         }
-
-        public void OnBulletCollision(){ Destroy(gameObject); }
     }
-}
-
-public interface IEnemyState
-{
-    void EnterState(); // Se ejecuta al entrar al estado
-    void UpdateState(); // Se ejecuta en cada frame (reemplaza al Update de Unity)
-    void ExitState(); // Se ejecuta antes de cambiar a otro estado
 }

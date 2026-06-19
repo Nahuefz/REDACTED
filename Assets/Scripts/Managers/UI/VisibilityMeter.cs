@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
-using Enemy.ShyEnemy;
+using Enemy.Core;
 
 public class VisibilityMeter : MonoBehaviour
 {
@@ -22,12 +22,12 @@ public class VisibilityMeter : MonoBehaviour
     private void OnEnable()
     {
         // Nos suscribimos al evento estático de los enemigos tímidos
-        ShyEnemyBehaviour.OnVisibilityChanged += UpdateVisibilityUI;
+        EnemyEvents.OnShyVisibilityChanged += UpdateVisibilityUI;
     }
 
     private void OnDisable()
     {
-        ShyEnemyBehaviour.OnVisibilityChanged -= UpdateVisibilityUI;
+        EnemyEvents.OnShyVisibilityChanged -= UpdateVisibilityUI;
     }
 
     private void UpdateVisibilityUI(float progress)

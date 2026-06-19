@@ -1,10 +1,8 @@
-using System;
-using Unity.Mathematics;
-using UnityEngine;
+using Enemy.Core;
 
 namespace Enemy.ShyEnemy
 {
-    public class FleeState : IEnemyState
+    public class FleeState : EnemyStateBase
     {
         private readonly ShyEnemyBehaviour _enemy;
 
@@ -13,46 +11,20 @@ namespace Enemy.ShyEnemy
             _enemy = enemy;
         }
 
-        public void EnterState()
+        public override void Enter()
         {
-            // 1. Le subimos la velocidad para que corra
-            _enemy.aiAgent.speed = _enemy.fleeSpeed;
+            _enemy.Motor.SetSpeed(_enemy.fleeSpeed);
 
-            // 2. Lo mandamos directo a la guarida
             if (_enemy.fleeWaypoint != null)
-            {
-                _enemy.aiAgent.SetDestination(_enemy.fleeWaypoint.position);
-            }
-
-            Debug.Log("¡A correr! Huyendo a la guarida...");
+                _enemy.Motor.MoveTo(_enemy.fleeWaypoint.position);
         }
 
-        public void UpdateState()
+        public override void Update()
         {
-            // Chequeamos si ya llegó a la guarida
-            if (!_enemy.aiAgent.pathPending && _enemy.aiAgent.remainingDistance < 0.5f)
-            {
-                // Llegó a salvo.
-                Debug.Log("Llegué a la guarida, ¡busquen al intruso!");
-                
-                // Trigger AngryEnemy
-                if (_enemy.angryEnemy != null)
-                {
-                    _enemy.angryEnemy.TriggerHunt();
-                }
-                else
-                {
-                    Debug.LogWarning("ShyEnemy: No AngryEnemy assigned to trigger!");
-                }
+            if (!_enemy.Motor.HasReachedDestination()) return;
 
-                _enemy.TransitionToState(_enemy.PatrolState);
-            }
-        }
-
-        public void ExitState()
-        {
-            // Limpieza al salir del estado de pánico (si hace falta)
-            Debug.Log("Ya me calé, vuelvo a mis asuntos.");
+            EnemyEvents.RaiseIntruderDetected();
+            _enemy.TransitionToState(_enemy.PatrolState);
         }
     }
 }

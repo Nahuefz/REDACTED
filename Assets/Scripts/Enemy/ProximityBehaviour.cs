@@ -1,36 +1,28 @@
+using Enemy.AngryEnemy;
 using UnityEngine;
 
 namespace Enemy
 {
     public class ProximityBehaviour : MonoBehaviour
     {
-        [SerializeField] private EnemyBehaviour enemy;
+        [SerializeField] private AngryEnemyBehaviour angryEnemy;
 
-        private void Start()
+        private void Awake()
         {
-            if (enemy == null) enemy = GetComponentInParent<EnemyBehaviour>();
+            if (angryEnemy == null)
+                angryEnemy = GetComponentInParent<AngryEnemyBehaviour>();
         }
-        
-        //private void Update()
-        
-        #region OnTriggerMethods
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))
-            {
-                Debug.Log("Player collided");
-                enemy.currentTarget = other.transform;
-            }
+                angryEnemy?.SetHuntTarget(other.transform);
         }
 
         private void OnTriggerExit(Collider other)
         {
             if (other.CompareTag("Player"))
-            {
-                Debug.Log("Player collided exit");
-                enemy.currentTarget = null;
-            }
+                angryEnemy?.ClearHuntTarget();
         }
-        #endregion
     }
 }

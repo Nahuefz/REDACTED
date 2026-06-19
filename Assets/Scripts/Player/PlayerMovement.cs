@@ -135,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (angryEnemy != null)
             {
-                angryEnemy.ClearTarget();
+                angryEnemy.ClearHuntTarget();
             }
             
             Respawn();
