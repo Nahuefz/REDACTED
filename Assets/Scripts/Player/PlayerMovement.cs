@@ -125,7 +125,7 @@ public class PlayerMovement : MonoBehaviour
             Respawn();
         }
 
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("EnemyCollision"))
         {
             Debug.Log($"Colision con enemigo {other.gameObject.name}");
             
@@ -135,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (angryEnemy != null)
             {
-                angryEnemy.ClearTarget();
+                angryEnemy.ClearHuntTarget();
             }
             
             Respawn();

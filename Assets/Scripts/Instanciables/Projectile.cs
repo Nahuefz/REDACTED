@@ -1,3 +1,4 @@
+using Enemy.Core;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -45,20 +46,13 @@ public class Projectile : MonoBehaviour
         // 1. Ignorar jugador y otras balas
         if (other.CompareTag("Player") || other.CompareTag("Bullet")) return;
 
-        // 2. Si chocamos con un Trigger (como la zona de deteccin del ShyEnemy)
-        if (other.isTrigger)
+        if (other.GetComponent<EnemyDamageReceiver>() != null || other.GetComponent<EnemyHealth>() != null)
         {
-            // Solo nos desactivamos si el Trigger tiene un componente de enemigo
-            // Esto permite atravesar zonas de deteccin pero chocar con el "cuerpo" si este es trigger
-            if (other.GetComponent<Enemy.ShyEnemy.ShyEnemyBody>() != null || 
-                other.GetComponent<EnemyBehaviour>() != null)
-            {
-                Deactivate();
-            }
-            return; // Si es cualquier otro trigger, lo atravesamos
+            Deactivate();
+            return;
         }
 
-        // 3. Si llegamos aqu, es algo slido (Pared, Suelo, Mesh no-trigger)
+        if (other.isTrigger) return;
         Deactivate();
     }
 
