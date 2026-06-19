@@ -8,7 +8,10 @@ namespace Enemy.Core
 
         private int _currentLife;
 
-        private void Awake() => _currentLife = maxLife;
+        private void Awake()
+        {
+            _currentLife = maxLife;
+        }
 
         public void TakeBulletHit()
         {

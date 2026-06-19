@@ -60,6 +60,9 @@ namespace Enemy.AngryEnemy
             _enemy.Motor.Resume();
         }
 
-        public void ResetAttack() => _isAttacking = false;
+        public void ResetAttack()
+        {
+            _isAttacking = false;
+        }
     }
 }

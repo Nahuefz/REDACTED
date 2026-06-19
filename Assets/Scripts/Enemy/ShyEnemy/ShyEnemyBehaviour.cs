@@ -23,10 +23,25 @@ namespace Enemy.ShyEnemy
 
         public EnemyMotor Motor { get; private set; }
         public PatrolState PatrolState { get; private set; }
-        public FleeState FleeState { get; private set; }
+        private FleeState FleeState { get; set; }
 
-        public float DetectionProgress => timeToGetScared > 0 ? _contactTimer / timeToGetScared : 0;
-        public bool IsDetectingPlayer => _contactTimer > 0;
+        private float DetectionProgress
+        {
+            get
+            {
+                if (timeToGetScared > 0)
+                {
+                    return _contactTimer / timeToGetScared;
+                }
+
+                return 0f;
+            }
+        }
+
+        public bool IsDetectingPlayer
+        {
+            get { return _contactTimer > 0; }
+        }
 
         private void Awake()
         {
@@ -35,15 +50,32 @@ namespace Enemy.ShyEnemy
             FleeState = new FleeState(this);
         }
 
-        private void Start() => TransitionToState(PatrolState);
+        private void Start()
+        {
+            TransitionToState(PatrolState);
+        }
 
-        private void Update() => _currentState?.Update();
+        private void Update()
+        {
+            if (_currentState != null)
+            {
+                _currentState.Update();
+            }
+        }
 
         public void TransitionToState(IEnemyState newState)
         {
-            _currentState?.Exit();
+            if (_currentState != null)
+            {
+                _currentState.Exit();
+            }
+
             _currentState = newState;
-            _currentState?.Enter();
+
+            if (_currentState != null)
+            {
+                _currentState.Enter();
+            }
         }
 
         private void OnTriggerStay(Collider other)

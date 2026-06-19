@@ -45,7 +45,10 @@ namespace Enemy.ShyEnemy
             }
         }
 
-        public override void Exit() => _isWaiting = false;
+        public override void Exit()
+        {
+            _isWaiting = false;
+        }
 
         private void SetDestinationToWaypoint()
         {

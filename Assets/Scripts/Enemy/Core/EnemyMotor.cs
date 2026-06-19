@@ -10,7 +10,10 @@ namespace Enemy.Core
         private NavMeshAgent _agent;
         private Animator _animator;
 
-        public NavMeshAgent Agent => _agent;
+        public NavMeshAgent Agent
+        {
+            get { return _agent; }
+        }
 
         private void Awake()
         {
@@ -18,9 +21,15 @@ namespace Enemy.Core
             _animator = GetComponentInChildren<Animator>();
         }
 
-        public void SetSpeed(float speed) => _agent.speed = speed;
+        public void SetSpeed(float speed)
+        {
+            _agent.speed = speed;
+        }
 
-        public void SetAngularSpeed(float speed) => _agent.angularSpeed = speed;
+        public void SetAngularSpeed(float speed)
+        {
+            _agent.angularSpeed = speed;
+        }
 
         public void MoveTo(Vector3 destination)
         {
@@ -28,9 +37,15 @@ namespace Enemy.Core
             _agent.SetDestination(destination);
         }
 
-        public void Stop() => _agent.isStopped = true;
+        public void Stop()
+        {
+            _agent.isStopped = true;
+        }
 
-        public void Resume() => _agent.isStopped = false;
+        public void Resume()
+        {
+            _agent.isStopped = false;
+        }
 
         public bool HasReachedDestination(float threshold = 0.5f)
         {
@@ -48,7 +63,10 @@ namespace Enemy.Core
 
         public void SetAnimationTrigger(string triggerName)
         {
-            if (_animator != null) _animator.SetTrigger(triggerName);
+            if (_animator != null)
+            {
+                _animator.SetTrigger(triggerName);
+            }
         }
 
         public void FaceTarget(Transform target, float rotationSpeed)
@@ -75,7 +93,9 @@ namespace Enemy.Core
                 Vector3 targetPos = transform.position + new Vector3(randomCircle.x, 0, randomCircle.y);
 
                 if (NavMesh.SamplePosition(targetPos, out NavMeshHit hit, 5f, NavMesh.AllAreas))
+                {
                     return hit.position;
+                }
             }
 
             return transform.position;

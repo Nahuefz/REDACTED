@@ -16,12 +16,24 @@ namespace Enemy.AngryEnemy
         private IEnemyState _currentState;
 
         public EnemyMotor Motor { get; private set; }
-        public AngryPatrolState PatrolState { get; private set; }
-        public AngryChaseState ChaseState { get; private set; }
+        private AngryPatrolState PatrolState { get; set; }
+        private AngryChaseState ChaseState { get; set; }
 
-        public float MoveSpeed => moveSpeed;
-        public float PatrolSpeed => moveSpeed * patrolSpeedMultiplier;
-        public float AttackRange => attackRange;
+        public float MoveSpeed
+        {
+            get { return moveSpeed; }
+        }
+
+        public float PatrolSpeed
+        {
+            get { return moveSpeed * patrolSpeedMultiplier; }
+        }
+
+        public float AttackRange
+        {
+            get { return attackRange; }
+        }
+
         public Transform HuntTarget { get; private set; }
 
         private void Awake()
@@ -33,21 +45,50 @@ namespace Enemy.AngryEnemy
             ResolvePlayerReferences();
         }
 
-        private void OnEnable() => EnemyEvents.OnIntruderDetected += TriggerHunt;
-
-        private void OnDisable() => EnemyEvents.OnIntruderDetected -= TriggerHunt;
-
-        private void Start() => TransitionToState(PatrolState);
-
-        private void Update() => _currentState?.Update();
-
-        private void FixedUpdate() => _currentState?.FixedUpdate();
-
-        public void TransitionToState(IEnemyState newState)
+        private void OnEnable()
         {
-            _currentState?.Exit();
+            EnemyEvents.OnIntruderDetected += TriggerHunt;
+        }
+
+        private void OnDisable()
+        {
+            EnemyEvents.OnIntruderDetected -= TriggerHunt;
+        }
+
+        private void Start()
+        {
+            TransitionToState(PatrolState);
+        }
+
+        private void Update()
+        {
+            if (_currentState != null)
+            {
+                _currentState.Update();
+            }
+        }
+
+        private void FixedUpdate()
+        {
+            if (_currentState != null)
+            {
+                _currentState.FixedUpdate();
+            }
+        }
+
+        private void TransitionToState(IEnemyState newState)
+        {
+            if (_currentState != null)
+            {
+                _currentState.Exit();
+            }
+
             _currentState = newState;
-            _currentState?.Enter();
+
+            if (_currentState != null)
+            {
+                _currentState.Enter();
+            }
         }
 
         public void SetHuntTarget(Transform target)
@@ -64,7 +105,7 @@ namespace Enemy.AngryEnemy
             TransitionToState(PatrolState);
         }
 
-        public void TriggerHunt()
+        private void TriggerHunt()
         {
             if (playerTransform == null)
             {
@@ -72,23 +113,37 @@ namespace Enemy.AngryEnemy
             }
 
             if (playerTransform != null)
+            {
                 SetHuntTarget(playerTransform);
+            }
         }
 
-        public void ResetAttackState() => ChaseState.ResetAttack();
+        public void ResetAttackState()
+        {
+            ChaseState.ResetAttack();
+        }
 
         public void DealDamageToPlayer()
         {
             ResetAttackState();
-            player?.Respawn();
+
+            if (player != null)
+            {
+                player.Respawn();
+            }
         }
 
-        public void ResumeMovement() => Motor.Resume();
+        public void ResumeMovement()
+        {
+            Motor.Resume();
+        }
 
         private void ResolvePlayerReferences()
         {
             if (playerTransform != null && player == null)
+            {
                 player = playerTransform.GetComponent<PlayerMovement>();
+            }
 
             if (playerTransform != null) return;
 
@@ -98,7 +153,7 @@ namespace Enemy.AngryEnemy
                 return;
             }
 
-            var playerObject = GameObject.FindGameObjectWithTag("Player");
+            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
             if (playerObject == null) return;
 
             playerTransform = playerObject.transform;
