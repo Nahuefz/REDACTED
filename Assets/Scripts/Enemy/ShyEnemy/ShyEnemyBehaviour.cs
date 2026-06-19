@@ -8,34 +8,63 @@ namespace Enemy.ShyEnemy
     {
         [Header("<color=white>Waypoints del Patrullaje</color>")]
         public Transform[] patrolWaypoints;
-
-        public Transform fleeWaypoint;
         public Transform angryEnemyTransform;
-        
+
+        [Space(2)]
+        [Header("<color=white>Parametros de movimiento</color>")]
+        public float patrolSpeed = 2f;
+        public float searchAngryEnemySpeed = 5f;
+
         [Space(2)]
         [Header("<color=white>Parametros de deteccion</color>")]
-        public int patrolSpeed, fleeSpeed;
-
-        [SerializeField] private float timeToGetScared;
-        [SerializeField] private float lookAtPlayerSpeed = 360f;
+        [SerializeField] private Camera playerCamera;
+        [SerializeField] private Transform visibilityPoint;
+        [SerializeField] private LayerMask visionBlockerMask;
+        [SerializeField] private float timeToGetScared = 2f;
+        [SerializeField] private float lookAtCameraSpeed = 360f;
         [Space(2)] public float waypointWaitTime = 3f;
 
         private IEnemyState _currentState;
-        private float _contactTimer;
+        private float _visibilityTimer;
 
         public EnemyMotor Motor { get; private set; }
-        public PatrolState PatrolState { get; private set; }
-        private FrozenState FrozenState { get; set; }
-        private FleeState FleeState { get; set; }
-        public Transform DetectedPlayer { get; private set; }
+        public ShyPatrolState PatrolState { get; private set; }
+        private ShyFrozenState FrozenState { get; set; }
+        private SearchAngryEnemyState SearchAngryEnemyState { get; set; }
+
+        public bool IsVisibleToPlayerCamera
+        {
+            get
+            {
+                ResolvePlayerCamera();
+
+                if (playerCamera == null) return false;
+
+                Vector3 targetPosition = visibilityPoint != null ? visibilityPoint.position : transform.position;
+                Vector3 viewportPoint = playerCamera.WorldToViewportPoint(targetPosition);
+
+                bool isInsideCameraView = viewportPoint.z > 0f &&
+                                          viewportPoint.x >= 0f && viewportPoint.x <= 1f &&
+                                          viewportPoint.y >= 0f && viewportPoint.y <= 1f;
+
+                if (!isInsideCameraView) return false;
+
+                return !IsViewBlocked(targetPosition);
+            }
+        }
+
+        public bool HasFinishedDetection
+        {
+            get { return _visibilityTimer >= timeToGetScared; }
+        }
 
         private float DetectionProgress
         {
             get
             {
-                if (timeToGetScared > 0)
+                if (timeToGetScared > 0f)
                 {
-                    return _contactTimer / timeToGetScared;
+                    return _visibilityTimer / timeToGetScared;
                 }
 
                 return 0f;
@@ -45,9 +74,9 @@ namespace Enemy.ShyEnemy
         private void Awake()
         {
             Motor = GetComponent<EnemyMotor>();
-            PatrolState = new PatrolState(this);
-            FrozenState = new FrozenState(this);
-            FleeState = new FleeState(this);
+            PatrolState = new ShyPatrolState(this);
+            FrozenState = new ShyFrozenState(this);
+            SearchAngryEnemyState = new SearchAngryEnemyState(this);
         }
 
         private void Start()
@@ -78,22 +107,32 @@ namespace Enemy.ShyEnemy
             }
         }
 
+        public bool TryFreezeFromCameraVisibility()
+        {
+            if (_currentState != PatrolState) return false;
+
+            if (IsVisibleToPlayerCamera)
+            {
+                TransitionToState(FrozenState);
+                return true;
+            }
+
+            return false;
+        }
+
         public void IncreaseDetection(float deltaTime)
         {
-            _contactTimer += deltaTime;
+            _visibilityTimer += deltaTime;
             EnemyEvents.RaiseShyVisibilityChanged(DetectionProgress);
         }
 
-        public bool HasFinishedDetection
+        public void LookAtPlayerCamera()
         {
-            get { return _contactTimer >= timeToGetScared; }
-        }
+            ResolvePlayerCamera();
 
-        public void LookAtDetectedPlayer()
-        {
-            if (DetectedPlayer == null) return;
+            if (playerCamera == null) return;
 
-            Vector3 direction = DetectedPlayer.position - transform.position;
+            Vector3 direction = playerCamera.transform.position - transform.position;
             direction.y = 0f;
 
             if (direction == Vector3.zero) return;
@@ -102,56 +141,41 @@ namespace Enemy.ShyEnemy
             transform.rotation = Quaternion.RotateTowards(
                 transform.rotation,
                 targetRotation,
-                lookAtPlayerSpeed * Time.deltaTime
+                lookAtCameraSpeed * Time.deltaTime
             );
         }
 
-        public void GetScared()
+        public void StopDetecting()
         {
-            DetectedPlayer = null;
-            _contactTimer = 0f;
-            EnemyEvents.RaiseShyVisibilityChanged(0f);
-            TransitionToState(FleeState);
-        }
-
-        public void StopDetectingPlayer()
-        {
-            DetectedPlayer = null;
-            _contactTimer = 0f;
+            _visibilityTimer = 0f;
             EnemyEvents.RaiseShyVisibilityChanged(0f);
             TransitionToState(PatrolState);
         }
 
-        private void OnTriggerEnter(Collider other)
+        public void SearchAngryEnemy()
         {
-            TryStartDetectingPlayer(other);
+            _visibilityTimer = 0f;
+            EnemyEvents.RaiseShyVisibilityChanged(0f);
+            TransitionToState(SearchAngryEnemyState);
         }
 
-        private void OnTriggerStay(Collider other)
+        private void ResolvePlayerCamera()
         {
-            TryStartDetectingPlayer(other);
+            if (playerCamera != null) return;
+
+            playerCamera = Camera.main;
         }
 
-        private void OnTriggerExit(Collider other)
+        private bool IsViewBlocked(Vector3 targetPosition)
         {
-            if (_currentState != FrozenState) return;
+            Vector3 cameraPosition = playerCamera.transform.position;
 
-            if (!other.CompareTag("Player")) return;
-
-            if (other.transform == DetectedPlayer)
-            {
-                StopDetectingPlayer();
-            }
-        }
-
-        private void TryStartDetectingPlayer(Collider other)
-        {
-            if (_currentState != PatrolState) return;
-
-            if (!other.CompareTag("Player")) return;
-
-            DetectedPlayer = other.transform;
-            TransitionToState(FrozenState);
+            return Physics.Linecast(
+                cameraPosition,
+                targetPosition,
+                visionBlockerMask,
+                QueryTriggerInteraction.Ignore
+            );
         }
     }
 }

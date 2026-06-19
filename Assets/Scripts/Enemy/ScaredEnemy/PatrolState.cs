@@ -4,12 +4,12 @@ namespace Enemy.ShyEnemy
 {
     public class PatrolState : EnemyStateBase
     {
-        private readonly ShyEnemyBehaviour _enemy;
+        private readonly ScaredEnemyBehaviour _enemy;
         private int _currentWaypointIndex;
         private bool _isWaiting;
         private float _waitTimer;
 
-        public PatrolState(ShyEnemyBehaviour enemy)
+        public PatrolState(ScaredEnemyBehaviour enemy)
         {
             _enemy = enemy;
         }

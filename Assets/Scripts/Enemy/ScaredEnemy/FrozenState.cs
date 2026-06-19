@@ -5,9 +5,9 @@ namespace Enemy.ShyEnemy
 {
     public class FrozenState : EnemyStateBase
     {
-        private readonly ShyEnemyBehaviour _enemy;
+        private readonly ScaredEnemyBehaviour _enemy;
 
-        public FrozenState(ShyEnemyBehaviour enemy)
+        public FrozenState(ScaredEnemyBehaviour enemy)
         {
             _enemy = enemy;
         }

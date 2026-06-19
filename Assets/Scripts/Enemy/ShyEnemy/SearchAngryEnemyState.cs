@@ -1,27 +1,30 @@
 using Enemy.Core;
-using UnityEngine;
 
 namespace Enemy.ShyEnemy
 {
-    public class FleeState : EnemyStateBase
+    public class SearchAngryEnemyState : EnemyStateBase
     {
         private readonly ShyEnemyBehaviour _enemy;
 
-        public FleeState(ShyEnemyBehaviour enemy)
+        public SearchAngryEnemyState(ShyEnemyBehaviour enemy)
         {
             _enemy = enemy;
         }
 
         public override void Enter()
         {
-            _enemy.Motor.SetSpeed(_enemy.fleeSpeed);
+            _enemy.Motor.SetSpeed(_enemy.searchAngryEnemySpeed);
 
-            if (_enemy.fleeWaypoint != null)
+            if (_enemy.angryEnemyTransform != null)
+            {
                 _enemy.Motor.MoveTo(_enemy.angryEnemyTransform.position);
+            }
         }
 
         public override void Update()
         {
+            if (_enemy.angryEnemyTransform == null) return;
+
             if (!_enemy.Motor.HasReachedDestination()) return;
 
             EnemyEvents.RaiseIntruderDetected();

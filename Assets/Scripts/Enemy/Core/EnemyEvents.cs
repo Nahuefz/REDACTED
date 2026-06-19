@@ -5,7 +5,7 @@ namespace Enemy.Core
     public static class EnemyEvents
     {
         public static event Action OnIntruderDetected;
-        public static event Action<float> OnShyVisibilityChanged;
+        public static event Action<float> OnScaredVisibilityChanged;
 
         public static void RaiseIntruderDetected()
         {
@@ -17,9 +17,9 @@ namespace Enemy.Core
 
         public static void RaiseShyVisibilityChanged(float progress)
         {
-            if (OnShyVisibilityChanged != null)
+            if (OnScaredVisibilityChanged != null)
             {
-                OnShyVisibilityChanged.Invoke(progress);
+                OnScaredVisibilityChanged.Invoke(progress);
             }
         }
     }

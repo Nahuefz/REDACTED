@@ -32,12 +32,12 @@ public class VisibilityMeter : MonoBehaviour
     private void OnEnable()
     {
         // Nos suscribimos al evento estático de los enemigos tímidos
-        EnemyEvents.OnShyVisibilityChanged += UpdateVisibilityUI;
+        EnemyEvents.OnScaredVisibilityChanged += UpdateVisibilityUI;
     }
 
     private void OnDisable()
     {
-        EnemyEvents.OnShyVisibilityChanged -= UpdateVisibilityUI;
+        EnemyEvents.OnScaredVisibilityChanged -= UpdateVisibilityUI;
         StopFade();
     }
 
