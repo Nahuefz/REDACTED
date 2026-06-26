@@ -1450,6 +1450,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6866972256854728898, guid: eba919c09ee8ecb4798cef6d4bf9ff75, type: 3}
+      propertyPath: footstepsSettings.stepInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6866972256854728898, guid: eba919c09ee8ecb4798cef6d4bf9ff75, type: 3}
+      propertyPath: footstepsSettings.maxShakeForce
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6866972256854728898, guid: eba919c09ee8ecb4798cef6d4bf9ff75, type: 3}
+      propertyPath: footstepsSettings.shakeDuration
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6866972256854728898, guid: eba919c09ee8ecb4798cef6d4bf9ff75, type: 3}
+      propertyPath: footstepsSettings.maxShakeRadius
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 8915049678261985438, guid: eba919c09ee8ecb4798cef6d4bf9ff75, type: 3}
       propertyPath: m_Layer
       value: 8
