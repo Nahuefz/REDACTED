@@ -287,6 +287,11 @@ MonoBehaviour:
   attackRange: 1.5
   playerTransform: {fileID: 0}
   player: {fileID: 0}
+  footstepsSettings:
+    stepInterval: 0.5
+    maxShakeRadius: 25
+    maxShakeForce: 0.4
+    shakeDuration: 0.15
 --- !u!195 &5837532961627261876
 NavMeshAgent:
   m_ObjectHideFlags: 0
