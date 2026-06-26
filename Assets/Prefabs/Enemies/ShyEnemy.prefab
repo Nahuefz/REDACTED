@@ -47,13 +47,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e0337a85cfa89489a86db164ab0d34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolWaypoints: []
+  patrolWaypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   angryEnemyTransform: {fileID: 0}
-  patrolSpeed: 2
-  searchAngryEnemySpeed: 5
+  patrolSpeed: 5
+  searchAngryEnemySpeed: 8
   playerCamera: {fileID: 0}
   visibilityPoint: {fileID: 2606146114327232221}
-  timeToGetScared: 2
+  visionBlockerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  timeToGetScared: 3
   lookAtCameraSpeed: 360
   waypointWaitTime: 3
 --- !u!195 &4256428605107168519
