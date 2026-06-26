@@ -9,11 +9,13 @@ namespace Enemy.AngryEnemy
         private bool _isAttacking;
 
         // Variables para el control de pasos del Gigante
+        [Header("Footsteps")]
         private float _stepTimer;
-        private const float StepInterval = 0.6f; // Tiempo en segundos entre cada pisada
-        private const float MaxShakeRadius = 25f; // Distancia máxima para empezar a sentir el temblor
-        private const float MaxShakeForce = 0.25f; // Fuerza máxima en la cara del jugador
-        private const float ShakeDuration = 0.15f; // Duración de cada sacudida
+        private FootstepsStruct _footsteps;
+        // private const float StepInterval = 0.6f; // Tiempo en segundos entre cada pisada
+        // private const float MaxShakeRadius = 25f; // Distancia máxima para empezar a sentir el temblor
+        // private const float MaxShakeForce = 0.25f; // Fuerza máxima en la cara del jugador
+        // private const float ShakeDuration = 0.15f; // Duración de cada sacudida
 
         public AngryChaseState(AngryEnemyBehaviour enemy)
         {
@@ -23,6 +25,7 @@ namespace Enemy.AngryEnemy
         public override void Enter()
         {
             _isAttacking = false;
+            _footsteps = _enemy.FootstepsSettings;
             _enemy.Motor.SetSpeed(_enemy.MoveSpeed);
             _enemy.Motor.SetAngularSpeed(240f);
             _stepTimer = 0f; // Inicializa el temporizador al entrar al estado
@@ -50,7 +53,7 @@ namespace Enemy.AngryEnemy
             {
                 _stepTimer += Time.fixedDeltaTime;
 
-                if (_stepTimer >= StepInterval)
+                if (_stepTimer >= _footsteps.StepInterval)
                 {
                     TriggerFootstepShake(distance);
                     _stepTimer = 0f; // Reinicia el ritmo
@@ -79,19 +82,19 @@ namespace Enemy.AngryEnemy
         private void TriggerFootstepShake(float distance)
         {
             // Si el jugador está demasiado lejos, ni nos molestamos en calcular
-            if (distance > MaxShakeRadius) return;
+            if (distance > _footsteps.MaxShakeRadius) return;
 
             // Invertimos la distancia para que a menor distancia, mayor sea la fuerza (rango 0 a 1)
-            float proximityPercentage = 1f - (distance / MaxShakeRadius);
+            float proximityPercentage = 1f - (distance / _footsteps.MaxShakeRadius);
             proximityPercentage = Mathf.Clamp01(proximityPercentage);
 
             // Multiplicamos por la fuerza tope configurada
-            float finalForce = proximityPercentage * MaxShakeForce;
+            float finalForce = proximityPercentage * _footsteps.MaxShakeForce;
 
             // Disparamos el Singleton de la cámara que creamos antes
             if (CameraShake.Instance != null)
             {
-                CameraShake.Instance.Shake(ShakeDuration, finalForce);
+                CameraShake.Instance.Shake(_footsteps.ShakeDuration, finalForce);
             }
         }
 

@@ -12,27 +12,17 @@ namespace Enemy.AngryEnemy
         [SerializeField] private float attackRange = 1.5f;
         [SerializeField] private Transform playerTransform;
         [SerializeField] private PlayerMovement player;
-
+        [SerializeField] private FootstepsStruct footstepsSettings;
+        public FootstepsStruct FootstepsSettings => footstepsSettings;
         private IEnemyState _currentState;
 
         public EnemyMotor Motor { get; private set; }
         private AngryPatrolState PatrolState { get; set; }
         private AngryChaseState ChaseState { get; set; }
 
-        public float MoveSpeed
-        {
-            get { return moveSpeed; }
-        }
-
-        public float PatrolSpeed
-        {
-            get { return moveSpeed * patrolSpeedMultiplier; }
-        }
-
-        public float AttackRange
-        {
-            get { return attackRange; }
-        }
+        public float MoveSpeed => moveSpeed;
+        public float PatrolSpeed => moveSpeed * patrolSpeedMultiplier;
+        public float AttackRange => attackRange;
 
         public Transform HuntTarget { get; private set; }
 
