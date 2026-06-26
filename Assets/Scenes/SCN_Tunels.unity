@@ -1466,21 +1466,9 @@ PrefabInstance:
       propertyPath: footstepsSettings.maxShakeRadius
       value: 25
       objectReference: {fileID: 0}
-    - target: {fileID: 8915049678261985438, guid: eba919c09ee8ecb4798cef6d4bf9ff75, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 8944398949869982721, guid: eba919c09ee8ecb4798cef6d4bf9ff75, type: 3}
       propertyPath: m_Name
       value: AngryEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 8944398949869982721, guid: eba919c09ee8ecb4798cef6d4bf9ff75, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8951320124558410024, guid: eba919c09ee8ecb4798cef6d4bf9ff75, type: 3}
-      propertyPath: m_Radius
-      value: 4.9693007
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
