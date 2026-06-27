@@ -6,6 +6,7 @@ namespace Enemy.Core
     {
         public static event Action OnIntruderDetected;
         public static event Action<float> OnScaredVisibilityChanged;
+        public static event Action<float> OnTriggerVisibilityChanged;
 
         public static void RaiseIntruderDetected()
         {
