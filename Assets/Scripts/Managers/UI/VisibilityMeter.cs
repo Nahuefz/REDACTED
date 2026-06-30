@@ -2,13 +2,16 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using Enemy.Core;
+using UnityEngine.Serialization;
 
 public class VisibilityMeter : MonoBehaviour
 {
-    [SerializeField] private GameObject visibilityMeter;
+    [SerializeField] private GameObject visibilityMeterScared;
+    [FormerlySerializedAs("visibilityMeter")] [SerializeField] private GameObject visibilityMeterShy;
     [SerializeField] private float fadeInDuration = 0.15f;
     [SerializeField] private float fadeOutDuration = 0.15f;
 
+    private Image _visibilityScaredImage;
     private Image _visibilityMeterFill;
     private Image _visibilityMeterIcon;
     private Coroutine _fadeCoroutine;
@@ -17,8 +20,9 @@ public class VisibilityMeter : MonoBehaviour
     private void Awake()
     {
         // Buscamos los componentes necesarios
-        _visibilityMeterFill = visibilityMeter.transform.Find("Fill").GetComponent<Image>();
-        _visibilityMeterIcon = visibilityMeter.transform.Find("UI").GetComponent<Image>();
+        _visibilityScaredImage = visibilityMeterScared.GetComponent<Image>();
+        _visibilityMeterFill = visibilityMeterShy.transform.Find("Fill").GetComponent<Image>();
+        _visibilityMeterIcon = visibilityMeterShy.transform.Find("UI").GetComponent<Image>();
         
         // Inicializamos oculto
         _visibilityMeterFill.fillAmount = 0f;
@@ -26,7 +30,7 @@ public class VisibilityMeter : MonoBehaviour
         _visibilityMeterFill.enabled = false;
         _visibilityMeterIcon.enabled = false;
 
-        if (visibilityMeter.activeSelf) visibilityMeter.SetActive(false);
+        if (visibilityMeterShy.activeSelf) visibilityMeterShy.SetActive(false);
     }
 
     private void OnEnable()
@@ -45,7 +49,7 @@ public class VisibilityMeter : MonoBehaviour
     {
         if (progress > 0)
         {
-            bool wasHidden = !visibilityMeter.activeSelf;
+            bool wasHidden = !visibilityMeterShy.activeSelf;
 
             if (_isFadingOut)
             {
@@ -54,7 +58,7 @@ public class VisibilityMeter : MonoBehaviour
             }
 
             // Si hay progreso, activamos y actualizamos
-            if (!visibilityMeter.activeSelf) visibilityMeter.SetActive(true);
+            if (!visibilityMeterShy.activeSelf) visibilityMeterShy.SetActive(true);
             
             _visibilityMeterFill.enabled = true;
             _visibilityMeterIcon.enabled = true;
@@ -68,7 +72,7 @@ public class VisibilityMeter : MonoBehaviour
         else
         {
             // Si no hay progreso, ocultamos el medidor
-            if (visibilityMeter.activeSelf && !_isFadingOut)
+            if (visibilityMeterShy.activeSelf && !_isFadingOut)
             {
                 StartFadeOut();
             }
@@ -133,7 +137,7 @@ public class VisibilityMeter : MonoBehaviour
         _visibilityMeterIcon.enabled = false;
         _visibilityMeterFill.fillAmount = 0f;
 
-        if (visibilityMeter.activeSelf) visibilityMeter.SetActive(false);
+        if (visibilityMeterShy.activeSelf) visibilityMeterShy.SetActive(false);
     }
 
     private float GetCurrentAlpha()
@@ -147,6 +151,7 @@ public class VisibilityMeter : MonoBehaviour
     {
         SetImageAlpha(_visibilityMeterFill, alpha);
         SetImageAlpha(_visibilityMeterIcon, alpha);
+        SetImageAlpha(_visibilityScaredImage, alpha);
     }
 
     private void SetImageAlpha(Image image, float alpha)
