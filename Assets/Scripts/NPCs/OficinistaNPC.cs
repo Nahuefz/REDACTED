@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic; // REQUERIDO PARA USAR LISTAS
 
 public class OficinistaNPC : MonoBehaviour, IInteractable
 {
@@ -6,9 +7,18 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
     [Tooltip("Si no hay un objeto requerido, elegirá uno al azar de aquí.")]
     public DialogoData[] listaDialogos;
 
-    [Header("Misión de Objeto (Opcional)")]
-    public ItemData objetoRequerido;
+    [Header("Misión de Objetos (Múltiples)")]
+    [Tooltip("Lista de objetos que el NPC va a pedir al jugador.")]
+    public List<ItemData> objetosRequeridos = new List<ItemData>();
+    
+    [Tooltip("¿Requiere un tipo específico? (Si se usa esto, ignorará la lista de objetos individuales de arriba)")]
     public ItemType tipoRequerido = ItemType.Default;
+
+    [Header("Recompensas de Misión")]
+    [Tooltip("Objetos que el NPC le dará al jugador al completar la misión.")]
+    public List<ItemData> objetosDeRecompensa = new List<ItemData>();
+    
+    [Space(5)]
     public DialogoData dialogoPeticion;      // Si no tiene el objeto
     public DialogoData dialogoAgradecimiento; // Justo al entregarlo
     public DialogoData dialogoYaCompletado;   // Cuando hablas después de entregar
@@ -78,18 +88,18 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
     {
         ReproducirSonidoRandom();
 
-        bool esMision = (objetoRequerido != null || tipoRequerido != ItemType.Default);
+        // Es misión si pide un tipo general o si la lista de objetos tiene elementos
+        bool esMision = (tipoRequerido != ItemType.Default || (objetosRequeridos != null && objetosRequeridos.Count > 0));
 
         // 1. Si es de misión y NO ha dado la introducción, la damos primero.
         if (esMision && !introduccionHecha && listaDialogos != null && listaDialogos.Length > 0)
         {
-            // Usamos el primer diálogo como introducción
-            DialogueManager.Instance.EmpezarDialogo(listaDialogos[0], _cachedInventory, actoresEnEscena);
+            DialogueManager.Instance.EmpezarDialogo(listaDialogos[0], _cachedInventory, actoresEscena: actoresEnEscena);
             introduccionHecha = true;
             return;
         }
 
-        // 2. ¿Es un NPC de misión? (Ya pasó la intro o no tiene lista de diálogos iniciales)
+        // 2. ¿Es un NPC de misión?
         if (esMision)
         {
             LogicaDeMision();
@@ -114,45 +124,91 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
             return;
         }
 
-        ItemData itemEncontrado = BuscarItemRequerido();
+        // Buscamos si el jugador cumple los requisitos
+        List<ItemData> itemsAEntregar = BuscarItemsRequeridos();
 
-        if (itemEncontrado != null)
+        // Si la lista no es nula significa que el jugador TIENE TODO lo necesario
+        if (itemsAEntregar != null && itemsAEntregar.Count > 0)
         {
-            // Entregar el objeto
             yaEntregado = true;
-            _cachedInventory.RemoveItem(itemEncontrado);
+
+            // 1. Quitar los objetos requeridos del inventario
+            foreach (var item in itemsAEntregar)
+            {
+                _cachedInventory.RemoveItem(item);
+                Debug.Log($"NPC {gameObject.name} recibió: {item.itemName}");
+            }
             
+            // 2. DAR RECOMPENSAS AL JUGADOR
+            if (objetosDeRecompensa != null && objetosDeRecompensa.Count > 0)
+            {
+                foreach (var recompensa in objetosDeRecompensa)
+                {
+                    if (recompensa != null)
+                    {
+                        // IMPORTANTE: Asegúrate de que tu script Inventory tenga un método "AddItem" o similar.
+                        // Si tu método se llama distinto (ej. RecibirItem), cambia esta línea:
+                        _cachedInventory.TryAddItem(recompensa); 
+                        Debug.Log($"Jugador recibió recompensa: {recompensa.itemName}");
+                    }
+                }
+            }
+
             if (objetoADesbloquear != null) 
                 objetoADesbloquear.SetActive(false);
 
             LanzarDialogo(dialogoAgradecimiento);
-            Debug.Log($"NPC {gameObject.name} recibió: {itemEncontrado.itemName}");
         }
         else
         {
-            // No tiene el objeto aún
+            // No tiene todos los objetos aún
             LanzarDialogo(dialogoPeticion);
         }
     }
 
-    private ItemData BuscarItemRequerido()
+    // Devuelve la lista de items exactos a remover si se cumple la condición completa, o null si falta algo
+    private List<ItemData> BuscarItemsRequeridos()
     {
         if (_cachedInventory == null) return null;
 
-        foreach (var item in _cachedInventory.GetInventory)
-        {
-            if (item == null) continue;
+        List<ItemData> encontrados = new List<ItemData>();
 
-            if (objetoRequerido != null)
+        // Caso de Misión por Tipo General (Ej: Cualquier llave)
+        if (tipoRequerido != ItemType.Default)
+        {
+            foreach (var item in _cachedInventory.GetInventory)
             {
-                if (item == objetoRequerido) return item;
+                if (item != null && item.itemType == tipoRequerido)
+                {
+                    encontrados.Add(item);
+                    return encontrados; // Con uno que coincida basta en este modo anterior
+                }
             }
-            else if (tipoRequerido != ItemType.Default && item.itemType == tipoRequerido)
+            return null; 
+        }
+
+        // Caso de Misión por Objetos Específicos (Ej: Un Queso Y Un Café)
+        // Clonamos la lista del inventario para hacer una simulación de descarte y no bugearse con duplicados
+        List<ItemData> copiaInventario = new List<ItemData>(_cachedInventory.GetInventory);
+
+        foreach (var req in objetosRequeridos)
+        {
+            if (req == null) continue;
+
+            // Buscamos si el requerimiento está en la copia del inventario
+            if (copiaInventario.Contains(req))
             {
-                return item;
+                encontrados.Add(req);
+                copiaInventario.Remove(req); // Lo removemos de la copia temporal para evitar falsos positivos si pide 2 del mismo ítem
+            }
+            else
+            {
+                // Si tan solo uno de los objetos requeridos NO está en el inventario, la misión no se puede completar
+                return null; 
             }
         }
-        return null;
+
+        return encontrados;
     }
 
     private void LanzarDialogo(DialogoData data)
