@@ -20,28 +20,32 @@ public class VisibilityMeter : MonoBehaviour
     private void Awake()
     {
         // Buscamos los componentes necesarios
-        _visibilityScaredImage = visibilityMeterScared.GetComponent<Image>();
+        _visibilityScaredImage = visibilityMeterScared.GetComponentInChildren<Image>(true);
         _visibilityMeterFill = visibilityMeterShy.transform.Find("Fill").GetComponent<Image>();
         _visibilityMeterIcon = visibilityMeterShy.transform.Find("UI").GetComponent<Image>();
         
         // Inicializamos oculto
         _visibilityMeterFill.fillAmount = 0f;
+        SetImageAlpha(_visibilityScaredImage, 0f);
         SetImagesAlpha(0f);
         _visibilityMeterFill.enabled = false;
         _visibilityMeterIcon.enabled = false;
 
         if (visibilityMeterShy.activeSelf) visibilityMeterShy.SetActive(false);
+        if (visibilityMeterScared.activeSelf) visibilityMeterScared.SetActive(false);
     }
 
     private void OnEnable()
     {
         // Nos suscribimos al evento estático de los enemigos tímidos
         EnemyEvents.OnScaredVisibilityChanged += UpdateVisibilityUI;
+        EnemyEvents.OnTriggerVisibilityChanged += UpdateScaredVisibilityUI;
     }
 
     private void OnDisable()
     {
         EnemyEvents.OnScaredVisibilityChanged -= UpdateVisibilityUI;
+        EnemyEvents.OnTriggerVisibilityChanged -= UpdateScaredVisibilityUI;
         StopFade();
     }
 
@@ -76,6 +80,20 @@ public class VisibilityMeter : MonoBehaviour
             {
                 StartFadeOut();
             }
+        }
+    }
+
+    private void UpdateScaredVisibilityUI(float progress)
+    {
+        if (progress > 0f)
+        {
+            if (!visibilityMeterScared.activeSelf) visibilityMeterScared.SetActive(true);
+            SetImageAlpha(_visibilityScaredImage, progress);
+        }
+        else
+        {
+            SetImageAlpha(_visibilityScaredImage, 0f);
+            if (visibilityMeterScared.activeSelf) visibilityMeterScared.SetActive(false);
         }
     }
 
@@ -151,7 +169,6 @@ public class VisibilityMeter : MonoBehaviour
     {
         SetImageAlpha(_visibilityMeterFill, alpha);
         SetImageAlpha(_visibilityMeterIcon, alpha);
-        SetImageAlpha(_visibilityScaredImage, alpha);
     }
 
     private void SetImageAlpha(Image image, float alpha)

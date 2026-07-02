@@ -17,6 +17,7 @@ namespace Enemy.ShyEnemy
         public int patrolSpeed, fleeSpeed;
 
         [SerializeField] private float timeToGetScared;
+        [SerializeField] private float scaredDecaySpeed = 5f;
         [SerializeField] private float lookAtPlayerSpeed = 360f;
         [SerializeField] private Transform lineOfSightOrigin;
         [SerializeField] private LayerMask visionBlockerMask;
@@ -30,6 +31,8 @@ namespace Enemy.ShyEnemy
         private FrozenState FrozenState { get; set; }
         private FleeState FleeState { get; set; }
         public Transform DetectedPlayer { get; private set; }
+        public float ContactTimer => _contactTimer;
+        public float ScaredDecaySpeed => scaredDecaySpeed;
 
         private float DetectionProgress
         {
@@ -83,7 +86,14 @@ namespace Enemy.ShyEnemy
         public void IncreaseDetection(float deltaTime)
         {
             _contactTimer += deltaTime;
-            EnemyEvents.RaiseShyVisibilityChanged(DetectionProgress);
+            EnemyEvents.RaiseTriggerVisibilityChanged(DetectionProgress);
+        }
+
+        public void DecreaseDetection(float amount)
+        {
+            _contactTimer -= amount;
+            if (_contactTimer < 0f) _contactTimer = 0f;
+            EnemyEvents.RaiseTriggerVisibilityChanged(DetectionProgress);
         }
 
         public bool CanSeeDetectedPlayer()
@@ -127,7 +137,7 @@ namespace Enemy.ShyEnemy
         {
             DetectedPlayer = null;
             _contactTimer = 0f;
-            EnemyEvents.RaiseShyVisibilityChanged(0f);
+            EnemyEvents.RaiseTriggerVisibilityChanged(0f);
             TransitionToState(FleeState);
         }
 
@@ -135,7 +145,7 @@ namespace Enemy.ShyEnemy
         {
             DetectedPlayer = null;
             _contactTimer = 0f;
-            EnemyEvents.RaiseShyVisibilityChanged(0f);
+            EnemyEvents.RaiseTriggerVisibilityChanged(0f);
             TransitionToState(PatrolState);
         }
 
@@ -157,7 +167,7 @@ namespace Enemy.ShyEnemy
 
             if (other.transform == DetectedPlayer)
             {
-                StopDetectingPlayer();
+                DetectedPlayer = null;
             }
         }
 

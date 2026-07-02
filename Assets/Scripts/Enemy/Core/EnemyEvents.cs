@@ -23,5 +23,13 @@ namespace Enemy.Core
                 OnScaredVisibilityChanged.Invoke(progress);
             }
         }
+
+        public static void RaiseTriggerVisibilityChanged(float progress)
+        {
+            if (OnTriggerVisibilityChanged != null)
+            {
+                OnTriggerVisibilityChanged.Invoke(progress);
+            }
+        }
     }
 }
