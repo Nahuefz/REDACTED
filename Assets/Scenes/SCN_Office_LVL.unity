@@ -4350,13 +4350,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135841809}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -2.561, y: -1.223, z: 1.125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1822624230}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &135841811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32587,21 +32587,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1348770648}
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
-      propertyPath: dialogoPeticion
-      value: 
-      objectReference: {fileID: 11400000, guid: 4e3f345e21f845d43a275b0dcf0a37d6, type: 2}
-    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: anclaDeInteraccion
       value: 
       objectReference: {fileID: 1348770649}
-    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
-      propertyPath: dialogoYaCompletado
-      value: 
-      objectReference: {fileID: 11400000, guid: 4e3f345e21f845d43a275b0dcf0a37d6, type: 2}
-    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
-      propertyPath: dialogoAgradecimiento
-      value: 
-      objectReference: {fileID: 11400000, guid: 4e3f345e21f845d43a275b0dcf0a37d6, type: 2}
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: listaDialogos.Array.size
       value: 2
@@ -32614,26 +32602,6 @@ PrefabInstance:
       propertyPath: 'listaDialogos.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: 42cf3f9a0f379d54a9f9545de6fe9a8d, type: 2}
-    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
-      propertyPath: objetosRequeridos.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
-      propertyPath: objetosDeRecompensa.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
-      propertyPath: 'objetosRequeridos.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: a0d9d6a7e220ab14784763d683851c1e, type: 2}
-    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
-      propertyPath: 'objetosRequeridos.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: ca00bf0356ee90146b6c92b9f64bb7f8, type: 2}
-    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
-      propertyPath: 'objetosDeRecompensa.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: e54a827b5c25dd54ab958e68b652fea3, type: 2}
     - target: {fileID: 9068144331513010950, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: m_Sprite
       value: 
