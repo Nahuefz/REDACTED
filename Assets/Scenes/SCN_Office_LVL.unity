@@ -2727,7 +2727,7 @@ PrefabInstance:
       objectReference: {fileID: 1499509120}
     - target: {fileID: 773979438849409677, guid: d39338385198c55499f24a4ff1fcf8dc, type: 3}
       propertyPath: slots.Array.size
-      value: 24
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 773979438849409677, guid: d39338385198c55499f24a4ff1fcf8dc, type: 3}
       propertyPath: 'slots.Array.data[0]'
@@ -36778,7 +36778,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3026075340128151686, guid: 215d0ac3ed73efd4d88558254d371179, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.004
+      value: -0.747
       objectReference: {fileID: 0}
     - target: {fileID: 3026075340128151686, guid: 215d0ac3ed73efd4d88558254d371179, type: 3}
       propertyPath: m_LocalPosition.y
