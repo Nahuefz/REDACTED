@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,6 +25,9 @@ public class PauseManager : MonoBehaviour
             
         }
     }
+
+    private void OnEnable() => _pauseInputs.Enable();
+    private void OnDisable() => _pauseInputs.Disable();
 
     #region Metodos de pausa
     /// <summary>

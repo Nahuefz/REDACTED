@@ -409,7 +409,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _puzzleSolution: 000000000000000000000000000000000000000000000000
-  _pantallaColor: {fileID: 0}
+  clueColors:
+  - {fileID: 2100000, guid: a6ad372498b51574391854a68763dbee, type: 2}
+  - {fileID: 2100000, guid: 830a341f126015545845e6be356237f1, type: 2}
+  - {fileID: 2100000, guid: 320b24a4ce998b44ea2042c08546cb81, type: 2}
+  - {fileID: 2100000, guid: 2f9467bda3980d64e8857606da70082c, type: 2}
+  clueScreens:
+  - {fileID: 540649314754134975}
+  - {fileID: 8189614865465602841}
+  - {fileID: 3966410005296144951}
+  - {fileID: 8570733405954203976}
+  - {fileID: 2897634726875556977}
+  - {fileID: 7562216932970932187}
 --- !u!1 &1430294512926866278
 GameObject:
   m_ObjectHideFlags: 0
@@ -1192,9 +1203,8 @@ MonoBehaviour:
   - {fileID: 2782615559558169960}
   - {fileID: 3532736579632033926}
   colors: []
-  colorReference: {fileID: 0}
   outline: []
-  _focusedIndex: -1
+  _focusedIndex: 0
 --- !u!1 &7562216932970932187
 GameObject:
   m_ObjectHideFlags: 0
@@ -1312,8 +1322,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8417296072739839219}
-  - component: {fileID: 3389819233019589336}
-  - component: {fileID: 9113821298671613588}
   m_Layer: 0
   m_Name: Pantallas
   m_TagString: Untagged
@@ -1342,49 +1350,6 @@ Transform:
   - {fileID: 1861099375833669179}
   m_Father: {fileID: 5553621371567413890}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3389819233019589336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8003761650456431290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d5951b8c8f06ed4cab8bfe887c3f3f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pantallaColor:
-  - {fileID: 2100000, guid: a6ad372498b51574391854a68763dbee, type: 2}
-  - {fileID: 2100000, guid: 830a341f126015545845e6be356237f1, type: 2}
-  - {fileID: 2100000, guid: 320b24a4ce998b44ea2042c08546cb81, type: 2}
-  - {fileID: 2100000, guid: 2f9467bda3980d64e8857606da70082c, type: 2}
-  _pantallas:
-  - {fileID: 540649314754134975}
-  - {fileID: 8189614865465602841}
-  - {fileID: 3966410005296144951}
-  - {fileID: 8570733405954203976}
-  - {fileID: 2897634726875556977}
-  - {fileID: 7562216932970932187}
-  _pantallasRenderers: []
-  _puzzleLogic: {fileID: 6567018718830178845}
---- !u!114 &9113821298671613588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8003761650456431290}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bef1fca2cc17d6f40ad393038e4ace81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pantallas: []
-  colors: []
-  colorReference: {fileID: 0}
-  outline: []
-  _focusedIndex: -1
 --- !u!1 &8189614865465602841
 GameObject:
   m_ObjectHideFlags: 0
