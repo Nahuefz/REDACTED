@@ -19089,6 +19089,8 @@ MonoBehaviour:
   dialogoAgradecimiento: {fileID: 11400000, guid: f524c66a32c7956419126efb369058f9, type: 2}
   dialogoYaCompletado: {fileID: 11400000, guid: 9e8a57cddbdf62d4692f05f8a1242309, type: 2}
   objetoADesbloquear: {fileID: 0}
+  nombreMisionGlobal: MISION_CALZON
+  valorMisionGlobal: 1
   introduccionHecha: 0
   yaEntregado: 0
   interaccionHabilitada: 1
