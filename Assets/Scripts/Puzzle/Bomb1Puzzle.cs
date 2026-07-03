@@ -3,7 +3,7 @@ using UnityEngine;
 public class Bomb1Puzzle : MonoBehaviour
 { 
     // LOGICA PRINCIPAL: 1 = rojo, 2 = azul, 3 = verde, 4 = violeta
-
+    public ItemData itemToGive;
     [Header("SOLUCION")] 
     [SerializeField] public int[] _puzzleSolution = new int[6]; 
     
@@ -90,6 +90,7 @@ public class Bomb1Puzzle : MonoBehaviour
 
         Debug.Log("<color=green>¡PUZZLE RESUELTO!</color>");
         // Aquí se puede disparar lógica adicional (abrir puerta, apagar alarma, etc.)
+        
         return true;
     }
 
@@ -103,5 +104,10 @@ public class Bomb1Puzzle : MonoBehaviour
             4 => "#800080", // Violeta
             _ => "#FFFFFF"  // Blanco
         };
+    }
+
+    void PuzzleSolved(Inventory playerInventory)
+    {
+        playerInventory.TryAddItem(itemToGive);
     }
 }
