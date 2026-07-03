@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2f70d68b1452c74a801f3c8e8ec89f5, type: 3}
   m_Name: Calzon
   m_EditorClassIdentifier: 
-  itemName: Queso
+  itemName: Calzon
   itemImage: {fileID: 21300000, guid: 346977ec8e4ffbb45a145d41425136a5, type: 3}
   itemType: 0
   itemDescription: El queso para la interaccion con la rata
+  maxItemQuantity: 1

@@ -162,7 +162,7 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
         else
         {
             // No tiene todos los objetos aún
-            LanzarDialogo(dialogoPeticion);
+            LanzarDialogo(dialogoNegativo);
         }
     }
 
