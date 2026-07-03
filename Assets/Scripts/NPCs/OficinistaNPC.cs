@@ -23,10 +23,16 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
     public DialogoData dialogoAgradecimiento; // Justo al entregarlo
     public DialogoData dialogoYaCompletado;   // Cuando hablas después de entregar
     public GameObject objetoADesbloquear;     // Por ejemplo, una puerta o bloqueo
-    public bool introduccionHecha = false;    // ¿Ya dio su diálogo inicial?
-    public bool yaEntregado = false;
+    
+    [Header("Efectos Globales (Cambio de Mapa)")]
+    [Tooltip("El nombre del booleano que quieres cambiar en GlobalMissions (Ej: 'puente_reparado').")]
+    public string nombreMisionGlobal;
+    [Tooltip("¿A qué valor debe cambiar este booleano al completar la misión?")]
+    public bool valorMisionGlobal = true;
 
     [Header("Estado Lógico")]
+    public bool introduccionHecha = false;    // ¿Ya dio su diálogo inicial?
+    public bool yaEntregado = false;
     public bool interaccionHabilitada = true;
 
     [Header("Audio")]
@@ -44,9 +50,23 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
     private bool seEstaAlineando = false;
     private Inventory _cachedInventory;
 
-    void Start()
+    private void Start()
     {
         if (audioSource == null) audioSource = GetComponent<AudioSource>();
+
+        // --- NUEVA LÓGICA DE MEMORIA AL CARGAR ESCENA ---
+        // Si el NPC tiene una misión global asignada, le pregunta a la clase estática si ya se hizo
+        if (string.IsNullOrEmpty(nombreMisionGlobal)) return;
+        
+        // Si GetMission devuelve true, significa que el jugador ya la completó antes
+        if (GlobalMissions.GetMission(nombreMisionGlobal) != valorMisionGlobal) return;
+        
+        yaEntregado = true;
+        introduccionHecha = true; // Para que tampoco te repita el diálogo de intro
+
+        // Opcional: Si el objeto del mapa debía desaparecer, nos aseguramos de que siga apagado
+        if (objetoADesbloquear != null) 
+            objetoADesbloquear.SetActive(false);
     }
 
     public void Interact(GameObject interactor)
@@ -146,16 +166,23 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
                 {
                     if (recompensa != null)
                     {
-                        // IMPORTANTE: Asegúrate de que tu script Inventory tenga un método "AddItem" o similar.
-                        // Si tu método se llama distinto (ej. RecibirItem), cambia esta línea:
                         _cachedInventory.TryAddItem(recompensa); 
                         Debug.Log($"Jugador recibió recompensa: {recompensa.itemName}");
                     }
                 }
             }
 
+            // Desbloqueo local directo (opcional)
             if (objetoADesbloquear != null) 
                 objetoADesbloquear.SetActive(false);
+
+            // --- NUEVA LÓGICA DE GLOBAL MISSIONS ---
+            // Si asignaste un nombre en el inspector, actualiza el estado global
+            if (!string.IsNullOrEmpty(nombreMisionGlobal))
+            {
+                GlobalMissions.SetMission(nombreMisionGlobal, valorMisionGlobal);
+            }
+            // ----------------------------------------
 
             LanzarDialogo(dialogoAgradecimiento);
         }
@@ -181,29 +208,26 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
                 if (item != null && item.itemType == tipoRequerido)
                 {
                     encontrados.Add(item);
-                    return encontrados; // Con uno que coincida basta en este modo anterior
+                    return encontrados; 
                 }
             }
             return null; 
         }
 
         // Caso de Misión por Objetos Específicos (Ej: Un Queso Y Un Café)
-        // Clonamos la lista del inventario para hacer una simulación de descarte y no bugearse con duplicados
         List<ItemData> copiaInventario = new List<ItemData>(_cachedInventory.GetInventory);
 
         foreach (var req in objetosRequeridos)
         {
             if (req == null) continue;
 
-            // Buscamos si el requerimiento está en la copia del inventario
             if (copiaInventario.Contains(req))
             {
                 encontrados.Add(req);
-                copiaInventario.Remove(req); // Lo removemos de la copia temporal para evitar falsos positivos si pide 2 del mismo ítem
+                copiaInventario.Remove(req); 
             }
             else
             {
-                // Si tan solo uno de los objetos requeridos NO está en el inventario, la misión no se puede completar
                 return null; 
             }
         }

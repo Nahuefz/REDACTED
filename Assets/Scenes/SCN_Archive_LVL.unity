@@ -152071,6 +152071,57 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bd7af48fdb785f45beb32baa5c2199d, type: 3}
+--- !u!1 &1573737984
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1573737986}
+  - component: {fileID: 1573737985}
+  m_Layer: 0
+  m_Name: ArchivoManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1573737985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573737984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3765d3940a4fca4ab01d42b37ded631, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionToCheck: MISION_CALZON
+  objectsToDisable:
+  - {fileID: 1908825534}
+  - {fileID: 506826575}
+  objectsToEnable: []
+  ratTransform: {fileID: 2066039462}
+  ratNextPosition: {fileID: 1135648263}
+--- !u!4 &1573737986
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573737984}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -18.572397, y: 0.55932754, z: -22.310705}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1575124281
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -198878,6 +198929,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: dialogoNegativo
+      value: 
+      objectReference: {fileID: 11400000, guid: 57e6cecd72a48034cb8c911806e92c3e, type: 2}
+    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: dialogoPeticion
       value: 
       objectReference: {fileID: 11400000, guid: 57e6cecd72a48034cb8c911806e92c3e, type: 2}
@@ -198890,9 +198945,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: valorMisionGlobal
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: anclaDeInteraccion
       value: 
       objectReference: {fileID: 812968930}
+    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: nombreMisionGlobal
+      value: MISION_RATA
+      objectReference: {fileID: 0}
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: objetoADesbloquear
       value: 
@@ -198988,6 +199051,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 135ef25804542f24d94bb1a6f9f9eb35, type: 3}
   - {fileID: 8300000, guid: 13a33667623fb0747b9f80e9328762ca, type: 3}
   npcScript: {fileID: 0}
+--- !u!4 &2066039462 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4498986471775667480, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+  m_PrefabInstance: {fileID: 2066039458}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2066039467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205956,3 +206024,4 @@ SceneRoots:
   - {fileID: 1048626571}
   - {fileID: 289030801}
   - {fileID: 300051708}
+  - {fileID: 1573737986}

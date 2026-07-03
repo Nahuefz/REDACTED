@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Calzon
   m_EditorClassIdentifier: 
   itemName: Calzon
-  itemImage: {fileID: 21300000, guid: 346977ec8e4ffbb45a145d41425136a5, type: 3}
+  itemImage: {fileID: 21300000, guid: 6ef5d026742b80141b8ed836b623d09f, type: 3}
   itemType: 0
-  itemDescription: El queso para la interaccion con la rata
+  itemDescription: CALZON
   maxItemQuantity: 1
