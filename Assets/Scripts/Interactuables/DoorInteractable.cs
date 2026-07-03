@@ -24,7 +24,7 @@ public class DoorInteractable : MonoBehaviour, IInteractable
             estaAbierta = !estaAbierta;
 
             // Le pasamos el dato al Animator Controller
-            puertaAnimator.SetBool("isOpen", estaAbierta);
+            puertaAnimator.SetBool("EstaAbierta", estaAbierta);
 
             Debug.Log(estaAbierta ? "Baño: Abriendo puerta." : "Baño: Cerrando puerta.");
         }
