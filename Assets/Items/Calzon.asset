@@ -15,5 +15,5 @@ MonoBehaviour:
   itemName: Calzon
   itemImage: {fileID: 21300000, guid: fbb2ef1929f568c4985db03872c23742, type: 3}
   itemType: 0
-  itemDescription: El queso para la interaccion con la rata
+  itemDescription: El queso para la interaccion con la rataa
   maxItemQuantity: 1
