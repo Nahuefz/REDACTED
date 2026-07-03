@@ -19,7 +19,7 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
     public List<ItemData> objetosDeRecompensa = new List<ItemData>();
     
     [Space(5)]
-    public DialogoData dialogoPeticion;      // Si no tiene el objeto
+    public DialogoData dialogoNegativo;      // Si no tiene el objeto
     public DialogoData dialogoAgradecimiento; // Justo al entregarlo
     public DialogoData dialogoYaCompletado;   // Cuando hablas después de entregar
     public GameObject objetoADesbloquear;     // Por ejemplo, una puerta o bloqueo
