@@ -210528,6 +210528,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: valorMisionGlobal
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: anclaDeInteraccion
       value: 
       objectReference: {fileID: 812968930}
@@ -210638,7 +210642,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 135ef25804542f24d94bb1a6f9f9eb35, type: 3}
   - {fileID: 8300000, guid: 13a33667623fb0747b9f80e9328762ca, type: 3}
   npcScript: {fileID: 0}
-  misionRata: 0
+  misionRata: 1
 --- !u!4 &2066039462 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4498986471775667480, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}

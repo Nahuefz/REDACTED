@@ -53,11 +53,13 @@ public class DialogosCindy : MonoBehaviour, IInteractable, IInterceptor
         if (player != null && anclaDeInteraccion != null)
         {
             PlayerAlignment alignment = player.GetComponent<PlayerAlignment>();
+            var playerRb = player.GetComponent<Rigidbody>();
             if (alignment != null)
             {
                 seEstaAlineando = true;
                 alignment.Alinear(anclaDeInteraccion, transform, anclaDeMirada, () =>
                 {
+                    playerRb.linearVelocity = Vector3.zero;
                     seEstaAlineando = false;
                     LanzarDialogoDirecto();
                 });

@@ -19089,7 +19089,7 @@ MonoBehaviour:
   dialogoAgradecimiento: {fileID: 11400000, guid: f524c66a32c7956419126efb369058f9, type: 2}
   dialogoYaCompletado: {fileID: 11400000, guid: 9e8a57cddbdf62d4692f05f8a1242309, type: 2}
   objetoADesbloquear: {fileID: 0}
-  nombreMisionGlobal: MISION_CALZON
+  nombreMisionGlobal: 0
   valorMisionGlobal: 1
   introduccionHecha: 0
   yaEntregado: 0
@@ -33919,9 +33919,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1348770648}
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: dialogoNegativo
+      value: 
+      objectReference: {fileID: 11400000, guid: 4e3f345e21f845d43a275b0dcf0a37d6, type: 2}
+    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: dialogoPeticion
       value: 
       objectReference: {fileID: 11400000, guid: 4e3f345e21f845d43a275b0dcf0a37d6, type: 2}
+    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: valorMisionGlobal
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: anclaDeInteraccion
       value: 
@@ -33936,7 +33944,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 4e3f345e21f845d43a275b0dcf0a37d6, type: 2}
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: listaDialogos.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: 'listaDialogos.Array.data[0]'
