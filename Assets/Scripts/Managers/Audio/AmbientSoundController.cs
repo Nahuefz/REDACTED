@@ -6,12 +6,10 @@ namespace Managers.Audio
     public class AmbientSoundController : MonoBehaviour
     {
         [Header("Sonidos de Ambiente Constantes")]
-        [Tooltip("Configurá aquí los sonidos que van a loopear de fondo.")]
-        [SerializeField] private Sounds[] constantSounds;
+        [SerializeField] private AudioData[] constantSounds;
 
         [Header("Pool de Sonidos Aleatorios")]
-        [Tooltip("Configurá aquí los sonidos esporádicos.")]
-        [SerializeField] private Sounds[] randomSoundPool;
+        [SerializeField] private AudioData[] randomSoundPool;
 
         [Header("Tiempos de Espera (Segundos)")]
         [SerializeField] private float minWaitTime = 5f;
@@ -19,41 +17,16 @@ namespace Managers.Audio
 
         private void Start()
         {
-            InitializeSounds(constantSounds);
-            InitializeSounds(randomSoundPool);
-
-            foreach (var sound in constantSounds)
+            // Reproducir loops constantes
+            foreach (var audio in constantSounds)
             {
-                if (sound.source != null)
-                {
-                    sound.source.loop = true;
-                    sound.source.Play();
-                }
+                SoundManager.Instance.Play(audio, true);
             }
 
+            // Iniciar corutina de disparos esporádicos
             if (randomSoundPool != null && randomSoundPool.Length > 0)
             {
                 StartCoroutine(PlayRandomSoundsRoutine());
-            }
-            else
-            {
-                Debug.LogWarning("El pool de sonidos aleatorios está vacío.");
-            }
-        }
-
-        // Este método replica la lógica que usa SoundManager para crear los AudioSources
-        private void InitializeSounds(Sounds[] soundList)
-        {
-            foreach (var sound in soundList)
-            {
-                if (sound.soundClip == null) continue;
-
-                // Le agregamos el AudioSource a ESTE objeto (AmbientSoundController)
-                sound.source = gameObject.AddComponent<AudioSource>();
-                sound.source.clip = sound.soundClip;
-                sound.source.outputAudioMixerGroup = sound.audioMixer;
-                sound.source.volume = sound.volume;
-                sound.source.pitch = sound.pitch;
             }
         }
 
@@ -61,20 +34,13 @@ namespace Managers.Audio
         {
             while (true)
             {
-                // Espera aleatoria
                 float waitTime = Random.Range(minWaitTime, maxWaitTime);
                 yield return new WaitForSeconds(waitTime);
 
-                // Elegir un sonido aleatorio de la lista
                 int randomIndex = Random.Range(0, randomSoundPool.Length);
-                Sounds selectedSound = randomSoundPool[randomIndex];
+                AudioData selectedAudio = randomSoundPool[randomIndex];
 
-                // Reproducir si existe
-                if (selectedSound.source != null)
-                {
-                    selectedSound.source.loop = false; // Disparo único
-                    selectedSound.source.Play();
-                }
+                SoundManager.Instance.Play(selectedAudio, false);
             }
         }
     }
