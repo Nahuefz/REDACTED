@@ -7,6 +7,8 @@ public class SceneChanger : MonoBehaviour
     [SerializeField] private GameScenes EscenaDestino;
     [SerializeField] private string spawnIDDestino;
 
+    public GameScenes escenaDestino => EscenaDestino;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -40,15 +42,4 @@ public class SceneChanger : MonoBehaviour
         // Cargamos la escena
         SceneManager.LoadScene(sceneName);
     }
-}
-
-public enum GameScenes
-{
-    SCN_Tunels,
-    SCN_Office_LVL,
-    SCN_MainMenu,
-    SCN_Archive_LVL,
-    TEST_Enemy,
-    SCN_PUZZLE1,
-    SCN_PUZZLE2
 }

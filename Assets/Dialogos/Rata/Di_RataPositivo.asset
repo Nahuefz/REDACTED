@@ -31,9 +31,11 @@ MonoBehaviour:
       mas disimulado, vas a poder tener tu propia vida... Ponele.
     imagen: {fileID: 0}
   - nombrePersonaje: 
-    texto: Pero el unico hueco posible es por aca y esto da a los tuneles subterraneos
-      por los que se mueven ellos. Si no llamas la atencion capaz ni se enteran de
-      vos.
+    texto: 'Pero el unico hueco posible es por aca y esto da a los tuneles subterraneos
+      por los que se mueven ellos. '
+    imagen: {fileID: 0}
+  - nombrePersonaje: 
+    texto: Si no llamas la atencion capaz ni se enteran de vos.
     imagen: {fileID: 0}
   - nombrePersonaje: 
     texto: Te vas a encontrar con un primo ahi abajo, el te va a ayudar.

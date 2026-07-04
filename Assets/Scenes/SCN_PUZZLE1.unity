@@ -202,6 +202,51 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2958816980614450012, guid: d73ae571f7d6b824388fa2fe05a13051, type: 3}
   m_PrefabInstance: {fileID: 2059512720501407585}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &752399228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 752399229}
+  - component: {fileID: 752399230}
+  m_Layer: 0
+  m_Name: ENTRADA
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &752399229
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752399228}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.9831578, y: -0.23580968, z: -0.000000020641547}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1164716719}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &752399230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752399228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df2b49479419b346bc3cbb84c683604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entranceID: TUNELES_PUZZLE1
 --- !u!1001 &794878262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -738,7 +783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EscenaDestino: 0
-  spawnIDDestino: PUZZLE_TUNELES
+  spawnIDDestino: PUZZLE1_TUNELES
 --- !u!54 &1164716715
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -852,7 +897,8 @@ Transform:
   m_LocalPosition: {x: -0.72, y: 2.66, z: -18.65}
   m_LocalScale: {x: 1.1697, y: 7.039575, z: 5.7752113}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 752399229}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1183174940
@@ -3477,6 +3523,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.357
       objectReference: {fileID: 0}
+    - target: {fileID: 6567018718830178845, guid: d73ae571f7d6b824388fa2fe05a13051, type: 3}
+      propertyPath: itemToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: c5b7fd7905b69a744b9cf8f501f1797b, type: 2}
     - target: {fileID: 6986550818525358096, guid: d73ae571f7d6b824388fa2fe05a13051, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.7
