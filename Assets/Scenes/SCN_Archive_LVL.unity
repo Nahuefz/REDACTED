@@ -210505,6 +210505,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: dialogoNegativo
+      value: 
+      objectReference: {fileID: 11400000, guid: 57e6cecd72a48034cb8c911806e92c3e, type: 2}
+    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: dialogoPeticion
       value: 
       objectReference: {fileID: 11400000, guid: 57e6cecd72a48034cb8c911806e92c3e, type: 2}
@@ -210520,6 +210524,10 @@ PrefabInstance:
       propertyPath: anclaDeInteraccion
       value: 
       objectReference: {fileID: 812968930}
+    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: nombreMisionGlobal
+      value: MISION_RATA
+      objectReference: {fileID: 0}
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: objetoADesbloquear
       value: 
@@ -210552,6 +210560,14 @@ PrefabInstance:
       propertyPath: 'listaDialogos.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: 8bcf0ba63f9972843b36b65ca122d1ac, type: 2}
+    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: objetosRequeridos.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
+      propertyPath: 'objetosRequeridos.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: e54a827b5c25dd54ab958e68b652fea3, type: 2}
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: 'sonidosInteraccion.Array.data[0]'
       value: 
