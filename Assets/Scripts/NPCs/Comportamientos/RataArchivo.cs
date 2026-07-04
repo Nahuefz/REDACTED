@@ -14,6 +14,7 @@ public class RataArchivo : MonoBehaviour
     [Header("Conexion con el Dialogo")]
     public OficinistaNPC npcScript;
     private bool habilitarInteraccion = false;
+    public MissionNames misionRata;
 
     void Start()
     {
@@ -26,7 +27,11 @@ public class RataArchivo : MonoBehaviour
         if (audioSource == null) audioSource = gameObject.AddComponent<AudioSource>();
 
         if (npcScript == null) npcScript = GetComponent<OficinistaNPC>();
-        if (npcScript != null) npcScript.interaccionHabilitada = false;
+        if (npcScript != null)
+        {
+            if (!GlobalMissions.GetMission(misionRata.ToString())) return;//si da false, todavia no se cumplio la mision
+            npcScript.interaccionHabilitada = false;
+        }
     }
 
     public void EscapeTo(Transform nuevoPunto, bool esPuntoFinal = false)

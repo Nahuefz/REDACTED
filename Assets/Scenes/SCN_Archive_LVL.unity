@@ -108442,14 +108442,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3765d3940a4fca4ab01d42b37ded631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missionToCheck: MISION_CALZON
-  objectsToDisable:
-  - {fileID: 1472241721}
-  - {fileID: 1908825534}
-  - {fileID: 506826575}
-  objectsToEnable: []
-  ratTransform: {fileID: 2066039462}
-  ratNextPosition: {fileID: 245297109}
+  misionesDelMapa:
+  - nombreMision: 0
+    objetosADeshabilitar:
+    - {fileID: 1472241721}
+    - {fileID: 1975571449}
+    objetosAHabilitar: []
+    entidadAMover: {fileID: 0}
+    puntoDestino: {fileID: 0}
+  - nombreMision: 1
+    objetosADeshabilitar:
+    - {fileID: 1908825534}
+    - {fileID: 506826575}
+    objetosAHabilitar: []
+    entidadAMover: {fileID: 2066039462}
+    puntoDestino: {fileID: 245297109}
 --- !u!4 &1057181216
 Transform:
   m_ObjectHideFlags: 0
@@ -210502,7 +210509,7 @@ PrefabInstance:
       objectReference: {fileID: 1051978209}
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: tipoRequerido
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: dialogoNegativo
@@ -210526,7 +210533,7 @@ PrefabInstance:
       objectReference: {fileID: 812968930}
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: nombreMisionGlobal
-      value: MISION_RATA
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: objetoADesbloquear
@@ -210631,6 +210638,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 135ef25804542f24d94bb1a6f9f9eb35, type: 3}
   - {fileID: 8300000, guid: 13a33667623fb0747b9f80e9328762ca, type: 3}
   npcScript: {fileID: 0}
+  misionRata: 0
 --- !u!4 &2066039462 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4498986471775667480, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}

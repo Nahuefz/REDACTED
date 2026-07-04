@@ -26,9 +26,9 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
     
     [Header("Efectos Globales (Cambio de Mapa)")]
     [Tooltip("El nombre del booleano que quieres cambiar en GlobalMissions (Ej: 'puente_reparado').")]
-    public string nombreMisionGlobal;
+    public MissionNames nombreMisionGlobal = MissionNames.Default;
     [Tooltip("¿A qué valor debe cambiar este booleano al completar la misión?")]
-    public bool valorMisionGlobal = true;
+    public bool valorMisionGlobal;
 
     [Header("Estado Lógico")]
     public bool introduccionHecha = false;    // ¿Ya dio su diálogo inicial?
@@ -56,10 +56,10 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
 
         // --- NUEVA LÓGICA DE MEMORIA AL CARGAR ESCENA ---
         // Si el NPC tiene una misión global asignada, le pregunta a la clase estática si ya se hizo
-        if (string.IsNullOrEmpty(nombreMisionGlobal)) return;
+        if (string.IsNullOrEmpty(nombreMisionGlobal.ToString())) return;
         
         // Si GetMission devuelve true, significa que el jugador ya la completó antes
-        if (GlobalMissions.GetMission(nombreMisionGlobal) != valorMisionGlobal) return;
+        if (GlobalMissions.GetMission(nombreMisionGlobal.ToString()) != valorMisionGlobal) return;
         
         yaEntregado = true;
         introduccionHecha = true; // Para que tampoco te repita el diálogo de intro
@@ -178,9 +178,9 @@ public class OficinistaNPC : MonoBehaviour, IInteractable
 
             // --- NUEVA LÓGICA DE GLOBAL MISSIONS ---
             // Si asignaste un nombre en el inspector, actualiza el estado global
-            if (!string.IsNullOrEmpty(nombreMisionGlobal))
+            if (!string.IsNullOrEmpty(nombreMisionGlobal.ToString()))
             {
-                GlobalMissions.SetMission(nombreMisionGlobal, valorMisionGlobal);
+                GlobalMissions.SetMission(nombreMisionGlobal.ToString(), valorMisionGlobal);
             }
             // ----------------------------------------
 
