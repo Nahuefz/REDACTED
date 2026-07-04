@@ -5299,7 +5299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EscenaDestino: 0
-  spawnIDDestino: 
+  spawnIDDestino: PUZZLE2_TUNELES
 --- !u!212 &728460711
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5542,7 +5542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8df2b49479419b346bc3cbb84c683604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entranceID: TUNELES_P2
+  entranceID: TUNELES_PUZZLE2
 --- !u!1 &780439046
 GameObject:
   m_ObjectHideFlags: 0
@@ -9379,8 +9379,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cantidadDeNPCs: 5
-  escenaAnteriorAsset: {fileID: 102900000, guid: 3659ae70097f82a48a08301e5f7f756a, type: 3}
-  escenaAnterior: SCN_Tunels
+  escenaAnteriorAsset: {fileID: 102900000, guid: bff64df48597529499167c05858e7cbe, type: 3}
+  escenaAnterior: SCN_Tunels_LVL
   itemRecompensaPrefab: {fileID: 132623459}
   sonidoAcierto: {fileID: 8300000, guid: 3fc501a35b4c41447bc444cc99263ee0, type: 3}
   huecoSalidaPrefab: {fileID: 728460708}

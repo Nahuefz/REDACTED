@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327e632dd02f549409f2e17898f48f14, type: 3}
+  m_Name: Rata Banio Inicial
+  m_EditorClassIdentifier: 
+  nombrePorDefecto: 
+  dialogos:
+  - nombrePersonaje: Rata Banio
+    texto: "\xA1Eu eu, vos!"
+    imagen: {fileID: 0}
+  - nombrePersonaje: Rata Banio
+    texto: "Anota, no comas nunca un pancho en Constituci\xF3n"
+    imagen: {fileID: 0}
+  - nombrePersonaje: Rata Banio
+    texto: Sino vas a terminar como yo
+    imagen: {fileID: 0}
+  - nombrePersonaje: Rata Banio
+    texto: "Ayudame a salir de ac\xE1"
+    imagen: {fileID: 0}
+  - nombrePersonaje: Rata Banio
+    texto: Me deje un calzoncillo en el archivo, no me puedo acordar donde
+    imagen: {fileID: 0}
+  - nombrePersonaje: Rata Banio
+    texto: Te voy a estar eternamente agradecido si me sacas de esta
+    imagen: {fileID: 0}
