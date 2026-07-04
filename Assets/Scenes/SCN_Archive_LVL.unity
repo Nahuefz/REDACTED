@@ -210546,7 +210546,7 @@ PrefabInstance:
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: dialogoYaCompletado
       value: 
-      objectReference: {fileID: 11400000, guid: 8bcf0ba63f9972843b36b65ca122d1ac, type: 2}
+      objectReference: {fileID: 11400000, guid: 76138e3cfd7c0954db0cd81d3deb322d, type: 2}
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: dialogoAgradecimiento
       value: 
@@ -210643,6 +210643,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 13a33667623fb0747b9f80e9328762ca, type: 3}
   npcScript: {fileID: 0}
   misionRata: 1
+  puntoFinal: {fileID: 245297109}
 --- !u!4 &2066039462 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4498986471775667480, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
