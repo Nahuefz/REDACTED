@@ -15,6 +15,11 @@ public class RataArchivo : MonoBehaviour
     public OficinistaNPC npcScript;
     private bool habilitarInteraccion = false;
     public MissionNames misionRata;
+    
+    [Header("Persistencia de Posición Final")]
+    [SerializeField] private Transform puntoFinal;
+    // Nombre de la flag global exclusiva para recordar que la rata llegó al destino
+    private string FlagLlegoAlFinal => misionRata.ToString() + "_LlegoAlFinal";
 
     void Start()
     {
@@ -25,26 +30,45 @@ public class RataArchivo : MonoBehaviour
         }
 
         if (audioSource == null) audioSource = gameObject.AddComponent<AudioSource>();
-
         if (npcScript == null) npcScript = GetComponent<OficinistaNPC>();
         
-        // --- CORRECCIÓN DE LÓGICA DE INTERACCIÓN ---
+        // --- COMPROBACIÓN: ¿YA HABÍA LLEGADO AL FINAL ANTES? ---
+        if (GlobalMissions.GetMission(FlagLlegoAlFinal))
+        {
+            if (puntoFinal != null)
+            {
+                // Si usas NavMeshAgent, debes apagarlo antes de teletransportar para que no ignore la posición
+                if (_agent != null) _agent.enabled = false; 
+                
+                transform.position = puntoFinal.position;
+                transform.rotation = puntoFinal.rotation;
+                
+                // Volvemos a prenderlo si necesitas que conserve sus físicas o IA ahí parado
+                if (_agent != null) _agent.enabled = true; 
+            }
+
+            if (npcScript != null)
+            {
+                npcScript.interaccionHabilitada = true; 
+                npcScript.yaEntregado = true;
+            }
+            
+            // Ya está en su lugar final de forma persistente, terminamos el Start aquí.
+            return; 
+        }
+
+        // --- LÓGICA NORMAL SI NO HA LLEGADO AL FINAL ---
         if (npcScript != null)
         {
-            // Le preguntamos a GlobalMissions si la misión de la rata YA se completó
             bool misionCompletada = GlobalMissions.GetMission(misionRata.ToString());
 
             if (misionCompletada)
             {
-                // Si la misión ya se hizo y la rata apareció en su nueva posición:
                 npcScript.interaccionHabilitada = true; 
-                npcScript.yaEntregado = true; // Asegura que el NPC sepa que ya entregó su misión y dé el diálogo final
+                npcScript.yaEntregado = true; 
             }
             else
             {
-                // Si la misión NO se ha hecho, bloqueamos la interacción (o la manejas según tu flujo inicial)
-                // Nota: Si el jugador debe hablarle antes de que escape, déjalo en true. 
-                // Si solo habla al llegar a su destino, déjalo en false.
                 npcScript.interaccionHabilitada = false; 
             }
         }
@@ -61,11 +85,22 @@ public class RataArchivo : MonoBehaviour
 
     private void Update()
     {
-        if (_agent != null && audioSource != null && audioSource.isPlaying)
+        if (_agent != null)
         {
-            if (!_agent.pathPending && _agent.remainingDistance <= _agent.stoppingDistance)
+            // Detectar de forma real si el NavMeshAgent está corriendo y llegó a su destino
+            if (audioSource != null && audioSource.isPlaying)
             {
-                audioSource.Stop();
+                if (!_agent.pathPending && _agent.remainingDistance <= _agent.stoppingDistance)
+                {
+                    audioSource.Stop();
+
+                    // SI ERA EL PUNTO FINAL Y YA LLEGÓ CORRIENDO:
+                    // Guardamos de forma persistente que ya completó su recorrido
+                    if (habilitarInteraccion) 
+                    {
+                        GlobalMissions.SetMission(FlagLlegoAlFinal, true);
+                    }
+                }
             }
         }
 
@@ -80,7 +115,7 @@ public class RataArchivo : MonoBehaviour
     {
         if (audioSource != null && sonidoCorriendo.Length > 0 && !audioSource.isPlaying)
         {
-            int indice = Random.Range(0, sonidoCorriendo.Length); // Corregido el nombre a tu array "sonidoCorriendo"
+            int indice = Random.Range(0, sonidoCorriendo.Length);
             audioSource.clip = sonidoCorriendo[indice];
             audioSource.Play();
         }

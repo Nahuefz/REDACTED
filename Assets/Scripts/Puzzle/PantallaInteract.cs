@@ -12,6 +12,8 @@ public class PantallaInteract : MonoBehaviour, IOutlined, IInteractable
     [SerializeField] private int[] _currentColorIndex;
     [SerializeField] private int _focusedIndex = -1;
 
+    private bool _isSolved;
+
     private void Awake()
     {
         _puzzleLogic = GetComponentInParent<Bomb1Puzzle>();
@@ -40,8 +42,18 @@ public class PantallaInteract : MonoBehaviour, IOutlined, IInteractable
 
     public void Interact(GameObject interactor)
     {
+        if (_isSolved)
+        {
+            Debug.Log("Puzzle Resueltoo");
+            return;
+        }
+        
+        var pInv = interactor.GetComponent<Inventory>();
+        
         Debug.Log($"Interact called, focused index = {_focusedIndex}");
         CyclicColorChange();
+        if (!_isSolved) return;
+        pInv.TryAddItem(_puzzleLogic.itemToGive);
     }
 
     private void CyclicColorChange()
@@ -56,10 +68,8 @@ public class PantallaInteract : MonoBehaviour, IOutlined, IInteractable
         }
 
         // Chequear si con este cambio se resolvió el puzzle
-        if (_puzzleLogic != null)
-        {
-            _puzzleLogic.CheckSolution(_currentColorIndex);
-        }
+        if (_puzzleLogic == null) return;
+        if (_puzzleLogic.CheckSolution(_currentColorIndex)) _isSolved = true;
     }
     
     #region OutlineMethods
