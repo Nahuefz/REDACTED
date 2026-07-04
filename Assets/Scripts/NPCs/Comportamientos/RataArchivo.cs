@@ -14,6 +14,7 @@ public class RataArchivo : MonoBehaviour
     [Header("Conexion con el Dialogo")]
     public OficinistaNPC npcScript;
     private bool habilitarInteraccion = false;
+    public MissionNames misionRata;
 
     void Start()
     {
@@ -26,7 +27,27 @@ public class RataArchivo : MonoBehaviour
         if (audioSource == null) audioSource = gameObject.AddComponent<AudioSource>();
 
         if (npcScript == null) npcScript = GetComponent<OficinistaNPC>();
-        if (npcScript != null) npcScript.interaccionHabilitada = false;
+        
+        // --- CORRECCIÓN DE LÓGICA DE INTERACCIÓN ---
+        if (npcScript != null)
+        {
+            // Le preguntamos a GlobalMissions si la misión de la rata YA se completó
+            bool misionCompletada = GlobalMissions.GetMission(misionRata.ToString());
+
+            if (misionCompletada)
+            {
+                // Si la misión ya se hizo y la rata apareció en su nueva posición:
+                npcScript.interaccionHabilitada = true; 
+                npcScript.yaEntregado = true; // Asegura que el NPC sepa que ya entregó su misión y dé el diálogo final
+            }
+            else
+            {
+                // Si la misión NO se ha hecho, bloqueamos la interacción (o la manejas según tu flujo inicial)
+                // Nota: Si el jugador debe hablarle antes de que escape, déjalo en true. 
+                // Si solo habla al llegar a su destino, déjalo en false.
+                npcScript.interaccionHabilitada = false; 
+            }
+        }
     }
 
     public void EscapeTo(Transform nuevoPunto, bool esPuntoFinal = false)
@@ -59,7 +80,7 @@ public class RataArchivo : MonoBehaviour
     {
         if (audioSource != null && sonidoCorriendo.Length > 0 && !audioSource.isPlaying)
         {
-            int indice = Random.Range(0, sonidoCorriendo.Length);
+            int indice = Random.Range(0, sonidoCorriendo.Length); // Corregido el nombre a tu array "sonidoCorriendo"
             audioSource.clip = sonidoCorriendo[indice];
             audioSource.Play();
         }
