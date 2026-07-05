@@ -22,30 +22,38 @@ namespace Managers.Audio
             }
         }
 
-        public AudioSource Play(AudioData audioData, bool loop)
+        public AudioSource Play(AudioData audioData, Vector3 position = default)
         {
             if (audioData == null || audioData.Clip == null) return null;
 
-            AudioSource source = gameObject.AddComponent<AudioSource>();
+            GameObject tempAudioObj = new GameObject("Audio_" + audioData.name);
+            tempAudioObj.transform.position = position;
+
+            AudioSource source = tempAudioObj.AddComponent<AudioSource>();
             source.clip = audioData.Clip;
             source.outputAudioMixerGroup = audioData.Mixer;
             source.volume = audioData.Volume;
-            source.loop = loop;
+
+            source.loop = audioData.IsLoop;
+            source.spatialBlend = audioData.SpatialBlend;
+
+            source.rolloffMode = AudioRolloffMode.Linear;
+            source.minDistance = 1f;
+            source.maxDistance = 15f;
 
             source.Play();
 
-            if (!loop)
+            if (!audioData.IsLoop)
             {
-                StartCoroutine(DestroySourceWhenFinished(source));
+                StartCoroutine(DestroySourceWhenFinished(tempAudioObj, source.clip.length));
             }
 
             return source;
         }
-
-        private System.Collections.IEnumerator DestroySourceWhenFinished(AudioSource source)
+        private System.Collections.IEnumerator DestroySourceWhenFinished(GameObject obj, float delay)
         {
-            yield return new WaitForSeconds(source.clip.length);
-            if (source != null) Destroy(source);
+            yield return new WaitForSeconds(delay);
+            if (obj != null) Destroy(obj);
         }
     }
 }

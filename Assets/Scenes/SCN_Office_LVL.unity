@@ -15618,7 +15618,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 3b49157933563d444a8ff9d0793b83bf, type: 2}
   m_DrawDistance: 1000
-  m_FadeScale: 0.9
+  m_FadeScale: 1
   m_StartAngleFade: 180
   m_EndAngleFade: 180
   m_UVScale: {x: 1, y: 1}
@@ -15627,7 +15627,7 @@ MonoBehaviour:
   m_ScaleMode: 0
   m_Offset: {x: 0, y: 0, z: 0.05}
   m_Size: {x: 0.2, y: 0.2, z: 0.1}
-  m_FadeFactor: 1
+  m_FadeFactor: 0.077
 --- !u!4 &596345626
 Transform:
   m_ObjectHideFlags: 0
@@ -15636,13 +15636,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 596345624}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.507235, y: -0.48429474, z: 0.46886063, w: -0.5369739}
-  m_LocalPosition: {x: 24.627558, y: 0.63938725, z: 13.158458}
+  m_LocalRotation: {x: -0.5803731, y: 0.3936951, z: -0.42602012, w: -0.57155764}
+  m_LocalPosition: {x: 24.641, y: 0.64, z: 13.177}
   m_LocalScale: {x: 0.5271173, y: 0.05094271, z: 0.21314514}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1294518537494942717}
-  m_LocalEulerAnglesHint: {x: 87.285, y: 69.819, z: -14.961}
+  m_LocalEulerAnglesHint: {x: 87.285, y: 69.819, z: 140.69}
 --- !u!4 &596467829 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2649153868299135973, guid: 26f202bb2556fd24195d8c336be3aaee, type: 3}
@@ -49639,7 +49639,7 @@ MonoBehaviour:
   m_ScaleMode: 0
   m_Offset: {x: 0, y: 0, z: 0.05}
   m_Size: {x: 0.2, y: 0.2, z: 0.1}
-  m_FadeFactor: 1
+  m_FadeFactor: 0.077
 --- !u!4 &1919518486
 Transform:
   m_ObjectHideFlags: 0
@@ -49649,7 +49649,7 @@ Transform:
   m_GameObject: {fileID: 1919518484}
   serializedVersion: 2
   m_LocalRotation: {x: -0.507235, y: -0.48429474, z: 0.46886063, w: -0.5369739}
-  m_LocalPosition: {x: 24.224558, y: 0.63938725, z: 12.942458}
+  m_LocalPosition: {x: 24.634, y: 0.628, z: 13.199}
   m_LocalScale: {x: 0.5271173, y: 0.05094271, z: 0.21314514}
   m_ConstrainProportionsScale: 0
   m_Children: []

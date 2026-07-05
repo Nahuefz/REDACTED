@@ -26,9 +26,9 @@ namespace Interactuables
         {
             CacaVolando = true;
 
-            if (sonidoCadena != null)
+            if (sonidoCadena != null && puntoDeSpawnAgua != null)
             {
-                SoundManager.Instance.Play(sonidoCadena, false);
+                SoundManager.Instance.Play(sonidoCadena, puntoDeSpawnAgua.position);
             }
 
             if (efectoAguaPrefab != null && puntoDeSpawnAgua != null)

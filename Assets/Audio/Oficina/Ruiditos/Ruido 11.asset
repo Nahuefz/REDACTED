@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Ruido 11
   m_EditorClassIdentifier: 
   soundClip: {fileID: 8300000, guid: 6ebdb0e8a683b1545a630832d9d0d15a, type: 3}
-  audioMixer: {fileID: 24300002, guid: 75da60ae0721b7742a6e0afcdf0aa0e2, type: 2}
+  audioMixer: {fileID: 24300002, guid: b0035d40cbe8dda469459693652dbe82, type: 2}
   volume: 1
   soundCategory: 2

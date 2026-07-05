@@ -11,7 +11,7 @@ namespace Managers.Audio
         {
             if (backgroundMusic != null)
             {
-                SoundManager.Instance.Play(backgroundMusic, true);
+                SoundManager.Instance.Play(backgroundMusic);
             }
         }
     }

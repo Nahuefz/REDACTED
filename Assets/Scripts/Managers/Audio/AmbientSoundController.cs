@@ -17,13 +17,11 @@ namespace Managers.Audio
 
         private void Start()
         {
-            // Reproducir loops constantes
             foreach (var audioData in constantSounds)
             {
-                SoundManager.Instance.Play(audioData, true);
+                SoundManager.Instance.Play(audioData);
             }
 
-            // Iniciar corutina de disparos espor�dicos
             if (randomSoundPool != null && randomSoundPool.Length > 0)
             {
                 StartCoroutine(PlayRandomSoundsRoutine());
@@ -39,7 +37,7 @@ namespace Managers.Audio
 
                 int randomIndex = Random.Range(0, randomSoundPool.Length);
                 AudioData selectedAudio = randomSoundPool[randomIndex];
-                SoundManager.Instance.Play(selectedAudio, false);
+                SoundManager.Instance.Play(selectedAudio);
             }
         }
     }
