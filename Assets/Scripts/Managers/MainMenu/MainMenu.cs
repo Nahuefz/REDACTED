@@ -59,4 +59,8 @@ public partial class MainMenu : MonoBehaviour
         Debug.Log("Saliendo del juego...");
         Application.Quit();
     }
+    public void TestLevel(string level)
+    {
+        SceneManager.LoadScene(level);
+    }
 }
