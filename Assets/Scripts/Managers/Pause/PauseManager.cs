@@ -8,6 +8,9 @@ public class PauseManager : MonoBehaviour
     private PlayerInputs _pauseInputs;
     [SerializeField] private GameObject _pauseCanvas;
 
+    [SerializeField] private GameObject optionsPanel;
+    [SerializeField] private GameObject pausePanel;
+
     private void Awake()
     {
         Time.timeScale = 1f;
@@ -15,6 +18,9 @@ public class PauseManager : MonoBehaviour
         _pauseInputs.Enable();
         _pauseCanvas =  GameObject.Find("PauseCanvas");
         _pauseCanvas.SetActive(false);
+        
+        //pausePanel = GameObject.Find("PausePanel");
+        //optionsPanel= GameObject.Find("OptionsPanel");
     }
 
     private void Update()
@@ -24,6 +30,7 @@ public class PauseManager : MonoBehaviour
             TogglePause();
             
         }
+        if (Time.timeScale == 0) Cursor.visible = true;
     }
 
     private void OnEnable() => _pauseInputs.Enable();
@@ -66,5 +73,16 @@ public class PauseManager : MonoBehaviour
     {
         Debug.Log("<color=yellow>IMPLEMENTAR</color>");
         SceneManager.LoadScene("SCN_MainMenu");
+    }
+    public void EnterOptions()
+    {
+        pausePanel.SetActive(false);
+        optionsPanel.SetActive(true);
+    }
+
+    public void GoBackPause()
+    {
+        pausePanel.SetActive(true);
+        optionsPanel.SetActive(false);
     }
 }
