@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 486c488f5cbeefe4791d446dc733dad4, type: 3}
   m_Name: Banioflush
   m_EditorClassIdentifier: 
-  soundClip: {fileID: 0}
-  audioMixer: {fileID: 0}
+  soundClip: {fileID: 8300000, guid: 3c739b5ab5cfbf14084cbbccd6151cf2, type: 3}
+  audioMixer: {fileID: 24300002, guid: b0035d40cbe8dda469459693652dbe82, type: 2}
   volume: 1
   soundCategory: 0
