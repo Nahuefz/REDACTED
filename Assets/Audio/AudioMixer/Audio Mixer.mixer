@@ -6,7 +6,7 @@ AudioMixerGroupController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AAmbience
+  m_Name: Ambience
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: f547d83ef0e978b47ba1bc4fe4dd06ca
   m_Children: []
@@ -38,7 +38,7 @@ AudioMixerController:
   - guid: a2c460e690197cc4b91abd602d18e1e5
     name: Ambience
   - guid: 9b48327bebdbdcb43b60ebf86b651c60
-    name: General
+    name: Master
   - guid: 485bfb951e3a72d4084400b887a3f39c
     name: Music
   m_AudioMixerGroupViews:
