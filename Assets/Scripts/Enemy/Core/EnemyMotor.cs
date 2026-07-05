@@ -54,10 +54,18 @@ namespace Enemy.Core
 
         public void UpdateLocomotionAnimation(float targetValue, float lerpSpeed)
         {
-            if (_animator == null) return;
+            if (_animator == null)
+            {
+                Debug.LogError($"[DQA] Error: El script EnemyMotor en {gameObject.name} NO encontró ningún Animator en sus hijos.");
+                return;
+            }
 
             float current = _animator.GetFloat("xAxis");
             float next = Mathf.Lerp(current, targetValue, Time.fixedDeltaTime * lerpSpeed);
+
+            // Este Log te va a cantar en la consola qué valor numérico le está llegando al Animator en vivo
+            Debug.Log($"[DQA] Animación actualizando. Valor enviado: {next} | Animator en objeto: {_animator.gameObject.name}");
+
             _animator.SetFloat("xAxis", next);
         }
 

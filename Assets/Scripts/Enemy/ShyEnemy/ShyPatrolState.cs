@@ -33,6 +33,9 @@ namespace Enemy.ShyEnemy
             {
                 _waitTimer += Time.deltaTime;
 
+                // Forzamos la animación a Idle (0) de forma fluida mientras espera en el punto
+                _enemy.Motor.UpdateLocomotionAnimation(0f, 5f);
+
                 if (_waitTimer >= _enemy.waypointWaitTime)
                 {
                     _isWaiting = false;
@@ -48,6 +51,12 @@ namespace Enemy.ShyEnemy
                 _isWaiting = true;
                 _waitTimer = 0f;
             }
+
+            // Cambiado '_behaviour' por '_enemy' para que compile perfectamente
+            float velocidadReal = _enemy.Motor.Agent.velocity.magnitude / _enemy.Motor.Agent.speed;
+
+            // Enviamos la velocidad al Blend Tree
+            _enemy.Motor.UpdateLocomotionAnimation(velocidadReal, 5f);
         }
 
         public override void Exit()
