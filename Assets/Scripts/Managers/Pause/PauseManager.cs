@@ -72,7 +72,13 @@ public class PauseManager : MonoBehaviour
     public void Quit()
     {
         Debug.Log("<color=yellow>IMPLEMENTAR</color>");
-        SceneManager.LoadScene("SCN_MainMenu");
+        //SceneManager.LoadScene("SCN_MainMenu");
+        Application.Quit();
+    }
+
+    public void GoBackMainMenu(string name)
+    {
+        SceneManager.LoadScene(name);
     }
     public void EnterOptions()
     {
