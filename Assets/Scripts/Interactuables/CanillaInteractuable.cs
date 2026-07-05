@@ -8,7 +8,7 @@ namespace Interactuables
         [SerializeField] private ParticleSystem chorroAgua;
         [SerializeField] private AudioSource audioAgua; // Ya que estaba declarado en el código, lo usamos [cite: 2]
 
-        private bool _estaAbierta; 
+        private bool _estaAbierta;
 
         private void Start()
         {
@@ -19,7 +19,7 @@ namespace Interactuables
                 _estaAbierta = false; // 
             }
 
-            if (audioAgua != null) 
+            if (audioAgua != null)
             {
                 audioAgua.Stop();
             }
