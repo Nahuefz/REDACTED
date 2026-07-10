@@ -23480,6 +23480,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PuertaAPuzzle1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1e2184a43caf0f548abe77fcd081e62e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -30557,7 +30561,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1764168745
 Transform:
   m_ObjectHideFlags: 0
@@ -37048,6 +37052,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cae234d705ee1b4594817b6697db7af, type: 3}
+--- !u!1001 &2723394053585882055
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1165179008598333992, guid: 360f004f06d5e8e46abf0f5a138f2e06, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639976549034175024, guid: 360f004f06d5e8e46abf0f5a138f2e06, type: 3}
+      propertyPath: m_Name
+      value: Tuberia
+      objectReference: {fileID: 0}
+    - target: {fileID: 5417639839491387530, guid: 360f004f06d5e8e46abf0f5a138f2e06, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 5417639839491387530, guid: 360f004f06d5e8e46abf0f5a138f2e06, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 5417639839491387530, guid: 360f004f06d5e8e46abf0f5a138f2e06, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 17.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 5417639839491387530, guid: 360f004f06d5e8e46abf0f5a138f2e06, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.07059043
+      objectReference: {fileID: 0}
+    - target: {fileID: 5417639839491387530, guid: 360f004f06d5e8e46abf0f5a138f2e06, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5417639839491387530, guid: 360f004f06d5e8e46abf0f5a138f2e06, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9975054
+      objectReference: {fileID: 0}
+    - target: {fileID: 5417639839491387530, guid: 360f004f06d5e8e46abf0f5a138f2e06, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5417639839491387530, guid: 360f004f06d5e8e46abf0f5a138f2e06, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5417639839491387530, guid: 360f004f06d5e8e46abf0f5a138f2e06, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 171.904
+      objectReference: {fileID: 0}
+    - target: {fileID: 5417639839491387530, guid: 360f004f06d5e8e46abf0f5a138f2e06, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 360f004f06d5e8e46abf0f5a138f2e06, type: 3}
 --- !u!1001 &3016840057844521057
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37622,3 +37687,4 @@ SceneRoots:
   - {fileID: 2323894789918483650}
   - {fileID: 1679114117}
   - {fileID: 1700987659}
+  - {fileID: 2723394053585882055}
