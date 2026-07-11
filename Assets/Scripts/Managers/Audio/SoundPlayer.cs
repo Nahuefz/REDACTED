@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Managers.Audio
@@ -6,7 +7,12 @@ namespace Managers.Audio
     {
         [SerializeField] private AudioData audioToPlay;
 
-        public void PlaySound()
+        private void Start()
+        {
+            PlaySound();
+        }
+
+        private void PlaySound()
         {
             SoundManager.Instance.Play(audioToPlay, transform.position);
         }

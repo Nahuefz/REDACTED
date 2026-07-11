@@ -6,5 +6,6 @@ public enum GameScenes
     SCN_Archive_LVL,
     TEST_Enemy,
     SCN_PUZZLE1,
-    SCN_PUZZLE2
+    SCN_PUZZLE2,
+    WinScene,
 }
