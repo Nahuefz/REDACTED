@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 327e632dd02f549409f2e17898f48f14, type: 3}
-  m_Name: Di_Colombia2
+  m_Name: Di_ColombiaCafeCQueso
   m_EditorClassIdentifier: 
   nombrePorDefecto: Colombia
   dialogos:
   - nombrePersonaje: 
-    texto: La cuentas claras y el chocolate espeso!
+    texto: Essso compadre! Ahi te marcho uno!
     imagen: {fileID: 0}
   - nombrePersonaje: 
-    texto: Aunque a mi me gusta mas el cafe con queso!
+    texto: ...
     imagen: {fileID: 0}
   - nombrePersonaje: 
-    texto: Cuando quieras te hago uno, parce!
-    imagen: {fileID: 0}
+    texto: Aqui tiene nomas! Disfrutalo!
+    imagen: {fileID: 21300000, guid: 5133c1a9025c3004ea6b2d46a59aa4a5, type: 3}
