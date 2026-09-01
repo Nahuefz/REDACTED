@@ -20,3 +20,6 @@ MonoBehaviour:
   - nombrePersonaje: 
     texto: Ahora puedo trabajar con sabor a casita.
     imagen: {fileID: 0}
+  - nombrePersonaje: 
+    texto: Cuando quieras te hago uno, parce!
+    imagen: {fileID: 0}

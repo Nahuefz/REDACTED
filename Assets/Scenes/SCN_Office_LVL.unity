@@ -33854,7 +33854,7 @@ PrefabInstance:
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: dialogoNegativo
       value: 
-      objectReference: {fileID: 11400000, guid: 4e3f345e21f845d43a275b0dcf0a37d6, type: 2}
+      objectReference: {fileID: 11400000, guid: 42cf3f9a0f379d54a9f9545de6fe9a8d, type: 2}
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: dialogoPeticion
       value: 
@@ -33870,14 +33870,14 @@ PrefabInstance:
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: dialogoYaCompletado
       value: 
-      objectReference: {fileID: 11400000, guid: 4e3f345e21f845d43a275b0dcf0a37d6, type: 2}
+      objectReference: {fileID: 11400000, guid: 42cf3f9a0f379d54a9f9545de6fe9a8d, type: 2}
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: dialogoAgradecimiento
       value: 
-      objectReference: {fileID: 11400000, guid: 4e3f345e21f845d43a275b0dcf0a37d6, type: 2}
+      objectReference: {fileID: 11400000, guid: db2b640d08dd2e5479774079c55a075c, type: 2}
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: listaDialogos.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5467089636996059049, guid: c6f282cb730c45147a2cecf4ac40a926, type: 3}
       propertyPath: 'listaDialogos.Array.data[0]'
