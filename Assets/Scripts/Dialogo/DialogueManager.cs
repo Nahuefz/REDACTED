@@ -104,15 +104,15 @@ public class DialogueManager : MonoBehaviour
         {
             if (notaEnCamara != null)
             {
-                Image image = notaEnCamara.GetComponent<Image>();
+                SpriteRenderer image = notaEnCamara.GetComponentInChildren<SpriteRenderer>();
                 if (image != null) image.sprite = oracionActual.imagen;
                 
                 notaEnCamara.SetActive(true);
                 
-                if (notaEnCamara.TryGetComponent(out BasicItem item) && _currentInventory != null)
-                {
-                    _currentInventory.TryAddItem(item.data);
-                }
+                //if (notaEnCamara.TryGetComponent(out BasicItem item) && _currentInventory != null)
+                //{
+                //    _currentInventory.TryAddItem(item.data);
+                //}
             }
         }
         else
